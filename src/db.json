@@ -95,6 +95,14 @@
       "room": "客厅",
       "status": false,
       "temperature": 22
+    },
+    {
+      "id": "1748952098073",
+      "name": "my_monitor",
+      "type": "monitor",
+      "brand": "hk",
+      "room": "卧室",
+      "status": true
     }
   ],
   "rooms": [
@@ -145,6 +153,31 @@
           "status": false
         }
       ]
+    },
+    {
+      "id": "1748960877199",
+      "name": "test",
+      "description": "",
+      "devices": [
+        {
+          "status": true,
+          "brightness": 57
+        }
+      ],
+      "createdAt": "2025-06-03T14:27:57.199Z"
+    },
+    {
+      "id": "1748960987803",
+      "name": "test",
+      "description": "",
+      "devices": [
+        {
+          "type": "light",
+          "status": true,
+          "brightness": 70
+        }
+      ],
+      "createdAt": "2025-06-03T14:29:47.803Z"
     }
   ],
   "users": [

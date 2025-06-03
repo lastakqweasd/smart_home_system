@@ -68,7 +68,7 @@
           class="filter-btn"
           :class="{ active: selectedRoom === room.name }"
           @click="setSelectedRoom(room.name)"
-          >
+        >
           {{ room.name }}
         </button>
       </div>
@@ -86,14 +86,15 @@
           :class="{ selected: isDeviceSelected(device.id) }"
         >
           <div class="device-info" @click="toggleDeviceSelection(device.id)">
+            <div class="device-icon" :style="{ backgroundColor: getDeviceColor(device.type) }">
+              <i :class="getDeviceIcon(device.type)"></i>
+            </div>
             <div class="device-details">
-              <div class="device-icon" :style="{ backgroundColor: getDeviceColor(device.type) }">
-                <i :class="getDeviceIcon(device.type)"></i>
-              </div>
               <h3>{{ device.name }}</h3>
               <p>{{ device.room }} · {{ device.type }}</p>
             </div>
           </div>
+          
           <div v-if="isDeviceSelected(device.id)" class="device-controls">
             <div class="control-group">
               <label>状态</label>
@@ -120,6 +121,7 @@
               <span>{{ deviceStates[device.id].brightness }}%</span>
             </div>
             
+            <!-- 空调控制 -->
             <div v-if="device.type === 'ac'" class="control-group">
               <label>温度</label>
               <input 
@@ -131,7 +133,7 @@
               >
               <span>{{ deviceStates[device.id].temperature }}°C</span>
             </div>
-
+            
             <!-- 窗帘控制 -->
             <div v-if="device.type === 'curtain'" class="control-group">
               <label>开合度</label>
@@ -144,7 +146,6 @@
               >
               <span>{{ deviceStates[device.id].openPercentage }}%</span>
             </div>
-
           </div>
         </div>
       </div>
@@ -167,12 +168,12 @@ export default {
     const store = useStore()
     const router = useRouter()
     
-    // 场景数据
+    // 场景数据 - 匹配db.json结构
     const scene = ref({
       name: '',
       description: '',
       icon: 'home',
-      devices: []
+      devices: [] // 设备数组将包含设备状态对象
     })
     
     // 设备搜索
@@ -195,7 +196,7 @@ export default {
       { id: 'utensils', class: 'fas fa-utensils', label: '用餐' },
       { id: 'door-open', class: 'fas fa-door-open', label: '离家' }
     ])
-
+    
     // 获取设备图标
     const getDeviceIcon = (type) => {
       const iconMap = {
@@ -208,7 +209,7 @@ export default {
       }
       return iconMap[type] || 'fas fa-microchip'
     }
-
+    
     // 获取设备颜色
     const getDeviceColor = (type) => {
       const colorMap = {
@@ -221,7 +222,7 @@ export default {
       }
       return colorMap[type] || '#607D8B'
     }
-
+    
     // 初始化设备状态
     const initializeDeviceStates = () => {
       devices.value.forEach(device => {
@@ -268,7 +269,7 @@ export default {
     
     // 设置选择的房间
     const setSelectedRoom = (room) => {
-      selectedRoom.value =  room
+      selectedRoom.value = room
     }
     
     // 取消创建
@@ -276,24 +277,24 @@ export default {
       router.push('/')
     }
     
-    // 创建场景
+    // 创建场景 - 匹配db.json结构
     const createScene = () => {
       if (!scene.value.name.trim()) {
         alert('请输入场景名称')
         return
       }
       
-      // 获取选中的设备及其状态
+      // 获取选中的设备及其状态 - 匹配db.json结构
       const selectedDevices = []
       Object.keys(deviceStates.value).forEach(deviceId => {
         if (deviceStates.value[deviceId].selected) {
           const device = devices.value.find(d => d.id === deviceId)
+          
           // 创建设备状态对象 - 匹配db.json结构
           const deviceStatus = {
-            type: device.type,
             status: deviceStates.value[deviceId].status
           }
-
+          
           // 根据设备类型添加额外属性
           if (device.type === 'light') {
             deviceStatus.brightness = deviceStates.value[deviceId].brightness
@@ -302,29 +303,29 @@ export default {
           } else if (device.type === 'curtain') {
             deviceStatus.openPercentage = deviceStates.value[deviceId].openPercentage
           }
-
+          
           // 添加到场景设备列表
           selectedDevices.push(deviceStatus)
         }
       })
-
-      console.log(selectedDevices)
+      
       if (selectedDevices.length === 0) {
         alert('请至少选择一个设备')
         return
       }
       
-      // 创建场景对象
+      // 创建场景对象 - 匹配db.json结构
       const newScene = {
         id: Date.now().toString(),
         name: scene.value.name,
         description: scene.value.description,
+        icon: scene.value.icon,
         devices: selectedDevices
       }
       
       // 保存到Vuex
       store.dispatch('createScene', newScene)
-      console.log(newScene)
+      
       // 提示并返回首页
       alert(`场景"${newScene.name}"创建成功！`)
       router.push('/')
@@ -359,6 +360,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+/* 样式保持不变 */
 .create-scene {
   max-width: 1200px;
   margin: 0 auto;
@@ -611,10 +613,6 @@ export default {
   color: white;
   font-size: 20px;
   margin-right: 15px;
-  
-  i {
-    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
-  }
 }
 
 .device-details {
