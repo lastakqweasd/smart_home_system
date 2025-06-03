@@ -16,7 +16,7 @@
       "brand": "xiaomi",
       "room": "卧室",
       "status": false,
-      "brightness": 0
+      "brightness": 57
     },
     {
       "id": "1746952473402",
@@ -88,13 +88,13 @@
       "temperature": 22
     },
     {
-      "id": "1748880387149",
-      "name": "asd",
-      "type": "light",
-      "brand": "philips",
-      "room": "厨房",
+      "id": "1748945311974",
+      "name": "客厅空调",
+      "type": "ac",
+      "brand": "midea",
+      "room": "客厅",
       "status": false,
-      "brightness": 50
+      "temperature": 22
     }
   ],
   "rooms": [

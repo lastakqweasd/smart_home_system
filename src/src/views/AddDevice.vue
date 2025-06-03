@@ -200,7 +200,7 @@
   }
   </script>
   
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
   .add-device-page {
     max-width: 1200px;
     margin: 0 auto;
@@ -286,4 +286,4 @@
       cursor: not-allowed;
     }
   }
-  </style>
+</style>

@@ -2,6 +2,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage.vue'
 import AddDevice from '../views/AddDevice.vue'
+import CreateScene from '../views/CreateScene.vue'
 import Login from '../views/Login.vue'
 import store from '../store/s_index'
 
@@ -21,6 +22,12 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  // 创建场景模式
+  {
+    path: '/create-scene',
+    name: 'CreateScene',
+    component: CreateScene,
   }
   // 可以添加更多路由，如设备详情页面等
 ]
