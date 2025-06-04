@@ -79,15 +79,6 @@
       "brightness": 70
     },
     {
-      "id": "1748880032218",
-      "name": "asd",
-      "type": "ac",
-      "brand": "midea",
-      "room": "厨房",
-      "status": false,
-      "temperature": 22
-    },
-    {
       "id": "1748880387149",
       "name": "asd",
       "type": "light",
