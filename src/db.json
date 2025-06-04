@@ -16,7 +16,7 @@
       "brand": "xiaomi",
       "room": "卧室",
       "status": false,
-      "brightness": 57
+      "brightness": 31
     },
     {
       "id": "1746952473402",
@@ -88,21 +88,12 @@
       "temperature": 22
     },
     {
-      "id": "1748945311974",
-      "name": "客厅空调",
-      "type": "ac",
-      "brand": "midea",
-      "room": "客厅",
-      "status": false,
-      "temperature": 22
-    },
-    {
-      "id": "1748952098073",
+      "id": "1748964482871",
       "name": "my_monitor",
       "type": "monitor",
       "brand": "hk",
-      "room": "卧室",
-      "status": true
+      "room": "厨房",
+      "status": false
     }
   ],
   "rooms": [
@@ -178,6 +169,19 @@
         }
       ],
       "createdAt": "2025-06-03T14:29:47.803Z"
+    },
+    {
+      "id": "1748963893337",
+      "name": "休息",
+      "description": "",
+      "devices": [
+        {
+          "type": "ac",
+          "status": true,
+          "temperature": "30"
+        }
+      ],
+      "createdAt": "2025-06-03T15:18:13.337Z"
     }
   ],
   "users": [

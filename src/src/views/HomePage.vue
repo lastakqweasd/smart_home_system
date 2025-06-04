@@ -137,6 +137,7 @@ export default {
     }
 
     const activateScene = (sceneId) => {
+      
       store.dispatch('activateScene', sceneId)
     }
 

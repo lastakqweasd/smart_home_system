@@ -59,7 +59,7 @@ export default createStore({
       console.log(state.scenes)
       state.scenes.push(scene)
       // localStorage.setItem('scenes', JSON.stringify(state.scenes))
-    }
+    },
 
   },
   actions: {
@@ -204,7 +204,7 @@ export default createStore({
     },
 
     //激活场景
-    activateScene({ commit, dispatch }, sceneId) {
+    activateScene({ state ,commit, dispatch }, sceneId) {
       return new Promise((resolve) => {
         // 模拟API请求
         setTimeout(() => {
@@ -216,6 +216,7 @@ export default createStore({
         }, 500)
       })
     }
+
   },
   ////
   getters: {
