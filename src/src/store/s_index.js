@@ -61,6 +61,11 @@ export default createStore({
       // localStorage.setItem('scenes', JSON.stringify(state.scenes))
     },
 
+    //删除场景
+    REMOVE_SCENE(state, sceneId) {
+      state.scenes = state.scenes.filter(scene => scene.id !== sceneId)
+    }
+
   },
   actions: {
     //删除设备
@@ -203,18 +208,19 @@ export default createStore({
       }
     },
 
-    //激活场景
-    activateScene({ state ,commit, dispatch }, sceneId) {
-      return new Promise((resolve) => {
-        // 模拟API请求
-        setTimeout(() => {
-          const scene = state.scenes.find(s => s.id === sceneId)
-          if (scene) {
-            alert(`场景 "${scene.name}" 已激活！`)
-          }
-          resolve()
-        }, 500)
-      })
+    //删除场景
+    async deleteScene({ commit }, sceneId) {
+      try {
+        // 如果使用 json-server
+        await api.delScene(sceneId)
+        // 更新前端状态
+        console.log(sceneId)
+        commit('REMOVE_SCENE', sceneId);
+        return true;
+      } catch (error) {
+        console.error('删除场景失败:', error);
+        return false;
+      }
     }
 
   },

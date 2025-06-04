@@ -21,9 +21,11 @@ export const api = {
   createScene: (sceneData) => axios.post(API_URL+'/scenes', sceneData),
   activateScene: async (sceneId) => {
     const res = await axios.get(`${API_URL}/scenes/${sceneId}`);
+    console.log(res);
+    console.log(res.data);
     const scene = res.data;
     const allDevices = (await axios.get(`${API_URL}/devices`)).data;
-    
+    console.log(allDevices);
     const updatePromises = scene.devices.flatMap(targetDevice => {
       // 查找匹配的设备
       const matchedDevices = allDevices.filter(device => 
@@ -36,8 +38,12 @@ export const api = {
         axios.patch(`${API_URL}/devices/${device.id}`, targetDevice)
       );
     });
-
     await Promise.all(updatePromises);
+    console.log(updatePromises);
     return scene;
-  }
+    
+  },
+  //删除场景
+  delScene: (sceneId) => axios.delete(`${API_URL}/scenes/${sceneId}`),
+
 }
