@@ -16,7 +16,7 @@
       "brand": "xiaomi",
       "room": "卧室",
       "status": false,
-      "brightness": 0
+      "brightness": 31
     },
     {
       "id": "1746952473402",
@@ -84,8 +84,7 @@
       "type": "light",
       "brand": "philips",
       "room": "厨房",
-      "status": false,
-      "brightness": 50
+      "status": false
     }
   ],
   "rooms": [
@@ -136,6 +135,44 @@
           "status": false
         }
       ]
+    },
+    {
+      "id": "1748960877199",
+      "name": "test",
+      "description": "",
+      "devices": [
+        {
+          "status": true,
+          "brightness": 57
+        }
+      ],
+      "createdAt": "2025-06-03T14:27:57.199Z"
+    },
+    {
+      "id": "1748960987803",
+      "name": "test",
+      "description": "",
+      "devices": [
+        {
+          "type": "light",
+          "status": true,
+          "brightness": 70
+        }
+      ],
+      "createdAt": "2025-06-03T14:29:47.803Z"
+    },
+    {
+      "id": "1748963893337",
+      "name": "休息",
+      "description": "",
+      "devices": [
+        {
+          "type": "ac",
+          "status": true,
+          "temperature": "30"
+        }
+      ],
+      "createdAt": "2025-06-03T15:18:13.337Z"
     }
   ],
   "users": [

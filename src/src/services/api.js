@@ -22,6 +22,7 @@ export const api = {
 
   // 场景相关API
   getScenes: () => axios.get(`${API_URL}/scenes/`),
+  createScene: (sceneData) => axios.post(API_URL+'/scenes', sceneData),
   activateScene: async (sceneId) => {
     const res = await axios.get(`${API_URL}/scenes/${sceneId}/`);
     const scene = res.data;
@@ -39,7 +40,7 @@ export const api = {
         axios.patch(`${API_URL}/devices/${device.id}/`, targetDevice)
       );
     });
-    
+
     await Promise.all(updatePromises);
     return scene;
   }

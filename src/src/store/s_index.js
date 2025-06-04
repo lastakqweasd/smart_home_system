@@ -51,7 +51,17 @@ export default createStore({
     },
     CLEAR_USER(state) {
       state.user = null
-    }},
+    },
+
+    //添加场景
+    ADD_SCENE(state, scene) {
+      console.log(scene)
+      console.log(state.scenes)
+      state.scenes.push(scene)
+      // localStorage.setItem('scenes', JSON.stringify(state.scenes))
+    },
+
+  },
   actions: {
     //删除设备
     async deleteDevice({ commit }, deviceId) {
@@ -167,8 +177,47 @@ export default createStore({
     },
     logout({ commit }) {
       commit('CLEAR_USER')
+    },
+    //添加场景
+    // 创建场景
+    async createScene({ commit }, scene) {
+      commit('SET_LOADING', true);
+      try {
+        // 调用 API 保存到 db.json
+        const response = await api.createScene({
+          ...scene,
+          id: Date.now().toString(), // 生成唯一ID
+          createdAt: new Date().toISOString()
+        });
+        
+        // 更新本地状态
+        commit('ADD_SCENE', response.data);
+        return true;
+      } catch (error) {
+        commit('SET_ERROR', '创建场景失败');
+        console.error(error);
+        return false;
+      } finally {
+        commit('SET_LOADING', false);
+      }
+    },
+
+    //激活场景
+    activateScene({ state ,commit, dispatch }, sceneId) {
+      return new Promise((resolve) => {
+        // 模拟API请求
+        setTimeout(() => {
+          const scene = state.scenes.find(s => s.id === sceneId)
+          if (scene) {
+            alert(`场景 "${scene.name}" 已激活！`)
+          }
+          resolve()
+        }, 500)
+      })
     }
+
   },
+  ////
   getters: {
     getDevicesByRoom: (state) => {
       if (state.selectedRoom === 'all') {
