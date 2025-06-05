@@ -17,6 +17,7 @@ class Device(models.Model):
     ]
 
     name = models.CharField(max_length=100)
+    brand = models.CharField(max_length=50, blank=True, null=True)
     type = models.CharField(max_length=20, choices=DEVICE_TYPES)
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='devices')
     status = models.BooleanField(default=False)
