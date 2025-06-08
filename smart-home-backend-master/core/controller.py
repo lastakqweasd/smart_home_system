@@ -1,12 +1,13 @@
 # controllers/device_controller.py
 import logging
 import os
+from .models import Device
 
 class DeviceController:
     logger = logging.getLogger("DeviceController")
 
     log_file_path = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), "../core/device_control.log")
+        os.path.join(os.path.dirname(__file__), "../logs/device_control.log")
     )
     print("日志写入路径：", log_file_path)
 
@@ -39,3 +40,28 @@ class DeviceController:
 
         for h in DeviceController.logger.handlers:
             h.flush()
+
+    @classmethod
+    def handle_tcp_command(cls, command):
+        try:
+            device = Device.objects.get(pk=command['device_id'])
+
+            # 执行指令
+            if command['action'] == 'toggle':
+                device.status = not device.status
+            elif command['action'] == 'set':
+                device.extra.update(command.get('params', {}))
+
+            device.save()
+            cls.control(device)  # 调用原有控制方法
+
+            return {
+                'status': 'success',
+                'device_id': device.id,
+                'current_status': device.status,
+                'extra': device.extra
+            }
+        except Device.DoesNotExist:
+            return {'error': '设备不存在'}
+        except Exception as e:
+            return {'error': f'控制失败: {str(e)}'}

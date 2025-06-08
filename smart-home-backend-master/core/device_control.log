@@ -1,6 +1,0 @@
-2025-06-03 08:58:40,967 - INFO - 控制设备: cghissb (light) 状态=开 配置=123
-2025-06-03 08:58:44,319 - INFO - 控制设备: cghissb (light) 状态=开 配置=123
-2025-06-04 20:41:30,250 - INFO - 控制设备: 客厅主灯 (light) 状态=关 配置={'brightness': 80, 'color': '#FFFFFF'}
-2025-06-04 20:41:30,957 - INFO - 控制设备: 客厅主灯 (light) 状态=开 配置={'brightness': 80, 'color': '#FFFFFF'}
-2025-06-04 20:41:31,963 - INFO - 控制设备: 卧室空调 (ac) 状态=开 配置={'temperature': 26, 'mode': 'cool'}
-2025-06-04 20:41:32,371 - INFO - 控制设备: 卧室空调 (ac) 状态=关 配置={'temperature': 26, 'mode': 'cool'}

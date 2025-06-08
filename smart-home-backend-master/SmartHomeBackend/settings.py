@@ -159,3 +159,10 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = 'core.SmartHomeUser'
+
+# 允许本地局域网访问
+ALLOWED_HOSTS = [
+    '172.20.10.3',
+    'localhost',
+    '127.0.0.1'
+]
