@@ -25,6 +25,7 @@ export default createStore({
       state.selectedRoom = room
     },
     UPDATE_DEVICE(state, updatedDevice) {
+      console.log(updatedDevice)
       const index = state.devices.findIndex(
         (device) => device.id === updatedDevice.id
       )
@@ -64,8 +65,15 @@ export default createStore({
     //删除场景
     REMOVE_SCENE(state, sceneId) {
       state.scenes = state.scenes.filter(scene => scene.id !== sceneId)
-    }
+    },
 
+    //关闭所有设备
+    RESET_DEVICES(state) {
+      state.devices = state.devices.map(device => ({...device, status: false}))
+      state.devices.forEach(device => {
+        api.updateDevice(device.id, { status: false })
+      })
+    }
   },
   actions: {
     //删除设备
@@ -136,6 +144,7 @@ export default createStore({
     async toggleDevice({ commit }, { id, status }) {
       try {
         const response = await api.updateDevice(id, { status })
+        console.log(response)
         commit('UPDATE_DEVICE', response.data)
       } catch (error) {
         commit('SET_ERROR', '设备状态更新失败')
@@ -154,6 +163,8 @@ export default createStore({
     async activateScene({ commit, dispatch }, sceneId) {
       commit('SET_LOADING', true)
       try {
+        commit('RESET_DEVICES')
+        console.log(this.state.devices)
         await api.activateScene(sceneId)
         // 重新获取设备状态
         dispatch('fetchDevices')
@@ -166,12 +177,13 @@ export default createStore({
     },
     async login({ commit }, credentials) {
       try {
-        const response = await api.login(
-            credentials.username,
-            credentials.password
-        )
-        if (response.data?.success === true) {
-          commit('SET_USER', response.data);
+        const response = await api.getUsers({
+            name: credentials.username,
+            password: credentials.password
+        })
+        // console.log(response)
+        if (response.data.length >0) {
+          commit('SET_USER', response.data[0]);
           return true
         }
         return false
@@ -189,6 +201,7 @@ export default createStore({
       commit('SET_LOADING', true);
       try {
         // 调用 API 保存到 db.json
+        console.log(scene)
         const response = await api.createScene({
           ...scene,
           id: Date.now().toString(), // 生成唯一ID

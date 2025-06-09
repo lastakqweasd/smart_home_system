@@ -86,7 +86,8 @@
         </div>
         <!-- 删除按钮 -->
           <button 
-            class="delete-scene-btn"
+            class="delete-scene-btn" 
+            title="删除"
             @click.stop="confirmDeleteScene(scene)"
           >
             <i class="fas fa-trash-alt"></i>
