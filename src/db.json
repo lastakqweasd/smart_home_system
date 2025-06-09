@@ -2,12 +2,12 @@
   "devices": [
     {
       "id": "1746950563781",
-      "name": "卧室空调",
+      "name": "卧室空调啦啦啦",
       "type": "ac",
       "brand": "gree",
       "room": "卧室",
       "status": false,
-      "temperature": 16,
+      "temperature": 21,
       "userId": "1"
     },
     {
@@ -27,7 +27,7 @@
       "brand": "xiaomi",
       "room": "客厅",
       "status": false,
-      "brightness": 70,
+      "brightness": 38,
       "userId": "1"
     },
     {
@@ -64,7 +64,7 @@
       "type": "curtain",
       "brand": "aqara",
       "room": "卧室",
-      "status": true,
+      "status": false,
       "openPercentage": 28,
       "userId": "1"
     },
@@ -254,6 +254,16 @@
     {
       "id": "1749451354794",
       "name": "zwksson",
+      "password": "111111",
+      "role": "member",
+      "permissions": [
+        "read",
+        "write"
+      ]
+    },
+    {
+      "id": "1749452850615",
+      "name": "111",
       "password": "111111",
       "role": "member",
       "permissions": [
