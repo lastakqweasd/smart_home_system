@@ -29,15 +29,6 @@
       "temperature": 21
     },
     {
-      "id": "1749453619411",
-      "name": "asd",
-      "type": "ac",
-      "brand": "midea",
-      "room": "厨房",
-      "status": false,
-      "temperature": "19"
-    },
-    {
       "id": "1749453843679",
       "name": "asdassad",
       "type": "outlet",
