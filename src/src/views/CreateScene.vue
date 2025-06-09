@@ -290,7 +290,11 @@ export default {
           const device = devices.value.find(d => d.id === deviceId)
           // 创建设备状态对象 - 匹配db.json结构
           const deviceStatus = {
+            id: device.id,
+            name: device.name,
             type: device.type,
+            brand: device.brand,
+            room: device.room,
             status: deviceStates.value[deviceId].status
           }
 

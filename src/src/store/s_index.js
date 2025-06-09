@@ -25,6 +25,7 @@ export default createStore({
       state.selectedRoom = room
     },
     UPDATE_DEVICE(state, updatedDevice) {
+      console.log(updatedDevice)
       const index = state.devices.findIndex(
         (device) => device.id === updatedDevice.id
       )
@@ -55,6 +56,19 @@ export default createStore({
       console.log(state.scenes)
       state.scenes.push(scene)
     },
+
+    //删除场景
+    REMOVE_SCENE(state, sceneId) {
+      state.scenes = state.scenes.filter(scene => scene.id !== sceneId)
+    },
+
+    //关闭所有设备
+    RESET_DEVICES(state) {
+      state.devices = state.devices.map(device => ({...device, status: false}))
+      state.devices.forEach(device => {
+        api.updateDevice(device.id, { status: false })
+      })
+    }
   },
   actions: {
     // 删除设备 - 添加用户验证
@@ -152,6 +166,7 @@ export default createStore({
     async toggleDevice({ commit }, { id, status }) {
       try {
         const response = await api.updateDevice(id, { status })
+        console.log(response)
         commit('UPDATE_DEVICE', response.data)
       } catch (error) {
         commit('SET_ERROR', '设备状态更新失败')
@@ -172,6 +187,8 @@ export default createStore({
     async activateScene({ commit, dispatch, state }, sceneId) {
       commit('SET_LOADING', true)
       try {
+        commit('RESET_DEVICES')
+        console.log(this.state.devices)
         await api.activateScene(sceneId)
         // 重新获取设备状态
         dispatch('fetchDevices')
@@ -299,17 +316,19 @@ export default createStore({
       }
     },
 
-    // 激活场景
-    activateScene({ state, commit, dispatch }, sceneId) {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          const scene = state.scenes.find(s => s.id === sceneId)
-          if (scene) {
-            alert(`场景 "${scene.name}" 已激活！`)
-          }
-          resolve()
-        }, 500)
-      })
+    //删除场景
+    async deleteScene({ commit }, sceneId) {
+      try {
+        // 如果使用 json-server
+        await api.delScene(sceneId)
+        // 更新前端状态
+        console.log(sceneId)
+        commit('REMOVE_SCENE', sceneId);
+        return true;
+      } catch (error) {
+        console.error('删除场景失败:', error);
+        return false;
+      }
     }
   },
 

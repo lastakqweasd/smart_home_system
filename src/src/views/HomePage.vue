@@ -65,6 +65,7 @@
         <p>暂无场景模式</p>
       </div>
       <!-- 场景模式列表 -->
+
       <div v-else class="scene-cards">
         <div
           v-for="scene in scenes"
@@ -72,15 +73,35 @@
           class="scene-card"
           @click="activateScene(scene.id)"
         >
-          <div class="scene-icon" :class="scene.icon">
-            <i :class="getSceneIcon(scene.icon)"></i>
+        <!-- 场景内容 -->
+        <div class="scene-icon" :class="scene.icon">
+          <i :class="getSceneIcon(scene.icon)"></i>
+        </div>
+        <div class="scene-info">
+          <h3 class="scene-card__title">{{ scene.name }}</h3>
+          <p class="scene-card__desc">{{ scene.description }}</p>
+          <div class="scene-device-count">
+            <i class="fas fa-microchip"></i> {{scene.devices.length}} 个设备
           </div>
-          <div class="scene-info">
-            <h3 class="scene-card__title">{{ scene.name }}</h3>
-            <p class="scene-card__desc">{{ scene.description }}</p>
-            <div class="scene-device-count">
-              <i class="fas fa-microchip"></i> {{scene.devices.length}} 个设备
-            </div>
+        </div>
+        <!-- 删除按钮 -->
+          <button 
+            class="delete-scene-btn" 
+            title="删除"
+            @click.stop="confirmDeleteScene(scene)"
+          >
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div v-if="sceneToDelete" class="delete-confirm-modal">
+        <div class="modal-content">
+          <h3>确认删除场景</h3>
+          <p>确定要删除场景 <strong>"{{ sceneToDelete.name }}"</strong> 吗？此操作无法撤销。</p>
+          <div class="modal-actions">
+            <button class="cancel-btn" @click.stop="sceneToDelete = null">取消</button>
+            <button class="confirm-delete-btn" @click.stop="deleteScene(sceneToDelete.id)">删除</button>
           </div>
         </div>
       </div>
@@ -96,6 +117,7 @@ import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import DeviceCard from '@/components/devices/DeviceCard.vue'
+import { ref } from 'vue'
 
 export default {
   name: 'HomePage',
@@ -112,6 +134,17 @@ export default {
     const selectedRoom = computed(() => store.state.selectedRoom)
     const loading = computed(() => store.state.loading)
     const error = computed(() => store.state.error)
+
+    const sceneToDelete = ref(null) // 待删除的场景
+    // 确认删除场景
+    const confirmDeleteScene = (scene) => {
+      sceneToDelete.value = scene
+    }
+    // 删除场景
+    const deleteScene = (sceneId) => {
+      store.dispatch('deleteScene', sceneId)
+      sceneToDelete.value = null
+    }
 
     // 过滤设备列表
     const filteredDevices = computed(() => {
@@ -175,7 +208,11 @@ export default {
       setSelectedRoom,
       activateScene,
       handleLogout,
-      getSceneIcon
+      getSceneIcon,
+      // 
+      confirmDeleteScene,
+      deleteScene,
+      sceneToDelete
     }
   }
 }
@@ -430,6 +467,120 @@ export default {
 
   &:hover {
     background: #3d8b40;
+  }
+}
+
+.delete-scene-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px; /* 修正了原代码中 500% 的异常高度 */
+  // background: rgba(244, 67, 54, 0.9);
+  color: white;
+  border: none;
+  border-radius: 4px; /* 添加圆角 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+  opacity: 1; /* 默认显示（原代码为 0 会隐藏按钮） */
+  transform: translateY(0); /* 重置初始位置 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* 添加阴影增强层次感 */
+
+  &:hover {
+    background: #d32f2f; /* 悬停加深颜色 */
+    transform: scale(1.1);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3); /* 悬停时阴影增强 */
+  }
+
+  &:active {
+    transform: scale(0.95); /* 点击时轻微缩小 */
+  }
+
+  /* 响应式调整 */
+  @media (max-width: 768px) {
+    width: 26px;
+    height: 26px;
+    top: 6px;
+    right: 6px;
+  }
+}
+
+/* 删除确认对话框样式 */
+.delete-confirm-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  
+  h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 20px;
+  }
+  
+  p {
+    margin: 15px 0 25px;
+    color: #666;
+    line-height: 1.6;
+    
+    strong {
+      color: #e53935;
+    }
+  }
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.cancel-btn {
+  padding: 10px 20px;
+  background: #f0f4f8;
+  color: #546e7a;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s;
+  
+  &:hover {
+    background: #e0e6ed;
+  }
+}
+
+.confirm-delete-btn {
+  padding: 10px 20px;
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s;
+  
+  &:hover {
+    background: #d32f2f;
   }
 }
 </style>

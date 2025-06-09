@@ -11,12 +11,13 @@
     },
     {
       "id": "1746952473402",
-      "name": "客厅主灯",
+      "name": "客厅次灯",
       "type": "light",
-      "brand": "xiaomi",
+      "brand": "philips",
       "room": "客厅",
       "status": false,
-      "brightness": 70
+      "brightness": "8",
+      "userId": "1"
     },
     {
       "id": "1746952514079",
@@ -50,7 +51,8 @@
       "brand": "aqara",
       "room": "卧室",
       "status": false,
-      "openPercentage": 28
+      "openPercentage": 28,
+      "userId": "1"
     },
     {
       "id": "1746958363266",
@@ -67,7 +69,8 @@
       "brand": "philips",
       "room": "客厅",
       "status": false,
-      "brightness": 70
+      "brightness": "8",
+      "userId": "1"
     },
     {
       "id": "1748880387149",
@@ -78,8 +81,18 @@
       "status": false
     },
     {
-      "id": "1749453267268",
-      "name": "4rrrw",
+      "id": "1749452273216",
+      "name": "客厅次灯",
+      "type": "light",
+      "brand": "philips",
+      "room": "客厅",
+      "status": true,
+      "brightness": "8",
+      "userId": "1749451354794"
+    },
+    {
+      "id": "1749452288317",
+      "name": "regulus",
       "type": "light",
       "brand": "xiaomi",
       "room": "客厅",
@@ -128,34 +141,21 @@
   ],
   "scenes": [
     {
-      "id": "1",
-      "name": "回家模式",
-      "description": "打开客厅灯",
+      "id": "1749453492463",
+      "name": "回家",
+      "description": "",
       "devices": [
         {
+          "id": "1746952473402",
+          "name": "客厅次灯",
           "type": "light",
+          "brand": "philips",
           "room": "客厅",
           "status": true,
-          "brightness": 70
+          "brightness": "41"
         }
-      ]
-    },
-    {
-      "id": "2",
-      "name": "睡眠模式",
-      "description": "关闭卧室灯，拉上窗帘",
-      "devices": [
-        {
-          "type": "light",
-          "room": "卧室",
-          "status": false
-        },
-        {
-          "type": "curtain",
-          "room": "卧室",
-          "status": false
-        }
-      ]
+      ],
+      "createdAt": "2025-06-09T07:18:12.463Z"
     },
     {
       "id": "1748960877199",
@@ -188,9 +188,22 @@
       "description": "",
       "devices": [
         {
+          "id": "1746952579919",
+          "name": "卧室空调",
           "type": "ac",
+          "brand": "gree",
+          "room": "卧室",
           "status": true,
-          "temperature": "30"
+          "temperature": 21
+        },
+        {
+          "id": "1749453619411",
+          "name": "asd",
+          "type": "ac",
+          "brand": "midea",
+          "room": "厨房",
+          "status": true,
+          "temperature": "19"
         }
       ],
       "createdAt": "2025-06-03T15:18:13.337Z"
@@ -255,19 +268,9 @@
       ]
     },
     {
-      "id": "1749452510143",
-      "name": "member1",
-      "password": "member123",
-      "role": "member",
-      "permissions": [
-        "read",
-        "write"
-      ]
-    },
-    {
-      "id": "1749453284345",
-      "name": "member2",
-      "password": "member123",
+      "id": "1749455552448",
+      "name": "cyh",
+      "password": "123456",
       "role": "member",
       "permissions": [
         "read",
