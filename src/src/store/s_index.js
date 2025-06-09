@@ -166,13 +166,12 @@ export default createStore({
     },
     async login({ commit }, credentials) {
       try {
-        const response = await api.getUsers({
-            name: credentials.username,
-            password: credentials.password
-        })
-        // console.log(response.data[0])
-        if (response.data.length > 0) {
-          commit('SET_USER', response.data[0]);
+        const response = await api.login(
+            credentials.username,
+            credentials.password
+        )
+        if (response.data?.success === true) {
+          commit('SET_USER', response.data);
           return true
         }
         return false

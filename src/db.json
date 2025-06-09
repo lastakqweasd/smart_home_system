@@ -7,15 +7,8 @@
       "brand": "philips",
       "room": "客厅",
       "status": true,
-      "brightness": 70
-    },
-    {
-      "id": "1746952514079",
-      "name": "客厅摄像头",
-      "type": "monitor",
-      "brand": "hk",
-      "room": "客厅",
-      "status": false
+      "brightness": "41",
+      "power": false
     },
     {
       "id": "1746952548073",
@@ -23,7 +16,8 @@
       "type": "tv",
       "brand": "sony",
       "room": "客厅",
-      "status": true
+      "status": false,
+      "power": false
     },
     {
       "id": "1746952579919",
@@ -32,24 +26,16 @@
       "brand": "gree",
       "room": "卧室",
       "status": false,
-      "temperature": 30
+      "temperature": 21
     },
     {
-      "id": "1746958363266",
-      "name": "客厅插座",
-      "type": "outlet",
-      "brand": "xiaomi",
-      "room": "客厅",
-      "status": false
-    },
-    {
-      "id": "1746958394294",
-      "name": "客厅次灯",
-      "type": "light",
-      "brand": "philips",
-      "room": "客厅",
-      "status": true,
-      "brightness": 70
+      "id": "1749453619411",
+      "name": "asd",
+      "type": "ac",
+      "brand": "midea",
+      "room": "厨房",
+      "status": false,
+      "temperature": "19"
     }
   ],
   "rooms": [
@@ -72,8 +58,8 @@
   ],
   "scenes": [
     {
-      "id": "1749052390064",
-      "name": "睡觉",
+      "id": "1749450077293",
+      "name": "回家模式",
       "description": "",
       "devices": [
         {
@@ -83,15 +69,49 @@
           "brand": "philips",
           "room": "客厅",
           "status": true,
-          "brightness": 70
+          "brightness": "8"
+        }
+      ],
+      "createdAt": "2025-06-09T06:21:17.293Z"
+    },
+    {
+      "id": "1749453492463",
+      "name": "回家",
+      "description": "",
+      "devices": [
+        {
+          "id": "1746952473402",
+          "name": "客厅次灯",
+          "type": "light",
+          "brand": "philips",
+          "room": "客厅",
+          "status": true,
+          "brightness": "41"
+        }
+      ],
+      "createdAt": "2025-06-09T07:18:12.463Z"
+    },
+    {
+      "id": "1749453649288",
+      "name": "在家",
+      "description": "",
+      "devices": [
+        {
+          "id": "1746952473402",
+          "name": "客厅次灯",
+          "type": "light",
+          "brand": "philips",
+          "room": "客厅",
+          "status": true,
+          "brightness": "57"
         },
         {
-          "id": "1746952514079",
-          "name": "客厅摄像头",
-          "type": "monitor",
-          "brand": "hk",
+          "id": "1746952548073",
+          "name": "客厅电视",
+          "type": "tv",
+          "brand": "sony",
           "room": "客厅",
-          "status": false
+          "status": true
         },
         {
           "id": "1746952579919",
@@ -99,28 +119,20 @@
           "type": "ac",
           "brand": "gree",
           "room": "卧室",
-          "status": false,
-          "temperature": 30
+          "status": true,
+          "temperature": 21
         },
         {
-          "id": "1746958363266",
-          "name": "客厅插座",
-          "type": "outlet",
-          "brand": "xiaomi",
-          "room": "客厅",
-          "status": false
-        },
-        {
-          "id": "1746958394294",
-          "name": "客厅次灯",
-          "type": "light",
-          "brand": "philips",
-          "room": "客厅",
-          "status": false,
-          "brightness": 70
+          "id": "1749453619411",
+          "name": "asd",
+          "type": "ac",
+          "brand": "midea",
+          "room": "厨房",
+          "status": true,
+          "temperature": "19"
         }
       ],
-      "createdAt": "2025-06-04T15:53:10.064Z"
+      "createdAt": "2025-06-09T07:20:49.288Z"
     }
   ],
   "users": [
