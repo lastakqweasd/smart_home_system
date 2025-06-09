@@ -7,7 +7,7 @@
       "brand": "philips",
       "room": "客厅",
       "status": true,
-      "brightness": "41",
+      "brightness": "8",
       "power": false
     },
     {
@@ -36,6 +36,14 @@
       "room": "厨房",
       "status": false,
       "temperature": "19"
+    },
+    {
+      "id": "1749453843679",
+      "name": "asdassad",
+      "type": "outlet",
+      "brand": "tuya",
+      "room": "浴室",
+      "status": false
     }
   ],
   "rooms": [
