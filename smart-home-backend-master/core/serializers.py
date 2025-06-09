@@ -25,7 +25,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     #room_id = serializers.PrimaryKeyRelatedField(queryset=Room.objects.all(), source='room', write_only=True)
     class Meta:
         model = Device
-        fields = ['id', 'name', 'type', 'room', 'status', 'extra']
+        fields = ['id', 'name', 'type', 'room', 'status', 'extra', 'brand']
 
 class SceneDeviceConfigSerializer(serializers.ModelSerializer):
     device = serializers.PrimaryKeyRelatedField(queryset=Device.objects.all())  #在 JSON 中，你希望通过设备的主键 ID 来表示设备

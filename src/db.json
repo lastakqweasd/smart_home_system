@@ -1,14 +1,43 @@
 {
   "devices": [
     {
+      "id": "1746950563781",
+      "name": "卧室空调",
+      "type": "ac",
+      "brand": "gree",
+      "room": "卧室",
+      "status": false,
+      "temperature": 16,
+      "userId": "1"
+    },
+    {
+      "id": "1746951021555",
+      "name": "卧室主灯",
+      "type": "light",
+      "brand": "xiaomi",
+      "room": "卧室",
+      "status": false,
+      "brightness": 31,
+      "userId": "1"
+    },
+    {
       "id": "1746952473402",
       "name": "客厅次灯",
       "type": "light",
       "brand": "philips",
       "room": "客厅",
-      "status": true,
-      "brightness": "57",
-      "power": false
+      "status": false,
+      "brightness": "8",
+      "userId": "1"
+    },
+    {
+      "id": "1746952514079",
+      "name": "客厅摄像头",
+      "type": "monitor",
+      "brand": "hk",
+      "room": "客厅",
+      "status": false,
+      "userId": "1"
     },
     {
       "id": "1746952548073",
@@ -16,8 +45,8 @@
       "type": "tv",
       "brand": "sony",
       "room": "客厅",
-      "status": true,
-      "power": false
+      "status": false,
+      "userId": "1"
     },
     {
       "id": "1746952579919",
@@ -25,16 +54,67 @@
       "type": "ac",
       "brand": "gree",
       "room": "卧室",
-      "status": true,
-      "temperature": 21
+      "status": false,
+      "temperature": 30,
+      "userId": "1"
     },
     {
-      "id": "1749453843679",
-      "name": "asdassad",
+      "id": "1746953309611",
+      "name": "卧室窗帘",
+      "type": "curtain",
+      "brand": "aqara",
+      "room": "卧室",
+      "status": false,
+      "openPercentage": 28,
+      "userId": "1"
+    },
+    {
+      "id": "1746958363266",
+      "name": "客厅插座",
       "type": "outlet",
-      "brand": "tuya",
-      "room": "浴室",
-      "status": false
+      "brand": "xiaomi",
+      "room": "客厅",
+      "status": false,
+      "userId": "1"
+    },
+    {
+      "id": "1746958394294",
+      "name": "客厅次灯",
+      "type": "light",
+      "brand": "philips",
+      "room": "客厅",
+      "status": false,
+      "brightness": "8",
+      "userId": "1"
+    },
+    {
+      "id": "1748880387149",
+      "name": "asd",
+      "type": "light",
+      "brand": "philips",
+      "room": "厨房",
+      "status": false,
+      "userId": "1"
+    },
+    {
+      "id": "1749452273216",
+      "name": "客厅次灯",
+      "type": "light",
+      "brand": "philips",
+      "room": "客厅",
+      "status": true,
+      "brightness": "8",
+      "userId": "1749451354794"
+    },
+    {
+      "id": "1749452288317",
+      "name": "regulus",
+      "type": "light",
+      "brand": "xiaomi",
+      "room": "卧室",
+      "status": false,
+      "brightness": 50,
+      "userId": "1749451354794"
     }
   ],
   "rooms": [
@@ -57,23 +137,6 @@
   ],
   "scenes": [
     {
-      "id": "1749450077293",
-      "name": "回家模式",
-      "description": "",
-      "devices": [
-        {
-          "id": "1746952473402",
-          "name": "客厅次灯",
-          "type": "light",
-          "brand": "philips",
-          "room": "客厅",
-          "status": true,
-          "brightness": "8"
-        }
-      ],
-      "createdAt": "2025-06-09T06:21:17.293Z"
-    },
-    {
       "id": "1749453492463",
       "name": "回家",
       "description": "",
@@ -91,27 +154,37 @@
       "createdAt": "2025-06-09T07:18:12.463Z"
     },
     {
-      "id": "1749453649288",
-      "name": "在家",
+      "id": "1748960877199",
+      "name": "test",
       "description": "",
       "devices": [
         {
-          "id": "1746952473402",
-          "name": "客厅次灯",
-          "type": "light",
-          "brand": "philips",
-          "room": "客厅",
           "status": true,
-          "brightness": "57"
-        },
+          "brightness": 57
+        }
+      ],
+      "userId": "1",
+      "createdAt": "2025-06-03T14:27:57.199Z"
+    },
+    {
+      "id": "1748960987803",
+      "name": "test",
+      "description": "",
+      "devices": [
         {
-          "id": "1746952548073",
-          "name": "客厅电视",
-          "type": "tv",
-          "brand": "sony",
-          "room": "客厅",
-          "status": true
-        },
+          "type": "light",
+          "status": true,
+          "brightness": 70
+        }
+      ],
+      "userId": "1",
+      "createdAt": "2025-06-03T14:29:47.803Z"
+    },
+    {
+      "id": "1748963893337",
+      "name": "休息",
+      "description": "",
+      "devices": [
         {
           "id": "1746952579919",
           "name": "卧室空调",
@@ -131,7 +204,27 @@
           "temperature": "19"
         }
       ],
-      "createdAt": "2025-06-09T07:20:49.288Z"
+      "userId": "1",
+      "createdAt": "2025-06-03T15:18:13.337Z"
+    },
+    {
+      "id": "1749452315606",
+      "name": "测试模式",
+      "description": "就是一个测试",
+      "devices": [
+        {
+          "type": "light",
+          "status": false,
+          "brightness": 50
+        },
+        {
+          "type": "light",
+          "status": true,
+          "brightness": "11"
+        }
+      ],
+      "userId": "1749451354794",
+      "createdAt": "2025-06-09T06:58:35.606Z"
     }
   ],
   "users": [
@@ -150,6 +243,26 @@
       "id": "2",
       "name": "member",
       "password": "member123",
+      "role": "member",
+      "permissions": [
+        "read",
+        "write"
+      ]
+    },
+    {
+      "id": "1749451354794",
+      "name": "zwksson",
+      "password": "111111",
+      "role": "member",
+      "permissions": [
+        "read",
+        "write"
+      ]
+    },
+    {
+      "id": "1749455552448",
+      "name": "cyh",
+      "password": "123456",
       "role": "member",
       "permissions": [
         "read",

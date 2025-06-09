@@ -39,11 +39,9 @@ export default createStore({
     SET_ERROR(state, error) {
       state.error = error
     },
-    //添加设备
     ADD_DEVICE(state, device) {
       state.devices.push(device)
     },
-    //删除设备
     REMOVE_DEVICE(state, deviceId) {
       state.devices = state.devices.filter(device => device.id !== deviceId);
     },
@@ -53,13 +51,10 @@ export default createStore({
     CLEAR_USER(state) {
       state.user = null
     },
-
-    //添加场景
     ADD_SCENE(state, scene) {
       console.log(scene)
       console.log(state.scenes)
       state.scenes.push(scene)
-      // localStorage.setItem('scenes', JSON.stringify(state.scenes))
     },
 
     //删除场景
@@ -76,12 +71,10 @@ export default createStore({
     }
   },
   actions: {
-    //删除设备
-    async deleteDevice({ commit }, deviceId) {
+    // 删除设备 - 添加用户验证
+    async deleteDevice({ commit, state }, deviceId) {
       try {
-        // 如果使用 json-server
         await api.delDevice(deviceId)
-        // 更新前端状态
         commit('REMOVE_DEVICE', deviceId);
         return true;
       } catch (error) {
@@ -89,30 +82,45 @@ export default createStore({
         return false;
       }
     },
-    //添加设备
-    async addDevice({ commit }, device) {
+
+    // 添加设备 - 关联当前用户
+    async addDevice({ commit, state }, device) {
       commit('SET_LOADING', true);
       try {
-        // 1. 调用模拟的 API 添加设备（假设使用 axios 或 fetch）
-        const response = await api.postDevice(device)
+        const userId = state.user?.id
+        if (!userId) {
+          commit('SET_ERROR', '请先登录')
+          return false
+        }
         
-        // 2. 提交 mutation 更新前端状态（可选，取决于是否需要前端缓存）
+        // 添加用户ID到设备数据
+        const deviceWithUser = { ...device, userId }
+        const response = await api.postDevice(deviceWithUser)
         commit('ADD_DEVICE', response.data);
-        
-        return true; // 表示成功
+        return true;
       } catch (error) {
         commit('SET_ERROR', '添加设备失败');
         console.error(error);
-        return false; // 表示失败
+        return false;
       } finally {
         commit('SET_LOADING', false);
       }
     },
-    async fetchDevices({ commit }) {
+
+    // 获取设备 - 只获取当前用户的设备
+    async fetchDevices({ commit, state }) {
       commit('SET_LOADING', true)
       try {
+        const userId = state.user?.id
+        if (!userId) {
+          commit('SET_DEVICES', []) // 未登录时显示空设备列表
+          return
+        }
+        
         const response = await api.getAllDevices()
-        commit('SET_DEVICES', response.data)
+        // 过滤出当前用户的设备
+        const userDevices = response.data.filter(device => device.userId === userId)
+        commit('SET_DEVICES', userDevices)
       } catch (error) {
         commit('SET_ERROR', '获取设备列表失败')
         console.error(error)
@@ -120,6 +128,8 @@ export default createStore({
         commit('SET_LOADING', false)
       }
     },
+
+    // 获取房间 - 保持所有用户共享
     async fetchRooms({ commit }) {
       try {
         const response = await api.getRooms()
@@ -129,18 +139,30 @@ export default createStore({
         console.error(error)
       }
     },
-    async fetchScenes({ commit }) {
+
+    // 获取场景 - 只获取当前用户的场景
+    async fetchScenes({ commit, state }) {
       try {
+        const userId = state.user?.id
+        if (!userId) {
+          commit('SET_SCENES', []) // 未登录时显示空场景列表
+          return
+        }
+        
         const response = await api.getScenes()
-        commit('SET_SCENES', response.data)
+        // 过滤出当前用户的场景
+        const userScenes = response.data.filter(scene => scene.userId === userId)
+        commit('SET_SCENES', userScenes)
       } catch (error) {
         commit('SET_ERROR', '获取场景列表失败')
         console.error(error)
       }
     },
+
     setSelectedRoom({ commit }, room) {
       commit('SET_SELECTED_ROOM', room)
     },
+
     async toggleDevice({ commit }, { id, status }) {
       try {
         const response = await api.updateDevice(id, { status })
@@ -151,6 +173,7 @@ export default createStore({
         console.error(error)
       }
     },
+
     async updateDevice({ commit }, { id, data }) {
       try {
         const response = await api.updateDevice(id, data)
@@ -160,7 +183,8 @@ export default createStore({
         console.error(error)
       }
     },
-    async activateScene({ commit, dispatch }, sceneId) {
+
+    async activateScene({ commit, dispatch, state }, sceneId) {
       commit('SET_LOADING', true)
       try {
         commit('RESET_DEVICES')
@@ -175,15 +199,25 @@ export default createStore({
         commit('SET_LOADING', false)
       }
     },
-    async login({ commit }, credentials) {
+
+    // 登录 - 登录成功后自动获取用户数据
+    async login({ commit, dispatch }, credentials) {
       try {
         const response = await api.getUsers({
-            name: credentials.username,
-            password: credentials.password
+          name: credentials.username,
+          password: credentials.password
         })
-        // console.log(response)
-        if (response.data.length >0) {
+        
+        if (response.data.length > 0) {
           commit('SET_USER', response.data[0]);
+          
+          // 登录成功后立即获取该用户的数据
+          await Promise.all([
+            dispatch('fetchDevices'),
+            dispatch('fetchRooms'), 
+            dispatch('fetchScenes')
+          ]);
+          
           return true
         }
         return false
@@ -192,23 +226,85 @@ export default createStore({
         return false
       }
     },
+
+    // 注销 - 清空用户相关数据
     logout({ commit }) {
       commit('CLEAR_USER')
+      commit('SET_DEVICES', [])
+      commit('SET_SCENES', [])
+      // 房间保留，因为是共享的
+      commit('SET_SELECTED_ROOM', 'all')
     },
-    //添加场景
-    // 创建场景
-    async createScene({ commit }, scene) {
+
+    async register({ commit, dispatch }, userData) {
+      commit('SET_LOADING', true);
+      commit('SET_ERROR', null);
+      
+      try {
+        console.log('开始注册...', userData);
+        
+        const existingUsers = await api.getUsers({ name: userData.username });
+        console.log('现有用户查询结果:', existingUsers);
+        
+        if (existingUsers.data.length > 0) {
+          commit('SET_ERROR', '用户名已存在');
+          return false;
+        }
+        
+        const newUser = {
+          id: Date.now().toString(),
+          name: userData.username,
+          password: userData.password,
+          role: 'member',
+          permissions: ['read', 'write']
+        };
+        
+        if (userData.email) {
+          newUser.email = userData.email;
+        }
+        
+        console.log('准备创建用户:', newUser);
+        
+        const response = await api.createUser(newUser);
+        console.log('创建用户成功:', response.data);
+        
+        commit('SET_USER', response.data);
+        
+        // 注册成功后获取数据
+        await Promise.all([
+          dispatch('fetchDevices'),
+          dispatch('fetchRooms'), 
+          dispatch('fetchScenes')
+        ]);
+        
+        return true;
+      } catch (error) {
+        console.error('注册失败详情:', error);
+        commit('SET_ERROR', '注册失败，请重试');
+        return false;
+      } finally {
+        commit('SET_LOADING', false);
+      }
+    },
+
+    // 创建场景 - 关联当前用户
+    async createScene({ commit, state }, scene) {
       commit('SET_LOADING', true);
       try {
-        // 调用 API 保存到 db.json
-        console.log(scene)
-        const response = await api.createScene({
-          ...scene,
-          id: Date.now().toString(), // 生成唯一ID
-          createdAt: new Date().toISOString()
-        });
+        const userId = state.user?.id
+        if (!userId) {
+          commit('SET_ERROR', '请先登录')
+          return false
+        }
         
-        // 更新本地状态
+        const sceneWithUser = {
+          ...scene,
+          userId, // 添加用户ID
+          id: Date.now().toString(),
+          createdAt: new Date().toISOString()
+        };
+        
+        const response = await api.createScene(sceneWithUser);
         commit('ADD_SCENE', response.data);
         return true;
       } catch (error) {
@@ -234,9 +330,8 @@ export default createStore({
         return false;
       }
     }
-
   },
-  ////
+
   getters: {
     getDevicesByRoom: (state) => {
       if (state.selectedRoom === 'all') {
@@ -250,7 +345,8 @@ export default createStore({
       return state.devices.find((device) => device.id === id)
     },
     isAuthenticated: state => !!state.user,
-    currentUser: state => state.user
+    currentUser: state => state.user,
+    getRegisterError: state => state.error,
+    isLoading: state => state.loading
   }
 })
-

@@ -4,8 +4,13 @@ const API_URL = 'http://localhost:3000'
 
 export const api = {
   // // 用户相关API
-  getUsers: (params) => axios.get(`${API_URL}/users`, { params }),
-
+   getUsers: (params) => axios.get(`${API_URL}/users`, { params }),
+  // login: (username, password) => axios.post(`${API_URL}/login`,JSON.stringify({ username, password}),{headers: {
+  //     'Content-Type': 'application/json',
+  //     'X-Requested-With': 'XMLHttpRequest'
+  //   }}),
+  createUser: (userData) => axios.post(`${API_URL}/users`, userData),  
+  postUser: (userData) => axios.post(`${API_URL}/users`, userData),    
   // 设备相关API
   getAllDevices: () => axios.get(`${API_URL}/devices`),
   getDevice: (id) => axios.get(`${API_URL}/devices/${id}`),
