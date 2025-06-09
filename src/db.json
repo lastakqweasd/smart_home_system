@@ -11,12 +11,12 @@
     },
     {
       "id": "1746952473402",
-      "name": "客厅次灯",
+      "name": "regulus",
       "type": "light",
-      "brand": "philips",
+      "brand": "xiaomi",
       "room": "客厅",
-      "status": false,
-      "brightness": "8",
+      "status": true,
+      "brightness": 50,
       "userId": "1"
     },
     {
@@ -50,8 +50,8 @@
       "type": "curtain",
       "brand": "aqara",
       "room": "卧室",
-      "status": false,
-      "openPercentage": 28,
+      "status": true,
+      "openPercentage": 45,
       "userId": "1"
     },
     {
@@ -63,16 +63,6 @@
       "status": false
     },
     {
-      "id": "1746958394294",
-      "name": "客厅次灯",
-      "type": "light",
-      "brand": "philips",
-      "room": "客厅",
-      "status": false,
-      "brightness": "8",
-      "userId": "1"
-    },
-    {
       "id": "1748880387149",
       "name": "asd",
       "type": "light",
@@ -82,23 +72,13 @@
     },
     {
       "id": "1749452273216",
-      "name": "客厅次灯",
-      "type": "light",
-      "brand": "philips",
-      "room": "客厅",
-      "status": true,
-      "brightness": "8",
-      "userId": "1749451354794"
-    },
-    {
-      "id": "1749452288317",
       "name": "regulus",
       "type": "light",
       "brand": "xiaomi",
       "room": "客厅",
-      "status": false,
+      "status": true,
       "brightness": 50,
-      "userId": "2"
+      "userId": "1749451354794"
     },
     {
       "id": "1749453296094",
@@ -119,6 +99,36 @@
       "status": false,
       "temperature": 22,
       "userId": "1749453284345"
+    },
+    {
+      "id": "1749463681035",
+      "name": "regulus",
+      "type": "light",
+      "brand": "xiaomi",
+      "room": "客厅",
+      "status": true,
+      "brightness": 50,
+      "userId": "1"
+    },
+    {
+      "id": "1749474603429",
+      "name": "regulus",
+      "type": "light",
+      "brand": "xiaomi",
+      "room": "客厅",
+      "status": true,
+      "brightness": 50,
+      "userId": "1"
+    },
+    {
+      "id": "1749474662558",
+      "name": "cjt",
+      "type": "curtain",
+      "brand": "aqara",
+      "room": "卧室",
+      "status": false,
+      "openPercentage": 50,
+      "userId": "1"
     }
   ],
   "rooms": [
@@ -233,6 +243,120 @@
       ],
       "userId": "1749452510143",
       "createdAt": "2025-06-09T08:37:40.872Z"
+    },
+    {
+      "id": "1749461847906",
+      "name": "回家",
+      "description": "",
+      "icon": "home",
+      "devices": [
+        {
+          "id": "1746952473402",
+          "name": "regulus",
+          "type": "light",
+          "brand": "xiaomi",
+          "room": "客厅",
+          "status": true,
+          "brightness": 50
+        }
+      ],
+      "userId": "1",
+      "createdAt": "2025-06-09T09:37:27.906Z"
+    },
+    {
+      "id": "1749461865429",
+      "name": "睡眠",
+      "description": "",
+      "icon": "bed",
+      "devices": [
+        {
+          "id": "1746952473402",
+          "name": "regulus",
+          "type": "light",
+          "brand": "xiaomi",
+          "room": "客厅",
+          "status": true,
+          "brightness": 50
+        }
+      ],
+      "userId": "1",
+      "createdAt": "2025-06-09T09:37:45.429Z"
+    },
+    {
+      "id": "1749461882403",
+      "name": "起床",
+      "description": "",
+      "icon": "sun",
+      "devices": [
+        {
+          "id": "1746952473402",
+          "name": "regulus",
+          "type": "light",
+          "brand": "xiaomi",
+          "room": "客厅",
+          "status": true,
+          "brightness": 50
+        }
+      ],
+      "userId": "1",
+      "createdAt": "2025-06-09T09:38:02.403Z"
+    },
+    {
+      "id": "1749461901874",
+      "name": "观影",
+      "description": "",
+      "icon": "film",
+      "devices": [
+        {
+          "id": "1746952473402",
+          "name": "regulus",
+          "type": "light",
+          "brand": "xiaomi",
+          "room": "客厅",
+          "status": true,
+          "brightness": 50
+        }
+      ],
+      "userId": "1",
+      "createdAt": "2025-06-09T09:38:21.874Z"
+    },
+    {
+      "id": "1749461916970",
+      "name": "用餐",
+      "description": "",
+      "icon": "utensils",
+      "devices": [
+        {
+          "id": "1746952473402",
+          "name": "regulus",
+          "type": "light",
+          "brand": "xiaomi",
+          "room": "客厅",
+          "status": true,
+          "brightness": 50
+        }
+      ],
+      "userId": "1",
+      "createdAt": "2025-06-09T09:38:36.970Z"
+    },
+    {
+      "id": "1749461929533",
+      "name": "离家",
+      "description": "",
+      "icon": "door-open",
+      "devices": [
+        {
+          "id": "1746952473402",
+          "name": "regulus",
+          "type": "light",
+          "brand": "xiaomi",
+          "room": "客厅",
+          "status": true,
+          "brightness": 50
+        }
+      ],
+      "userId": "1",
+      "createdAt": "2025-06-09T09:38:49.533Z"
     }
   ],
   "users": [

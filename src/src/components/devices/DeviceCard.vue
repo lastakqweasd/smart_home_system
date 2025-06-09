@@ -176,8 +176,8 @@ export default {
 
 <style lang="scss" scoped>
 .device-card {
-  // position: relative; /* 为绝对定位的删除按钮提供参照 */
-  background: white;
+  position: relative; /* 为绝对定位的删除按钮提供参照 */
+  background: #ffffff;
   border-radius: 10px;
   padding: 15px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -186,18 +186,19 @@ export default {
   
   &__delete-btn {
     position: absolute;
-    bottom: -1px;
-    right: 10px;
+    top: 0px;
+    bottom: auto;
+    right: 0px;
     background: transparent;
     border: none;
-    color: #ff5252;
+    color: rgba(0,0,0,0.2);
     cursor: pointer;
     font-size: 14px;
     padding: 5px;
     transition: all 0.2s;
     
     &:hover {
-      color: #ff0000;
+      color: #d32f2f;
       transform: scale(1.1);
     }
   }
@@ -240,7 +241,7 @@ export default {
     margin-right: 15px;
     
     &.active {
-      color: #4caf50;
+      color: #fff700;
     }
   }
   

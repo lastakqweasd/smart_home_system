@@ -2,11 +2,8 @@
   <div class="home-page">
     <header class="header">
       <h1 class="header__title">智能家居控制中心</h1>
-
-      <!-- 新加 -->
       <router-link to="/add-device" class="add-device-btn">添加设备</router-link>
-
-     <div class="auth-info">
+      <div class="auth-info">
         用户
         <template v-if="$store.getters.isAuthenticated">
           <span class="user-name">欢迎，{{ $store.getters.currentUser.name }}</span>
@@ -15,7 +12,6 @@
         <router-link v-else to="/login" class="login-link">登录</router-link>
       </div>
     </header>
-    <!-- 标题 -->
 
     <div class="filter-section">
       <button
@@ -23,10 +19,8 @@
         :class="{ active: selectedRoom === 'all' }"
         @click="setSelectedRoom('all')"
       >
-      <!-- active动态绑定用来控制按钮颜色 -->
         全部
       </button>
-
       <button
         v-for="room in rooms"
         :key="room.id"
@@ -37,87 +31,84 @@
         {{ room.name }}
       </button>
     </div>
-    <!-- 房间选择栏 -->
 
     <div v-if="loading" class="loading">加载中...</div>
     <div v-else-if="error" class="error">{{ error }}</div>
 
-    <div v-else class="devices-grid">
-      <device-card
-        v-for="device in filteredDevices"
-        :key="device.id"
-        :device="device"
-      />
+    <div v-else class="devices-section">
+      <h2>设备列表</h2>
+      <div class="scrollable-container">
+        <div class="scrollable-content">
+          <device-card
+            v-for="device in filteredDevices"
+            :key="device.id"
+            :device="device"
+            class="scrollable-item"
+          />
+        </div>
+      </div>
     </div>
-    <!-- 具体设备网格 -->
 
-    <!-- 场景创建部分 -->
     <div class="scenes-section">
       <div class="scenes-header">
         <h2 class="scenes-section__title">场景模式</h2>
-        <div class="scene-count">({{ scenes.length }}个场景)</div>
+        <!-- <div class="scene-count">({{ scenes.length }}个场景)</div> -->
       </div>
-      <!-- 创建场景模式 -->
       <router-link to="/create-scene" class="create-scene-link">创建场景模式</router-link>
-      <!-- 如果没有场景模式 -->
+      
       <div v-if="scenes.length === 0" class="no-scenes">
         <i class="fas fa-scroll"></i>
         <p>暂无场景模式</p>
       </div>
-      <!-- 场景模式列表 -->
 
-      <div v-else class="scene-cards">
-        <div
-          v-for="scene in scenes"
-          :key="scene.id"
-          class="scene-card"
-          @click="activateScene(scene.id)"
-        >
-        <!-- 场景内容 -->
-        <div class="scene-icon" :class="scene.icon">
-          <i :class="getSceneIcon(scene.icon)"></i>
-        </div>
-        <div class="scene-info">
-          <h3 class="scene-card__title">{{ scene.name }}</h3>
-          <p class="scene-card__desc">{{ scene.description }}</p>
-          <div class="scene-device-count">
-            <i class="fas fa-microchip"></i> {{scene.devices.length}} 个设备
-          </div>
-        </div>
-        <!-- 删除按钮 -->
-          <button 
-            class="delete-scene-btn" 
-            title="删除"
-            @click.stop="confirmDeleteScene(scene)"
+      <div v-else class="scrollable-container">
+        <div class="scrollable-content">
+          <div
+            v-for="scene in scenes"
+            :key="scene.id"
+            class="scene-card scrollable-item"
+            @click="activateScene(scene.id)"
           >
-            <i class="fas fa-trash-alt"></i>
-          </button>
-        </div>
-      </div>
-      
-      <div v-if="sceneToDelete" class="delete-confirm-modal">
-        <div class="modal-content">
-          <h3>确认删除场景</h3>
-          <p>确定要删除场景 <strong>"{{ sceneToDelete.name }}"</strong> 吗？此操作无法撤销。</p>
-          <div class="modal-actions">
-            <button class="cancel-btn" @click.stop="sceneToDelete = null">取消</button>
-            <button class="confirm-delete-btn" @click.stop="deleteScene(sceneToDelete.id)">删除</button>
+            <div class="scene-icon" :class="scene.icon">
+              <i :class="getSceneIcon(scene.icon)"></i>
+            </div>
+            <div class="scene-info">
+              <h3 class="scene-card__title">{{ scene.name }}</h3>
+              <p class="scene-card__desc">{{ scene.description }}</p>
+              <div class="scene-device-count">
+                <i class="fas fa-microchip"></i> {{scene.devices.length}} 个设备
+              </div>
+            </div>
+            <button 
+              class="delete-scene-btn" 
+              title="删除"
+              @click.stop="confirmDeleteScene(scene)"
+            >
+              <i class="fas fa-trash-alt"></i>
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 场景模式部分 -->
-
+    <div v-if="sceneToDelete" class="delete-confirm-modal">
+      <div class="modal-content">
+        <h3>确认删除场景</h3>
+        <p>确定要删除场景 <strong>"{{ sceneToDelete.name }}"</strong> 吗？此操作无法撤销。</p>
+        <div class="modal-actions">
+          <button class="cancel-btn" @click.stop="sceneToDelete = null">取消</button>
+          <button class="confirm-delete-btn" @click.stop="deleteScene(sceneToDelete.id)">删除</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import DeviceCard from '@/components/devices/DeviceCard.vue'
-import { ref } from 'vue'
 
 export default {
   name: 'HomePage',
@@ -127,41 +118,27 @@ export default {
   setup() {
     const store = useStore()
     const router = useRouter()
-    // 获取状态
-    const devices = computed(() => store.state.devices)
-    const rooms = computed(() => store.state.rooms)
-    const scenes = computed(() => store.state.scenes)
-    const selectedRoom = computed(() => store.state.selectedRoom)
-    const loading = computed(() => store.state.loading)
-    const error = computed(() => store.state.error)
 
-    const sceneToDelete = ref(null) // 待删除的场景
-    // 确认删除场景
-    const confirmDeleteScene = (scene) => {
-      sceneToDelete.value = scene
-    }
-    // 删除场景
-    const deleteScene = (sceneId) => {
-      store.dispatch('deleteScene', sceneId)
-      sceneToDelete.value = null
-    }
+    // 获取状态
+    const devices = computed(() => store.state.devices || [])
+    const rooms = computed(() => store.state.rooms || [])
+    const scenes = computed(() => store.state.scenes || [])
+    const selectedRoom = computed(() => store.state.selectedRoom || 'all')
+    const loading = computed(() => store.state.loading || false)
+    const error = computed(() => store.state.error || null)
+
+    const sceneToDelete = ref(null)
 
     // 过滤设备列表
     const filteredDevices = computed(() => {
+      if (!Array.isArray(devices.value)) return []
+      
       if (selectedRoom.value === 'all') {
         return devices.value
       }
       return devices.value.filter(
-        (device) => device.room === selectedRoom.value
-      )
-    })
-
-    // 生命周期钩子
-    onMounted(() => {
-      // 加载数据
-      store.dispatch('fetchDevices')
-      store.dispatch('fetchRooms')
-      store.dispatch('fetchScenes')
+        (device) => device?.room === selectedRoom.value
+      ) || []
     })
 
     // 方法
@@ -170,16 +147,23 @@ export default {
     }
 
     const activateScene = (sceneId) => {
-      
       store.dispatch('activateScene', sceneId)
     }
 
-    const handleLogout = () => {
-      store.dispatch('logout') // 调用 Vuex 的 logout action
-      router.push('/login') // 跳转到登录页
+    const confirmDeleteScene = (scene) => {
+      sceneToDelete.value = scene
     }
 
-    //获取场景图标
+    const deleteScene = (sceneId) => {
+      store.dispatch('deleteScene', sceneId)
+      sceneToDelete.value = null
+    }
+
+    const handleLogout = () => {
+      store.dispatch('logout')
+      router.push('/login')
+    }
+
     const getSceneIcon = (icon) => {
       const iconMap = {
         home: 'fas fa-home',
@@ -192,10 +176,12 @@ export default {
       return iconMap[icon] || 'fas fa-scroll'
     }
 
-    console.log('当前 filteredDevices:', filteredDevices.value)
-    console.log('当前 devices:', devices.value)
-    console.log('当前 selectedRoom:', selectedRoom.value)
-
+    // 生命周期钩子
+    onMounted(() => {
+      store.dispatch('fetchDevices')
+      store.dispatch('fetchRooms')
+      store.dispatch('fetchScenes')
+    })
 
     return {
       devices,
@@ -205,14 +191,13 @@ export default {
       loading,
       error,
       filteredDevices,
+      sceneToDelete,
       setSelectedRoom,
       activateScene,
-      handleLogout,
-      getSceneIcon,
-      // 
       confirmDeleteScene,
       deleteScene,
-      sceneToDelete
+      handleLogout,
+      getSceneIcon
     }
   }
 }
@@ -245,7 +230,7 @@ export default {
 
   .user-name {
     font-weight: 500;
-    color: #666;
+    color: #393939;
   }
 
   .logout-btn {
@@ -305,53 +290,50 @@ export default {
   }
 }
 
-.devices-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-}
+/* 新增滑动容器样式 */
+.scrollable-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 0;
+  margin: 10px 0;
+  -webkit-overflow-scrolling: touch;
 
-.loading,
-.error {
-  padding: 20px;
-  text-align: center;
+  &::-webkit-scrollbar {
+    height: 8px;
+    background-color: #f5f5f5;
+  }
 
-  &.error {
-    color: #f44336;
+  &::-webkit-scrollbar-thumb {
+    background-color: #2196f3;
+    border-radius: 4px;
   }
 }
 
-.scenes-section {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid #eaeaea;
-}
-
-.scenes-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.scenes-section__title {
-  margin: 0;
-  font-size: 22px;
-  color: #333;
-}
-
-.scene-count {
-  margin-left: 10px;
-  color: #777;
-  font-size: 14px;
-}
-
-.scenes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+.scrollable-content {
+  display: inline-flex;
   gap: 20px;
+  padding: 0 20px;
 }
 
+.scrollable-item {
+  flex: 0 0 auto;
+  width: 280px;
+}
+
+/* 设备卡片样式 */
+.device-card {
+  margin: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+  
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* 场景卡片样式 */
 .scene-card {
+  position: relative;
   display: flex;
   background: white;
   border-radius: 12px;
@@ -360,9 +342,10 @@ export default {
   cursor: pointer;
   transition: all 0.3s;
   border: 1px solid #e0e6ed;
+  width: 300px;
   
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     border-color: #2196f3;
   }
@@ -436,8 +419,6 @@ export default {
 }
 
 .create-scene-link {
-  margin-top: 10px;
-  margin-bottom: 30px;
   display: inline-block;
   padding: 10px 20px;
   background: linear-gradient(to right, #2196f3, #1976d2);
@@ -446,6 +427,7 @@ export default {
   border-radius: 30px;
   font-weight: 500;
   transition: all 0.3s;
+  margin-bottom: 20px;
   
   &:hover {
     transform: translateY(-2px);
@@ -453,10 +435,8 @@ export default {
   }
 }
 
-
-
 .add-device-btn {
-  background: #4caf50;
+  background: #2196f3;
   color: white;
   border: none;
   padding: 8px 15px;
@@ -466,7 +446,7 @@ export default {
   font-size: 14px;
 
   &:hover {
-    background: #3d8b40;
+    background: #1976d2;
   }
 }
 
@@ -475,32 +455,26 @@ export default {
   top: 10px;
   right: 10px;
   width: 30px;
-  height: 30px; /* 修正了原代码中 500% 的异常高度 */
-  // background: rgba(244, 67, 54, 0.9);
+  height: 30px;
   color: white;
   border: none;
-  border-radius: 4px; /* 添加圆角 */
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 10;
-  opacity: 1; /* 默认显示（原代码为 0 会隐藏按钮） */
-  transform: translateY(0); /* 重置初始位置 */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* 添加阴影增强层次感 */
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 
   &:hover {
-    background: #d32f2f; /* 悬停加深颜色 */
+    background: #d32f2f;
     transform: scale(1.1);
-    box-shadow: 0 3px 6px rgba(0,0,0,0.3); /* 悬停时阴影增强 */
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
   }
 
-  &:active {
-    transform: scale(0.95); /* 点击时轻微缩小 */
-  }
-
-  /* 响应式调整 */
   @media (max-width: 768px) {
     width: 26px;
     height: 26px;
@@ -509,14 +483,13 @@ export default {
   }
 }
 
-/* 删除确认对话框样式 */
 .delete-confirm-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
+  background: rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -581,6 +554,16 @@ export default {
   
   &:hover {
     background: #d32f2f;
+  }
+}
+
+.loading,
+.error {
+  padding: 20px;
+  text-align: center;
+
+  &.error {
+    color: #f44336;
   }
 }
 </style>
