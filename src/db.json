@@ -7,7 +7,7 @@
       "brand": "philips",
       "room": "客厅",
       "status": true,
-      "brightness": "8",
+      "brightness": "57",
       "power": false
     },
     {
@@ -16,7 +16,7 @@
       "type": "tv",
       "brand": "sony",
       "room": "客厅",
-      "status": false,
+      "status": true,
       "power": false
     },
     {
@@ -25,7 +25,7 @@
       "type": "ac",
       "brand": "gree",
       "room": "卧室",
-      "status": false,
+      "status": true,
       "temperature": 21
     },
     {
