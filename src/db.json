@@ -7,7 +7,8 @@
       "brand": "gree",
       "room": "卧室",
       "status": false,
-      "temperature": 16
+      "temperature": 16,
+      "userId": "1"
     },
     {
       "id": "1746951021555",
@@ -16,7 +17,8 @@
       "brand": "xiaomi",
       "room": "卧室",
       "status": false,
-      "brightness": 31
+      "brightness": 31,
+      "userId": "1"
     },
     {
       "id": "1746952473402",
@@ -25,7 +27,8 @@
       "brand": "xiaomi",
       "room": "客厅",
       "status": false,
-      "brightness": 70
+      "brightness": 70,
+      "userId": "1"
     },
     {
       "id": "1746952514079",
@@ -33,7 +36,8 @@
       "type": "monitor",
       "brand": "hk",
       "room": "客厅",
-      "status": false
+      "status": false,
+      "userId": "1"
     },
     {
       "id": "1746952548073",
@@ -41,7 +45,8 @@
       "type": "tv",
       "brand": "sony",
       "room": "客厅",
-      "status": false
+      "status": false,
+      "userId": "1"
     },
     {
       "id": "1746952579919",
@@ -50,7 +55,8 @@
       "brand": "gree",
       "room": "卧室",
       "status": false,
-      "temperature": 30
+      "temperature": 30,
+      "userId": "1"
     },
     {
       "id": "1746953309611",
@@ -59,7 +65,8 @@
       "brand": "aqara",
       "room": "卧室",
       "status": true,
-      "openPercentage": 28
+      "openPercentage": 28,
+      "userId": "1"
     },
     {
       "id": "1746958363266",
@@ -67,7 +74,8 @@
       "type": "outlet",
       "brand": "xiaomi",
       "room": "客厅",
-      "status": false
+      "status": false,
+      "userId": "1"
     },
     {
       "id": "1746958394294",
@@ -76,7 +84,8 @@
       "brand": "philips",
       "room": "客厅",
       "status": false,
-      "brightness": 70
+      "brightness": 70,
+      "userId": "1"
     },
     {
       "id": "1748880387149",
@@ -84,7 +93,28 @@
       "type": "light",
       "brand": "philips",
       "room": "厨房",
-      "status": false
+      "status": false,
+      "userId": "1"
+    },
+    {
+      "id": "1749452273216",
+      "name": "sylvia",
+      "type": "light",
+      "brand": "philips",
+      "room": "客厅",
+      "status": true,
+      "brightness": 50,
+      "userId": "1749451354794"
+    },
+    {
+      "id": "1749452288317",
+      "name": "regulus",
+      "type": "light",
+      "brand": "xiaomi",
+      "room": "卧室",
+      "status": false,
+      "brightness": 50,
+      "userId": "1749451354794"
     }
   ],
   "rooms": [
@@ -117,7 +147,8 @@
           "status": true,
           "brightness": 70
         }
-      ]
+      ],
+      "userId": "1"
     },
     {
       "id": "2",
@@ -134,7 +165,8 @@
           "room": "卧室",
           "status": false
         }
-      ]
+      ],
+      "userId": "1"
     },
     {
       "id": "1748960877199",
@@ -146,6 +178,7 @@
           "brightness": 57
         }
       ],
+      "userId": "1",
       "createdAt": "2025-06-03T14:27:57.199Z"
     },
     {
@@ -159,6 +192,7 @@
           "brightness": 70
         }
       ],
+      "userId": "1",
       "createdAt": "2025-06-03T14:29:47.803Z"
     },
     {
@@ -172,7 +206,27 @@
           "temperature": "30"
         }
       ],
+      "userId": "1",
       "createdAt": "2025-06-03T15:18:13.337Z"
+    },
+    {
+      "id": "1749452315606",
+      "name": "测试模式",
+      "description": "就是一个测试",
+      "devices": [
+        {
+          "type": "light",
+          "status": false,
+          "brightness": 50
+        },
+        {
+          "type": "light",
+          "status": true,
+          "brightness": "11"
+        }
+      ],
+      "userId": "1749451354794",
+      "createdAt": "2025-06-09T06:58:35.606Z"
     }
   ],
   "users": [
