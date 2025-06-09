@@ -159,14 +159,16 @@ export default createStore({
         commit('SET_LOADING', false)
       }
     },
+    //用户登录与注册
     async login({ commit }, credentials) {
       try {
-        const response = await api.login(
-            credentials.username,
-            credentials.password
-        )
-        if (response.data?.success === true) {
-          commit('SET_USER', response.data);
+        const response = await api.getUsers({
+            name: credentials.username,
+            password: credentials.password
+        })
+        // console.log(response.data[0])
+        if (response.data.length > 0) {
+          commit('SET_USER', response.data[0]);
           return true
         }
         return false
@@ -177,6 +179,53 @@ export default createStore({
     },
     logout({ commit }) {
       commit('CLEAR_USER')
+    },
+    async register({ commit }, userData) {
+      commit('SET_LOADING', true);
+      commit('SET_ERROR', null);
+      
+      try {
+        console.log('开始注册...', userData);
+        
+        // 1. 检查用户名是否已存在
+        const existingUsers = await api.getUsers({ name: userData.username });
+        console.log('现有用户查询结果:', existingUsers);
+        
+        if (existingUsers.data.length > 0) {
+          commit('SET_ERROR', '用户名已存在');
+          return false;
+        }
+        
+        // 2. 创建新用户数据
+        const newUser = {
+          id: Date.now().toString(),
+          name: userData.username,
+          password: userData.password,
+          role: 'member',
+          permissions: ['read', 'write']
+        };
+        
+        if (userData.email) {
+          newUser.email = userData.email;
+        }
+        
+        console.log('准备创建用户:', newUser);
+        
+        // 3. 使用修复后的 API 方法
+        const response = await api.createUser(newUser);
+        console.log('创建用户成功:', response.data);
+        
+        // 4. 注册成功后自动登录
+        commit('SET_USER', response.data);
+        
+        return true;
+      } catch (error) {
+        console.error('注册失败详情:', error);
+        commit('SET_ERROR', '注册失败，请重试');
+        return false;
+      } finally {
+        commit('SET_LOADING', false);
+      }
     },
     //添加场景
     // 创建场景
@@ -232,6 +281,11 @@ export default createStore({
     },
     isAuthenticated: state => !!state.user,
     currentUser: state => state.user
-  }
+  },
+  // 获取注册错误信息
+  getRegisterError: state => state.error,
+  
+  // 检查是否正在加载
+  isLoading: state => state.loading
 })
 

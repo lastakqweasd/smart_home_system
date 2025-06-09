@@ -24,7 +24,7 @@
       "type": "light",
       "brand": "xiaomi",
       "room": "客厅",
-      "status": true,
+      "status": false,
       "brightness": 70
     },
     {
@@ -58,7 +58,7 @@
       "type": "curtain",
       "brand": "aqara",
       "room": "卧室",
-      "status": false,
+      "status": true,
       "openPercentage": 28
     },
     {
@@ -75,7 +75,7 @@
       "type": "light",
       "brand": "philips",
       "room": "客厅",
-      "status": true,
+      "status": false,
       "brightness": 70
     },
     {
@@ -191,6 +191,16 @@
       "id": "2",
       "name": "member",
       "password": "member123",
+      "role": "member",
+      "permissions": [
+        "read",
+        "write"
+      ]
+    },
+    {
+      "id": "1749451354794",
+      "name": "zwksson",
+      "password": "111111",
       "role": "member",
       "permissions": [
         "read",
