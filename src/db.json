@@ -98,11 +98,11 @@
     },
     {
       "id": "1749452273216",
-      "name": "客厅次灯",
+      "name": "我改名字了",
       "type": "light",
       "brand": "philips",
       "room": "客厅",
-      "status": true,
+      "status": false,
       "brightness": "8",
       "userId": "1749451354794"
     },
@@ -114,6 +114,44 @@
       "room": "卧室",
       "status": false,
       "brightness": 50,
+      "userId": "1749451354794"
+    },
+    {
+      "id": "1749533109557",
+      "name": "空调11",
+      "type": "ac",
+      "brand": "gree",
+      "room": "卧室",
+      "status": false,
+      "temperature": 22,
+      "userId": "1749451354794"
+    },
+    {
+      "id": "1749533124794",
+      "name": "居然还有这种东西",
+      "type": "outlet",
+      "brand": "xiaomi",
+      "room": "厨房",
+      "status": false,
+      "userId": "1749451354794"
+    },
+    {
+      "id": "1749533136903",
+      "name": "好高端能干哈",
+      "type": "curtain",
+      "brand": "aqara",
+      "room": "浴室",
+      "status": false,
+      "openPercentage": 35,
+      "userId": "1749451354794"
+    },
+    {
+      "id": "1749533150869",
+      "name": "怎么个智能法捏",
+      "type": "tv",
+      "brand": "samsung",
+      "room": "浴室",
+      "status": false,
       "userId": "1749451354794"
     }
   ],
