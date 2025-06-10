@@ -1,17 +1,95 @@
 from rest_framework import serializers
+from django.contrib.auth import authenticate
+from django.contrib.auth.password_validation import validate_password
 from .models import Room, Device, Scene, SceneDeviceConfig, SmartHomeUser
 #模型默认都有 id 主键字段，即使你不写 id = models.AutoField(...)，Django 也会自动添加。这对于数据库操作、序列化、查找（如 get(id=...)）是必需的。
 # Serializer（序列化器）是用于在模型（数据库对象）和 JSON 等格式之间进行转换
 
-class SmartHomeUserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)  # 禁止返回密码
+class UserRegistrationSerializer(serializers.ModelSerializer):
+    """用户注册序列化器"""
+    password = serializers.CharField(write_only=True, validators=[validate_password])
+    password_confirm = serializers.CharField(write_only=True)
     
     class Meta:
         model = SmartHomeUser
-        fields = ['id', 'username', 'password', 'role']
+        fields = ['username', 'email', 'password', 'password_confirm', 'phone', 'nickname', 'role']
+        extra_kwargs = {
+            'role': {'read_only': True},  # 注册时默认为普通成员
+        }
+    
+    def validate(self, attrs):
+        """验证密码确认"""
+        if attrs['password'] != attrs['password_confirm']:
+            raise serializers.ValidationError("两次输入的密码不一致")
+        return attrs
     
     def create(self, validated_data):
-        # 自动处理密码哈希
+        validated_data.pop('password_confirm')
+        validated_data['role'] = 'member'  # 默认角色
+        user = SmartHomeUser.objects.create_user(**validated_data)
+        return user
+
+class UserLoginSerializer(serializers.Serializer):
+    """用户登录序列化器"""
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+    
+    def validate(self, attrs):
+        username = attrs.get('username')
+        password = attrs.get('password')
+        
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if not user:
+                raise serializers.ValidationError('用户名或密码错误')
+            if not user.is_active:
+                raise serializers.ValidationError('用户账户已被禁用')
+            attrs['user'] = user
+        else:
+            raise serializers.ValidationError('请提供用户名和密码')
+        
+        return attrs
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    """用户资料序列化器"""
+    full_name = serializers.ReadOnlyField()
+    
+    class Meta:
+        model = SmartHomeUser
+        fields = ['id', 'username', 'email', 'phone', 'nickname', 'bio', 'avatar', 
+                 'role', 'full_name', 'date_joined', 'last_login', 'created_at']
+        read_only_fields = ['id', 'username', 'role', 'date_joined', 'last_login', 'created_at']
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    """用户信息更新序列化器"""
+    class Meta:
+        model = SmartHomeUser
+        fields = ['email', 'phone', 'nickname', 'bio', 'avatar', 'first_name', 'last_name']
+
+class PasswordChangeSerializer(serializers.Serializer):
+    """密码修改序列化器"""
+    old_password = serializers.CharField(write_only=True)
+    new_password = serializers.CharField(write_only=True, validators=[validate_password])
+    new_password_confirm = serializers.CharField(write_only=True)
+    
+    def validate(self, attrs):
+        if attrs['new_password'] != attrs['new_password_confirm']:
+            raise serializers.ValidationError("两次输入的新密码不一致")
+        return attrs
+
+class SmartHomeUserSerializer(serializers.ModelSerializer):
+    """完整的用户序列化器（用于管理员）"""
+    password = serializers.CharField(write_only=True)
+    full_name = serializers.ReadOnlyField()
+    
+    class Meta:
+        model = SmartHomeUser
+        fields = ['id', 'username', 'email', 'password', 'phone', 'nickname', 'bio', 
+                 'avatar', 'role', 'permissions', 'is_active', 'full_name', 
+                 'date_joined', 'last_login', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'date_joined', 'last_login', 'created_at', 'updated_at']
+
+    def create(self, validated_data):
         user = SmartHomeUser.objects.create_user(**validated_data)
         return user
 
@@ -21,19 +99,24 @@ class RoomSerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 class DeviceSerializer(serializers.ModelSerializer):
-    room = serializers.PrimaryKeyRelatedField(queryset=Room.objects.all())  #引用room，是一个外键，需要传id进去
-    #room_id = serializers.PrimaryKeyRelatedField(queryset=Room.objects.all(), source='room', write_only=True)
+    room = serializers.PrimaryKeyRelatedField(queryset=Room.objects.all())
+    
     class Meta:
         model = Device
-        fields = ['id', 'name', 'type', 'room', 'status', 'extra', 'brand']
+        fields = ['id', 'name', 'type', 'room', 'status', 'extra', 'brand', 'owner']
+        read_only_fields = ['owner']
+
+    def create(self, validated_data):
+        # 确保owner字段不会冲突
+        validated_data.pop('owner', None)  # 移除可能存在的owner字段
+        user = self.context['request'].user
+        return Device.objects.create(owner=user, **validated_data)
 
 class SceneDeviceConfigSerializer(serializers.ModelSerializer):
-    device = serializers.PrimaryKeyRelatedField(queryset=Device.objects.all())  #在 JSON 中，你希望通过设备的主键 ID 来表示设备
-    #device_id = serializers.PrimaryKeyRelatedField(queryset=Device.objects.all(), source='device', write_only=True)
+    device = serializers.PrimaryKeyRelatedField(queryset=Device.objects.all())
 
     class Meta:
         model = SceneDeviceConfig
-        # 这几个字段分别表示设备的id/状态/需要调整到的配置（比如多少度）
         fields = ['device', 'status', 'config']
 
 class SceneSerializer(serializers.ModelSerializer):
@@ -42,15 +125,13 @@ class SceneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Scene
         fields = ['id', 'name', 'description', 'device_configs']
-    #device_configs是可写的嵌套字段，Django REST Framework 不会自动帮你保存 device_configs，你必须手动实现 create() 方法。
+    
     def create(self, validated_data):
-        device_configs_data = validated_data.pop('device_configs') #从 validated_data（即经过校验的数据）中取出键为 'device_configs' 的值，并从字典中删除这个键。
-        # device_configs_data包含了所有设备配置的列表，每个配置都是一个字典，包含 device_id、status 和 config 字段。
-        scene = Scene.objects.create(**validated_data)  #用剩下的字段（name、description）创建一个新的 Scene 实例。
+        device_configs_data = validated_data.pop('device_configs')
+        scene = Scene.objects.create(**validated_data)
         for config_data in device_configs_data:
             SceneDeviceConfig.objects.create(scene=scene, **config_data)
         return scene
-
 
     def update(self, instance, validated_data):
         # 更新基本字段
