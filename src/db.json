@@ -72,6 +72,16 @@
     },
     {
       "id": "1749452273216",
+      "name": "我改名字了",
+      "type": "light",
+      "brand": "philips",
+      "room": "客厅",
+      "status": false,
+      "brightness": "8",
+      "userId": "1749451354794"
+    },
+    {
+      "id": "1749452288317",
       "name": "regulus",
       "type": "light",
       "brand": "xiaomi",
@@ -81,54 +91,42 @@
       "userId": "1749451354794"
     },
     {
-      "id": "1749453296094",
-      "name": "f",
-      "type": "ac",
-      "brand": "midea",
-      "room": "卧室",
-      "status": false,
-      "temperature": 22,
-      "userId": "1749453284345"
-    },
-    {
-      "id": "1749453321979",
-      "name": "cjt",
+      "id": "1749533109557",
+      "name": "空调11",
       "type": "ac",
       "brand": "gree",
-      "room": "客厅",
-      "status": false,
-      "temperature": 22,
-      "userId": "1749453284345"
-    },
-    {
-      "id": "1749463681035",
-      "name": "regulus",
-      "type": "light",
-      "brand": "xiaomi",
-      "room": "客厅",
-      "status": true,
-      "brightness": 50,
-      "userId": "1"
-    },
-    {
-      "id": "1749474603429",
-      "name": "regulus",
-      "type": "light",
-      "brand": "xiaomi",
-      "room": "客厅",
-      "status": true,
-      "brightness": 50,
-      "userId": "1"
-    },
-    {
-      "id": "1749474662558",
-      "name": "cjt",
-      "type": "curtain",
-      "brand": "aqara",
       "room": "卧室",
       "status": false,
-      "openPercentage": 50,
-      "userId": "1"
+      "temperature": 22,
+      "userId": "1749451354794"
+    },
+    {
+      "id": "1749533124794",
+      "name": "居然还有这种东西",
+      "type": "outlet",
+      "brand": "xiaomi",
+      "room": "厨房",
+      "status": false,
+      "userId": "1749451354794"
+    },
+    {
+      "id": "1749533136903",
+      "name": "好高端能干哈",
+      "type": "curtain",
+      "brand": "aqara",
+      "room": "浴室",
+      "status": false,
+      "openPercentage": 35,
+      "userId": "1749451354794"
+    },
+    {
+      "id": "1749533150869",
+      "name": "怎么个智能法捏",
+      "type": "tv",
+      "brand": "samsung",
+      "room": "浴室",
+      "status": false,
+      "userId": "1749451354794"
     }
   ],
   "rooms": [
