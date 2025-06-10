@@ -28,6 +28,12 @@ const routes = [
     path: '/create-scene',
     name: 'CreateScene',
     component: CreateScene,
+  },
+  //场景详情
+  {
+    path: '/SceneDetail',
+    name: 'SceneDetail',
+    component: CreateScene,
   }
   // 可以添加更多路由，如设备详情页面等
 ]
