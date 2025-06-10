@@ -6,8 +6,8 @@
       "type": "light",
       "brand": "xiaomi",
       "room": "卧室",
-      "status": false,
-      "brightness": "71",
+      "status": true,
+      "brightness": "60",
       "userId": "1"
     },
     {
@@ -17,7 +17,7 @@
       "brand": "philips",
       "room": "客厅",
       "status": true,
-      "brightness": "43",
+      "brightness": 31,
       "userId": "1"
     },
     {
@@ -35,7 +35,7 @@
       "type": "tv",
       "brand": "sony",
       "room": "客厅",
-      "status": false,
+      "status": true,
       "userId": "1"
     },
     {
@@ -45,7 +45,7 @@
       "brand": "gree",
       "room": "卧室",
       "status": false,
-      "temperature": "24",
+      "temperature": 21,
       "userId": "1"
     },
     {
@@ -69,12 +69,12 @@
     },
     {
       "id": "1749452273216",
-      "name": "我改名字了",
+      "name": "客厅次灯",
       "type": "light",
       "brand": "philips",
       "room": "客厅",
       "status": false,
-      "brightness": "8",
+      "brightness": "23",
       "userId": "1749451354794"
     },
     {
@@ -84,7 +84,7 @@
       "brand": "xiaomi",
       "room": "卧室",
       "status": true,
-      "brightness": "71",
+      "brightness": "60",
       "userId": "1749451354794"
     },
     {
@@ -192,8 +192,25 @@
           "type": "light",
           "room": "客厅",
           "brand": "philips",
+          "status": false,
+          "brightness": "23"
+        },
+        {
+          "id": "1746951021555",
+          "name": "卧室主灯",
+          "type": "light",
+          "room": "卧室",
+          "brand": "xiaomi",
           "status": true,
-          "brightness": "43"
+          "brightness": "60"
+        },
+        {
+          "id": "1746952548073",
+          "name": "客厅电视",
+          "type": "tv",
+          "room": "客厅",
+          "brand": "sony",
+          "status": true
         }
       ],
       "userId": "1",
@@ -205,22 +222,22 @@
       "description": "",
       "devices": [
         {
-          "id": "1746951021555",
-          "name": "卧室主灯",
-          "type": "light",
-          "room": "卧室",
-          "brand": "xiaomi",
-          "status": true,
-          "brightness": "71"
-        },
-        {
           "id": "1746952473402",
           "name": "客厅次灯",
           "type": "light",
           "room": "客厅",
           "brand": "philips",
           "status": true,
-          "brightness": "12"
+          "brightness": "97"
+        },
+        {
+          "id": "1746951021555",
+          "name": "卧室主灯",
+          "type": "light",
+          "room": "卧室",
+          "brand": "xiaomi",
+          "status": true,
+          "brightness": "0"
         },
         {
           "id": "1746952548073",
