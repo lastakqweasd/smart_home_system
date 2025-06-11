@@ -1,158 +1,279 @@
 <template>
   <div class="create-scene">
-    <div class="header">
-      <router-link to="/" class="back-btn">
-        <i class="fas fa-arrow-left"></i> 返回首页
+    <header class="header">
+      <router-link 
+        :to="step > 1 ? '#' : '/'" 
+        class="back-btn"
+        @click="handleBack"
+      >
+        <i class="fas fa-arrow-left"></i> {{ step > 1 ? '上一步' : '返回' }}
       </router-link>
-      <h1>创建场景模式</h1>
-    </div>
-
-    <div class="scene-form">
-      <div class="form-group">
-        <label for="scene-name">场景名称</label>
-        <input 
-          type="text" 
-          id="scene-name" 
-          v-model="scene.name" 
-          placeholder="例如：回家模式、睡眠模式" 
-          maxlength="20"
-        >
-        <div class="char-counter">{{ scene.name.length }}/20</div>
+      <h1 class="header__title">创建场景模式</h1>
+      <div class="header__steps">
+        <span :class="{ active: step >= 1 }">1</span>
+        <span :class="{ active: step >= 2 }">2</span>
+        <span :class="{ active: step >= 3 }">3</span>
       </div>
-
-      <div class="form-group">
-        <label for="scene-description">场景描述</label>
-        <textarea 
-          id="scene-description" 
-          v-model="scene.description" 
-          placeholder="描述此场景的功能和效果"
-          maxlength="100"
-        ></textarea>
-        <div class="char-counter">{{ scene.description.length }}/100</div>
-      </div>
-
-      <div class="form-group">
-        <label>场景图标</label>
-        <div class="icon-selector">
-          <div 
-            v-for="icon in sceneIcons" 
-            :key="icon.id"
-            class="icon-option"
-            :class="{ selected: scene.icon === icon.id }"
-            @click="scene.icon = icon.id"
-          >
-            <i :class="icon.class"></i>
-            <span>{{ icon.label }}</span>
+    </header>
+    
+    <div class="form-container">
+      <!-- 第一步：基本信息 -->
+      <transition name="fade" mode="out-in">
+        <div class="form-section" v-if="step === 1" key="step1">
+          <h2 class="section-title">
+            <i class="fas fa-info-circle"></i> 场景基本信息
+          </h2>
+          
+          <div class="form-group">
+            <label for="scene-name">
+              <i class="fas fa-tag"></i> 场景名称
+            </label>
+            <input 
+              id="scene-name" 
+              v-model="scene.name" 
+              type="text" 
+              placeholder="例如：回家模式、睡眠模式"
+              maxlength="20"
+            >
+            <div class="char-counter">{{ scene.name.length }}/20</div>
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="devices-section">
-      <div class="section-header">
-        <h2>选择设备</h2>
-        <div class="search-box">
-          <i class="fas fa-search"></i>
-          <input 
-            type="text" 
-            v-model="deviceSearch" 
-            placeholder="搜索设备..."
-          >
-        </div>
-      </div>
-
-      <div class="device-filters">
-        <button 
-          v-for="room in rooms" 
-          :key="room.id"
-          class="filter-btn"
-          :class="{ active: selectedRoom === room.name }"
-          @click="setSelectedRoom(room.name)"
-          >
-          {{ room.name }}
-        </button>
-      </div>
-
-      <div v-if="filteredDevices.length === 0" class="no-devices">
-        <i class="fas fa-plug"></i>
-        <p>没有找到匹配的设备</p>
-      </div>
-
-      <div v-else class="device-list">
-        <div 
-          v-for="device in filteredDevices" 
-          :key="device.id"
-          class="device-item"
-          :class="{ selected: isDeviceSelected(device.id) }"
-        >
-          <div class="device-info" @click="toggleDeviceSelection(device.id)">
-            <div class="device-details">
-              <div class="device-icon" :style="{ backgroundColor: getDeviceColor(device.type) }">
-                <i :class="getDeviceIcon(device.type)"></i>
+          
+          <div class="form-group">
+            <label for="scene-description">
+              <i class="fas fa-align-left"></i> 场景描述
+            </label>
+            <textarea 
+              id="scene-description" 
+              v-model="scene.description" 
+              placeholder="描述此场景的功能和效果"
+              maxlength="100"
+            ></textarea>
+            <div class="char-counter">{{ scene.description.length }}/100</div>
+          </div>
+          
+          <div class="form-group">
+            <label><i class="fas fa-icons"></i> 场景图标</label>
+            <div class="icon-grid">
+              <div 
+                v-for="icon in sceneIcons" 
+                :key="icon.id"
+                class="icon-card"
+                :class="{ selected: scene.icon === icon.id }"
+                @click="scene.icon = icon.id"
+              >
+                <div class="icon-wrapper" :class="icon.id">
+                  <i :class="icon.class"></i>
+                </div>
+                <span>{{ icon.label }}</span>
               </div>
-              <h3>{{ device.name }}</h3>
-              <p>{{ device.room }} · {{ device.type }}</p>
             </div>
           </div>
-          <div v-if="isDeviceSelected(device.id)" class="device-controls">
-            <div class="control-group">
-              <label>状态</label>
-              <div class="toggle-switch">
-                <input 
-                  type="checkbox" 
-                  :id="'power-' + device.id" 
-                  v-model="deviceStates[device.id].status"
+          
+          <button 
+            class="next-btn"
+            :disabled="!scene.name.trim()"
+            @click="step = 2"
+          >
+            下一步 <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </transition>
+      
+      <!-- 第二步：选择设备 -->
+      <transition name="fade" mode="out-in">
+        <div class="form-section" v-if="step === 2" key="step2">
+          <h2 class="section-title">
+            <i class="fas fa-microchip"></i> 选择场景设备
+          </h2>
+          
+          <div class="search-filter">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input 
+                type="text" 
+                v-model="deviceSearch" 
+                placeholder="搜索设备..."
+              >
+            </div>
+            
+            <div class="room-filters">
+              <button 
+                class="filter-btn"
+                :class="{ active: selectedRoom === 'all' }"
+                @click="selectedRoom = 'all'"
+              >
+                全部设备
+              </button>
+              <button 
+                v-for="room in rooms" 
+                :key="room.id"
+                class="filter-btn"
+                :class="{ active: selectedRoom === room.name }"
+                @click="selectedRoom = room.name"
+              >
+                {{ room.name }}
+              </button>
+            </div>
+          </div>
+          
+          <div v-if="filteredDevices.length === 0" class="no-devices">
+            <i class="fas fa-plug"></i>
+            <p>没有找到匹配的设备</p>
+          </div>
+          
+          <div v-else class="device-list">
+            <div 
+              v-for="device in filteredDevices" 
+              :key="device.id"
+              class="device-item"
+              :class="{ selected: isDeviceSelected(device.id) }"
+            >
+              <div class="device-info" @click="toggleDeviceSelection(device.id)">
+                <div class="device-icon" :style="{ backgroundColor: getDeviceColor(device.type) }">
+                  <i :class="getDeviceIcon(device.type)"></i>
+                </div>
+                <div class="device-details">
+                  <h3>{{ device.name }}</h3>
+                  <p>{{ device.room }} · {{ device.type }}</p>
+                </div>
+                <div class="device-check">
+                  <i class="fas fa-check"></i>
+                </div>
+              </div>
+              
+              <div v-if="isDeviceSelected(device.id)" class="device-controls">
+                <div class="control-group">
+                  <label>开关状态</label>
+                  <div class="toggle-switch">
+                    <input 
+                      type="checkbox" 
+                      :id="'power-' + device.id" 
+                      v-model="deviceStates[device.id].status"
+                    >
+                    <label :for="'power-' + device.id"></label>
+                  </div>
+                </div>
+                
+                <div v-if="device.type === 'light'" class="control-group">
+                  <label>亮度</label>
+                  <input 
+                    type="range" 
+                    min="0" 
+                    max="100" 
+                    v-model="deviceStates[device.id].brightness"
+                    :disabled="!deviceStates[device.id].status"
+                  >
+                  <span>{{ deviceStates[device.id].brightness }}%</span>
+                </div>
+                
+                <div v-if="device.type === 'ac'" class="control-group">
+                  <label>温度</label>
+                  <input 
+                    type="range" 
+                    min="16" 
+                    max="30" 
+                    v-model="deviceStates[device.id].temperature"
+                    :disabled="!deviceStates[device.id].status"
+                  >
+                  <span>{{ deviceStates[device.id].temperature }}°C</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button class="back-btn" @click="step = 1">
+              <i class="fas fa-arrow-left"></i> 上一步
+            </button>
+            <button 
+              class="next-btn"
+              :disabled="selectedDeviceCount === 0"
+              @click="step = 3"
+            >
+              下一步 <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </transition>
+      
+      <!-- 第三步：确认设置 -->
+      <transition name="fade" mode="out-in">
+        <div class="form-section" v-if="step === 3" key="step3">
+          <h2 class="section-title">
+            <i class="fas fa-check-circle"></i> 确认场景设置
+          </h2>
+          
+          <div class="scene-summary">
+            <div class="scene-header">
+              <div class="scene-icon" :class="scene.icon">
+                <i :class="getSceneIcon(scene.icon)"></i>
+              </div>
+              <div class="scene-details">
+                <h3>{{ scene.name }}</h3>
+                <p>{{ scene.description || '无描述' }}</p>
+              </div>
+            </div>
+            
+            <div class="selected-devices">
+              <h4>包含设备 ({{ selectedDeviceCount }})</h4>
+              <div class="device-chips">
+                <div 
+                  v-for="device in selectedDevices" 
+                  :key="device.id"
+                  class="device-chip"
                 >
-                <label :for="'power-' + device.id"></label>
+                  <div class="chip-icon" :style="{ backgroundColor: getDeviceColor(device.type) }">
+                    <i :class="getDeviceIcon(device.type)"></i>
+                  </div>
+                  <span>{{ device.name }}</span>
+                </div>
               </div>
             </div>
             
-            <!-- 灯光控制 -->
-            <div v-if="device.type === 'light'" class="control-group">
-              <label>亮度</label>
-              <input 
-                type="range" 
-                min="0" 
-                max="100" 
-                v-model="deviceStates[device.id].brightness"
-                :disabled="!deviceStates[device.id].status"
-              >
-              <span>{{ deviceStates[device.id].brightness }}%</span>
+            <div class="device-preview">
+              <h4>设备状态预览</h4>
+              <div class="preview-list">
+                <div 
+                  v-for="device in selectedDevices" 
+                  :key="device.id"
+                  class="preview-item"
+                >
+                  <div class="preview-info">
+                    <div class="preview-icon" :style="{ backgroundColor: getDeviceColor(device.type) }">
+                      <i :class="getDeviceIcon(device.type)"></i>
+                    </div>
+                    <div>
+                      <h5>{{ device.name }}</h5>
+                      <p>{{ device.room }} · {{ device.type }}</p>
+                    </div>
+                  </div>
+                  <div class="preview-status">
+                    <span v-if="!deviceStates[device.id].status" class="status-off">关闭</span>
+                    <template v-else>
+                      <span v-if="device.type === 'light'">
+                        亮度 {{ deviceStates[device.id].brightness }}%
+                      </span>
+                      <span v-else-if="device.type === 'ac'">
+                        {{ deviceStates[device.id].temperature }}°C
+                      </span>
+                      <span v-else>开启</span>
+                    </template>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            <div v-if="device.type === 'ac'" class="control-group">
-              <label>温度</label>
-              <input 
-                type="range" 
-                min="16" 
-                max="30" 
-                v-model="deviceStates[device.id].temperature"
-                :disabled="!deviceStates[device.id].status"
-              >
-              <span>{{ deviceStates[device.id].temperature }}°C</span>
-            </div>
-
-            <!-- 窗帘控制 -->
-            <div v-if="device.type === 'curtain'" class="control-group">
-              <label>开合度</label>
-              <input 
-                type="range" 
-                min="0" 
-                max="100" 
-                v-model="deviceStates[device.id].openPercentage"
-                :disabled="!deviceStates[device.id].status"
-              >
-              <span>{{ deviceStates[device.id].openPercentage }}%</span>
-            </div>
-
+          </div>
+          
+          <div class="form-actions">
+            <button class="back-btn" @click="step = 2">
+              <i class="fas fa-arrow-left"></i> 上一步
+            </button>
+            <button class="submit-btn" @click="createScene">
+              <i class="fas fa-check"></i> 确认创建
+            </button>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="actions">
-      <button class="btn cancel" @click="cancelCreation">取消</button>
-      <button class="btn create" @click="createScene">创建场景</button>
+      </transition>
     </div>
   </div>
 </template>
@@ -167,24 +288,24 @@ export default {
     const store = useStore()
     const router = useRouter()
     
+    // 步骤控制
+    const step = ref(1)
+    
     // 场景数据
     const scene = ref({
       name: '',
       description: '',
-      icon: 'home',
-      devices: []
+      icon: 'home'
     })
     
-    // 设备搜索
+    // 设备选择相关
     const deviceSearch = ref('')
     const selectedRoom = ref('all')
-    
-    // 设备状态
     const deviceStates = ref({})
     
     // 获取设备列表
-    const devices = computed(() => store.state.devices)
-    const rooms = computed(() => store.state.rooms)
+    const devices = computed(() => store.state.devices || [])
+    const rooms = computed(() => store.state.rooms || [])
     
     // 场景图标选项
     const sceneIcons = ref([
@@ -195,33 +316,7 @@ export default {
       { id: 'utensils', class: 'fas fa-utensils', label: '用餐' },
       { id: 'door-open', class: 'fas fa-door-open', label: '离家' }
     ])
-
-    // 获取设备图标
-    const getDeviceIcon = (type) => {
-      const iconMap = {
-        light: 'fas fa-lightbulb',
-        ac: 'fas fa-wind',
-        monitor: 'fas fa-video',
-        tv: 'fas fa-tv',
-        curtain: 'fas fa-border-none',
-        outlet: 'fas fa-plug'
-      }
-      return iconMap[type] || 'fas fa-microchip'
-    }
-
-    // 获取设备颜色
-    const getDeviceColor = (type) => {
-      const colorMap = {
-        light: '#FF9800',
-        ac: '#03A9F4',
-        monitor: '#9C27B0',
-        tv: '#E91E63',
-        curtain: '#4CAF50',
-        outlet: '#795548'
-      }
-      return colorMap[type] || '#607D8B'
-    }
-
+    
     // 初始化设备状态
     const initializeDeviceStates = () => {
       devices.value.forEach(device => {
@@ -256,6 +351,15 @@ export default {
       return result
     })
     
+    // 选中的设备
+    const selectedDevices = computed(() => {
+      return devices.value.filter(device => 
+        deviceStates.value[device.id]?.selected
+      )
+    })
+    
+    const selectedDeviceCount = computed(() => selectedDevices.value.length)
+    
     // 切换设备选择
     const toggleDeviceSelection = (deviceId) => {
       deviceStates.value[deviceId].selected = !deviceStates.value[deviceId].selected
@@ -266,69 +370,76 @@ export default {
       return deviceStates.value[deviceId]?.selected
     }
     
-    // 设置选择的房间
-    const setSelectedRoom = (room) => {
-      selectedRoom.value =  room
+    // 获取设备图标
+    const getDeviceIcon = (type) => {
+      const iconMap = {
+        light: 'fas fa-lightbulb',
+        ac: 'fas fa-wind',
+        monitor: 'fas fa-video',
+        tv: 'fas fa-tv',
+        curtain: 'fas fa-border-none',
+        outlet: 'fas fa-plug'
+      }
+      return iconMap[type] || 'fas fa-microchip'
     }
     
-    // 取消创建
-    const cancelCreation = () => {
-      router.push('/')
+    // 获取场景图标
+    const getSceneIcon = (icon) => {
+      return `fas fa-${icon}`
+    }
+    
+    // 获取设备颜色
+    const getDeviceColor = (type) => {
+      const colorMap = {
+        light: '#FF9800',
+        ac: '#03A9F4',
+        monitor: '#9C27B0',
+        tv: '#E91E63',
+        curtain: '#4CAF50',
+        outlet: '#795548'
+      }
+      return colorMap[type] || '#607D8B'
+    }
+    
+    // 返回处理
+    const handleBack = () => {
+      if (step.value > 1) {
+        step.value -= 1
+      } else {
+        router.push('/')
+      }
     }
     
     // 创建场景
     const createScene = () => {
-      if (!scene.value.name.trim()) {
-        alert('请输入场景名称')
-        return
-      }
-      
       // 获取选中的设备及其状态
-      const selectedDevices = []
-      Object.keys(deviceStates.value).forEach(deviceId => {
-        if (deviceStates.value[deviceId].selected) {
-          const device = devices.value.find(d => d.id === deviceId)
-          // 创建设备状态对象 - 匹配db.json结构
-          const deviceStatus = {
-            id: device.id,
-            name: device.name,
-            type: device.type,
-            brand: device.brand,
-            room: device.room,
-            status: deviceStates.value[deviceId].status
-          }
-
-          // 根据设备类型添加额外属性
-          if (device.type === 'light') {
-            deviceStatus.brightness = deviceStates.value[deviceId].brightness
-          } else if (device.type === 'ac') {
-            deviceStatus.temperature = deviceStates.value[deviceId].temperature
-          } else if (device.type === 'curtain') {
-            deviceStatus.openPercentage = deviceStates.value[deviceId].openPercentage
-          }
-
-          // 添加到场景设备列表
-          selectedDevices.push(deviceStatus)
+      const selectedDevicesWithState = selectedDevices.value.map(device => {
+        const state = deviceStates.value[device.id]
+        return {
+          id: device.id,
+          name: device.name,
+          type: device.type,
+          brand: device.brand,
+          room: device.room,
+          status: state.status,
+          ...(device.type === 'light' && { brightness: state.brightness }),
+          ...(device.type === 'ac' && { temperature: state.temperature }),
+          ...(device.type === 'curtain' && { openPercentage: state.openPercentage })
         }
       })
-
-      console.log(selectedDevices)
-      if (selectedDevices.length === 0) {
-        alert('请至少选择一个设备')
-        return
-      }
       
       // 创建场景对象
       const newScene = {
         id: Date.now().toString(),
         name: scene.value.name,
         description: scene.value.description,
-        devices: selectedDevices
+        icon: scene.value.icon,
+        devices: selectedDevicesWithState
       }
       
       // 保存到Vuex
       store.dispatch('createScene', newScene)
-      console.log(newScene)
+      
       // 提示并返回首页
       alert(`场景"${newScene.name}"创建成功！`)
       router.push('/')
@@ -342,6 +453,7 @@ export default {
     })
     
     return {
+      step,
       scene,
       deviceSearch,
       selectedRoom,
@@ -350,12 +462,14 @@ export default {
       rooms,
       sceneIcons,
       filteredDevices,
+      selectedDevices,
+      selectedDeviceCount,
       toggleDeviceSelection,
       isDeviceSelected,
-      setSelectedRoom,
-      cancelCreation,
+      handleBack,
       createScene,
       getDeviceIcon,
+      getSceneIcon,
       getDeviceColor
     }
   }
@@ -364,29 +478,68 @@ export default {
 
 <style lang="scss" scoped>
 .create-scene {
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
-  background: #f5f7fa;
+  background: #f8fafc;
   min-height: 100vh;
 }
 
 .header {
-  display: flex;
-  align-items: center;
+  position: relative;
+  text-align: center;
   margin-bottom: 30px;
-  padding-bottom: 15px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #e0e6ed;
-  
-  h1 {
-    flex-grow: 1;
-    text-align: center;
+
+  &__title {
     color: #2c3e50;
-    margin: 0;
+    margin: 20px 0;
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  &__steps {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+
+    span {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #e0e6ed;
+      color: #90a4ae;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      position: relative;
+
+      &.active {
+        background: #2196f3;
+        color: white;
+      }
+
+      &:not(:last-child):after {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background: #e0e6ed;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
   }
 }
 
 .back-btn {
+  position: absolute;
+  left: 0;
+  top: 0;
   display: flex;
   align-items: center;
   padding: 8px 15px;
@@ -396,6 +549,8 @@ export default {
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s;
+  border: none;
+  cursor: pointer;
   
   i {
     margin-right: 5px;
@@ -406,39 +561,64 @@ export default {
   }
 }
 
-.scene-form {
+.form-container {
   background: white;
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin-bottom: 30px;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.form-section {
+  transition: all 0.3s ease;
+}
+
+.section-title {
+  color: #2c3e50;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  i {
+    color: #2196f3;
+  }
 }
 
 .form-group {
   margin-bottom: 25px;
-  
+
   label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #546e7a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    i {
+      color: #78909c;
+      font-size: 14px;
+    }
   }
-  
+
   input, textarea {
     width: 100%;
     padding: 12px 15px;
     border: 2px solid #e0e6ed;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
     transition: all 0.3s;
-    
+
     &:focus {
       border-color: #2196f3;
       box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
       outline: none;
     }
   }
-  
+
   textarea {
     min-height: 100px;
     resize: vertical;
@@ -452,14 +632,13 @@ export default {
   margin-top: 5px;
 }
 
-.icon-selector {
+.icon-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   gap: 15px;
-  margin-top: 10px;
 }
 
-.icon-option {
+.icon-card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -469,57 +648,45 @@ export default {
   cursor: pointer;
   transition: all 0.3s;
   border: 2px solid transparent;
-  
-  i {
-    font-size: 24px;
-    color: #546e7a;
-    margin-bottom: 8px;
-  }
-  
-  span {
-    font-size: 13px;
-    color: #546e7a;
-  }
-  
+
   &:hover {
-    background: #e3f2fd;
-    border-color: #bbdefb;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
-  
+
   &.selected {
     background: #e3f2fd;
     border-color: #2196f3;
-    
-    i, span {
-      color: #1976d2;
-    }
   }
 }
 
-.devices-section {
-  background: white;
-  border-radius: 12px;
-  padding: 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  margin-bottom: 30px;
-}
-
-.section-header {
+.icon-wrapper {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: white;
+
+  &.home { background: linear-gradient(135deg, #2196f3, #1976d2); }
+  &.bed { background: linear-gradient(135deg, #9c27b0, #673ab7); }
+  &.sun { background: linear-gradient(135deg, #FF9800, #FFC107); }
+  &.film { background: linear-gradient(135deg, #f44336, #e91e63); }
+  &.utensils { background: linear-gradient(135deg, #4CAF50, #8BC34A); }
+  &.door-open { background: linear-gradient(135deg, #607d8b, #455a64); }
+}
+
+.search-filter {
   margin-bottom: 20px;
-  
-  h2 {
-    margin: 0;
-    color: #2c3e50;
-  }
 }
 
 .search-box {
   position: relative;
-  width: 300px;
-  
+  margin-bottom: 15px;
+
   i {
     position: absolute;
     left: 15px;
@@ -527,14 +694,14 @@ export default {
     transform: translateY(-50%);
     color: #90a4ae;
   }
-  
+
   input {
     width: 100%;
     padding: 10px 15px 10px 40px;
     border: 2px solid #e0e6ed;
     border-radius: 20px;
     font-size: 14px;
-    
+
     &:focus {
       border-color: #2196f3;
       outline: none;
@@ -542,11 +709,10 @@ export default {
   }
 }
 
-.device-filters {
+.room-filters {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 20px;
 }
 
 .filter-btn {
@@ -558,11 +724,11 @@ export default {
   cursor: pointer;
   font-size: 14px;
   transition: all 0.3s;
-  
+
   &:hover {
     background: #e0e6ed;
   }
-  
+
   &.active {
     background: #2196f3;
     color: white;
@@ -581,7 +747,7 @@ export default {
   margin-bottom: 15px;
   overflow: hidden;
   transition: all 0.3s;
-  
+
   &.selected {
     border-color: #2196f3;
     box-shadow: 0 4px 12px rgba(33, 150, 243, 0.15);
@@ -595,11 +761,11 @@ export default {
   cursor: pointer;
   background: #f8f9fa;
   transition: background 0.3s;
-  
+
   .device-item.selected & {
     background: #e3f2fd;
   }
-  
+
   &:hover {
     background: #f1f5f9;
   }
@@ -615,7 +781,7 @@ export default {
   color: white;
   font-size: 20px;
   margin-right: 15px;
-  
+
   i {
     filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
   }
@@ -623,17 +789,33 @@ export default {
 
 .device-details {
   flex-grow: 1;
-  
+
   h3 {
     margin: 0 0 5px 0;
     color: #2c3e50;
     font-size: 16px;
   }
-  
+
   p {
     margin: 0;
     color: #78909c;
     font-size: 13px;
+  }
+}
+
+.device-check {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e0e6ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+
+  .device-item.selected & {
+    background: #2196f3;
   }
 }
 
@@ -647,22 +829,22 @@ export default {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
-  
+
   &:last-child {
     margin-bottom: 0;
   }
-  
+
   label {
     width: 80px;
     font-weight: 500;
     color: #546e7a;
   }
-  
+
   input[type="range"] {
     flex-grow: 1;
     margin: 0 15px;
   }
-  
+
   span {
     width: 50px;
     text-align: right;
@@ -676,21 +858,21 @@ export default {
   display: inline-block;
   width: 50px;
   height: 24px;
-  
+
   input {
     opacity: 0;
     width: 0;
     height: 0;
-    
+
     &:checked + label {
       background-color: #2196f3;
     }
-    
+
     &:checked + label:before {
       transform: translateX(26px);
     }
   }
-  
+
   label {
     position: absolute;
     cursor: pointer;
@@ -701,7 +883,7 @@ export default {
     background-color: #ccc;
     transition: .4s;
     border-radius: 24px;
-    
+
     &:before {
       position: absolute;
       content: "";
@@ -720,53 +902,231 @@ export default {
   text-align: center;
   padding: 40px;
   color: #90a4ae;
-  
+
   i {
     font-size: 48px;
     margin-bottom: 15px;
     opacity: 0.5;
   }
-  
+
   p {
     margin: 0;
     font-size: 16px;
   }
 }
 
-.actions {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px 0;
+.scene-summary {
+  margin-bottom: 30px;
 }
 
-.btn {
-  padding: 12px 30px;
-  border: none;
-  border-radius: 8px;
+.scene-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e0e6ed;
+}
+
+.scene-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: white;
+  margin-right: 20px;
+
+  &.home { background: linear-gradient(135deg, #2196f3, #1976d2); }
+  &.bed { background: linear-gradient(135deg, #9c27b0, #673ab7); }
+  &.sun { background: linear-gradient(135deg, #FF9800, #FFC107); }
+  &.film { background: linear-gradient(135deg, #f44336, #e91e63); }
+  &.utensils { background: linear-gradient(135deg, #4CAF50, #8BC34A); }
+  &.door-open { background: linear-gradient(135deg, #607d8b, #455a64); }
+}
+
+.scene-details {
+  flex-grow: 1;
+
+  h3 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+    font-size: 24px;
+  }
+
+  p {
+    margin: 0;
+    color: #78909c;
+    font-size: 14px;
+  }
+}
+
+.selected-devices {
+  margin-bottom: 25px;
+
+  h4 {
+    margin: 0 0 15px 0;
+    color: #546e7a;
+    font-size: 16px;
+  }
+}
+
+.device-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.device-chip {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  background: #f0f4f8;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.chip-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.device-preview {
+  h4 {
+    margin: 0 0 15px 0;
+    color: #546e7a;
+    font-size: 16px;
+  }
+}
+
+.preview-list {
+  border: 1px solid #e0e6ed;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.preview-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid #e0e6ed;
+  background: #f8f9fa;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.preview-info {
+  display: flex;
+  align-items: center;
+
+  h5 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+    font-size: 16px;
+  }
+
+  p {
+    margin: 0;
+    color: #78909c;
+    font-size: 13px;
+  }
+}
+
+.preview-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
   font-size: 16px;
-  font-weight: 600;
+  margin-right: 15px;
+}
+
+.preview-status {
+  font-weight: 500;
+  color: #2c3e50;
+
+  .status-off {
+    color: #f44336;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.next-btn, .submit-btn {
+  padding: 12px 25px;
+  background: linear-gradient(to right, #2196f3, #1976d2);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.3s;
-  
-  &.cancel {
-    background: #f0f4f8;
-    color: #546e7a;
-    
-    &:hover {
-      background: #e0e6ed;
-    }
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
   }
-  
-  &.create {
-    background: linear-gradient(to right, #2196f3, #1976d2);
-    color: white;
-    box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(33, 150, 243, 0.4);
-    }
+
+  &:disabled {
+    background: #e0e6ed;
+    color: #90a4ae;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
   }
+}
+
+.submit-btn {
+  background: linear-gradient(to right, #4CAF50, #2E7D32);
+}
+
+.back-btn {
+  padding: 12px 25px;
+  background: #f0f4f8;
+  color: #546e7a;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &:hover {
+    background: #e0e6ed;
+  }
+}
+
+/* 过渡动画 */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s, transform 0.3s;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
 }
 </style>
