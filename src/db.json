@@ -50,7 +50,7 @@
       "type": "curtain",
       "brand": "aqara",
       "room": "卧室",
-      "status": true,
+      "status": false,
       "openPercentage": 45,
       "userId": "1"
     },
@@ -72,12 +72,12 @@
     },
     {
       "id": "1749452273216",
-      "name": "我改名字了",
+      "name": "regulus",
       "type": "light",
-      "brand": "philips",
+      "brand": "xiaomi",
       "room": "客厅",
-      "status": false,
-      "brightness": "8",
+      "status": true,
+      "brightness": 50,
       "userId": "1749451354794"
     },
     {
@@ -91,42 +91,24 @@
       "userId": "1749451354794"
     },
     {
-      "id": "1749533109557",
-      "name": "空调11",
+      "id": "1749603835086",
+      "name": "222",
       "type": "ac",
-      "brand": "gree",
+      "brand": "midea",
       "room": "卧室",
-      "status": false,
-      "temperature": 22,
+      "status": true,
+      "temperature": "19",
       "userId": "1749451354794"
     },
     {
-      "id": "1749533124794",
-      "name": "居然还有这种东西",
-      "type": "outlet",
-      "brand": "xiaomi",
+      "id": "1749603946129",
+      "name": "测试",
+      "type": "light",
+      "brand": "philips",
       "room": "厨房",
       "status": false,
-      "userId": "1749451354794"
-    },
-    {
-      "id": "1749533136903",
-      "name": "好高端能干哈",
-      "type": "curtain",
-      "brand": "aqara",
-      "room": "浴室",
-      "status": false,
-      "openPercentage": 35,
-      "userId": "1749451354794"
-    },
-    {
-      "id": "1749533150869",
-      "name": "怎么个智能法捏",
-      "type": "tv",
-      "brand": "samsung",
-      "room": "浴室",
-      "status": false,
-      "userId": "1749451354794"
+      "brightness": 50,
+      "userId": "1749455552448"
     }
   ],
   "rooms": [
@@ -149,13 +131,13 @@
   ],
   "scenes": [
     {
-      "id": "1749453492463",
-      "name": "回家",
-      "description": "",
+      "id": "1749603891638",
+      "name": "回家模式",
+      "description": "aaaa",
       "devices": [
         {
-          "id": "1746952473402",
-          "name": "客厅次灯",
+          "id": "1749603825448",
+          "name": "111",
           "type": "light",
           "brand": "philips",
           "room": "客厅",
@@ -205,11 +187,11 @@
           "temperature": 21
         },
         {
-          "id": "1749453619411",
-          "name": "asd",
+          "id": "1749603835086",
+          "name": "222",
           "type": "ac",
           "brand": "midea",
-          "room": "厨房",
+          "room": "卧室",
           "status": true,
           "temperature": "19"
         }
@@ -252,8 +234,8 @@
           "id": "1746952473402",
           "name": "regulus",
           "type": "light",
-          "brand": "xiaomi",
           "room": "客厅",
+          "brand": "xiaomi",
           "status": true,
           "brightness": 50
         }

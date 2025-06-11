@@ -68,6 +68,14 @@ export default createStore({
       state.devices.forEach(device => {
         api.updateDevice(device.id, { status: false })
       })
+    },
+
+    //更新设备
+    UPDATE_SCENE_DEVICES(state, { sceneId, devices }) {
+      const scene = state.scenes.find(s => s.id === sceneId);
+      if (scene) {
+        scene.devices = devices;
+      }
     }
   },
   actions: {
@@ -165,9 +173,16 @@ export default createStore({
 
     async toggleDevice({ commit }, { id, status }) {
       try {
+        console.log(id)
+        console.log({status})
+        if (status === undefined) {
+          console.error(`toggleDevice: Invalid status for device ${id}`);
+          return;
+        }
         const response = await api.updateDevice(id, { status })
         console.log(response)
-        commit('UPDATE_DEVICE', response.data)
+        const updatedDevice = response.data
+        commit('UPDATE_DEVICE', updatedDevice)
       } catch (error) {
         commit('SET_ERROR', '设备状态更新失败')
         console.error(error)
@@ -329,8 +344,24 @@ export default createStore({
         console.error('删除场景失败:', error);
         return false;
       }
-    }
+    },
+
+    // 更新场景设备列表
+    async updateSceneDevices({ commit }, { sceneId, devices }) {
+      try {
+        console.log('更新场景设备列表...');
+        console.log(sceneId);
+        console.log(devices);
+        await api.updateSceneDevices(sceneId, devices);
+        commit('UPDATE_SCENE_DEVICES', { sceneId, devices });
+      } catch (error) {
+        commit('SET_ERROR', error.message);
+      }
+    },
+
   },
+
+
 
   getters: {
     getDevicesByRoom: (state) => {
@@ -349,4 +380,5 @@ export default createStore({
     getRegisterError: state => state.error,
     isLoading: state => state.loading
   }
+
 })

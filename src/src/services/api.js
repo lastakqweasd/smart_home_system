@@ -14,7 +14,10 @@ export const api = {
   // 设备相关API
   getAllDevices: () => axios.get(`${API_URL}/devices`),
   getDevice: (id) => axios.get(`${API_URL}/devices/${id}`),
-  updateDevice: (id, data) => axios.patch(`${API_URL}/devices/${id}`, data),
+  updateDevice: (id, data) => {
+    console.log(id, data);
+    return axios.patch(`${API_URL}/devices/${id}`, data)
+  },
   postDevice:(device) => axios.post(`${API_URL}/devices`, device),
   delDevice:(deviceId) => axios.delete(`${API_URL}/devices/${deviceId}`),
 
@@ -55,58 +58,9 @@ export const api = {
   //删除场景
   delScene: (sceneId) => axios.delete(`${API_URL}/scenes/${sceneId}`),
 
-  // activateScene: async (sceneId) => {
-  //   try {
-  //     // 1. 获取场景配置和所有设备
-  //     const [sceneRes, devicesRes] = await Promise.all([
-  //       axios.get(`${API_URL}/scenes/${sceneId}`),
-  //       axios.get(`${API_URL}/devices`)
-  //     ]);
-  //     const scene = sceneRes.data;
-  //     const allDevices = devicesRes.data;
-
-  //     // 2. 找出场景中需要激活的设备ID集合
-  //     const sceneDeviceIds = new Set();
-  //     scene.devices.forEach(targetDevice => {
-  //       allDevices.filter(device => 
-  //         device.type === targetDevice.type && 
-  //         device.room === targetDevice.room
-  //       ).forEach(device => {
-  //         sceneDeviceIds.add(device.id);
-  //       });
-  //     });
-
-  //     // 3. 创建两类请求：
-  //     //    - 激活场景中的设备
-  //     //    - 关闭不在场景中的设备
-  //     const updatePromises = [
-  //       // 3.1 更新场景中的设备
-  //       ...scene.devices.flatMap(targetDevice => {
-  //         const matchedDevices = allDevices.filter(device => 
-  //           device.type === targetDevice.type && 
-  //           device.room === targetDevice.room
-  //         );
-  //         return matchedDevices.map(device => 
-  //           axios.patch(`${API_URL}/devices/${device.id}/`, targetDevice)
-  //         );
-  //       }),
-        
-  //       // 3.2 关闭不在场景中的设备
-  //       ...allDevices
-  //         .filter(device => !sceneDeviceIds.has(device.id))
-  //         .map(device => 
-  //           axios.patch(`${API_URL}/devices/${device.id}/`, { power: false })
-  //         )
-  //     ];
-
-  //     // 4. 批量执行所有更新
-  //     await Promise.all(updatePromises);
-  //     return scene;
-      
-  //   } catch (error) {
-  //     console.error('场景激活失败:', error);
-  //     throw new Error(`场景激活失败: ${error.message}`);
-  //   }
-  // },
-
+  // 更新场景中的设备状态（部分更新）
+  updateSceneDevices: (sceneId, deviceUpdates) => {
+    // deviceUpdates 应该是一个对象数组，每个对象包含设备ID和要更新的字段
+    return axios.patch(`${API_URL}/scenes/${sceneId}/`, {devices:deviceUpdates});
+  },
 }

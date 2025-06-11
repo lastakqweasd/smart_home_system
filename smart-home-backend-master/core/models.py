@@ -1,11 +1,64 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
+from django.utils import timezone
 
 class Room(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
+
+class SmartHomeUser(AbstractUser):
+    ROLE_CHOICES = [
+        ('admin', '管理员'),
+        ('member', '普通成员'),
+        ('guest', '访客'),
+    ]
+    
+    # 基本信息
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='member', verbose_name='用户角色')
+    email = models.EmailField(unique=True, verbose_name='邮箱')
+    phone_regex = RegexValidator(
+        regex=r'^1[3-9]\d{9}$',
+        message="手机号格式不正确，请输入11位数字"
+    )
+    phone = models.CharField(validators=[phone_regex], max_length=11, blank=True, null=True, verbose_name='手机号')
+    
+    # 个人信息
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True, verbose_name='头像')
+    nickname = models.CharField(max_length=50, blank=True, null=True, verbose_name='昵称')
+    bio = models.TextField(max_length=500, blank=True, null=True, verbose_name='个人简介')
+    
+    # 系统信息
+    permissions = models.JSONField(default=list, verbose_name='权限列表')
+    is_active = models.BooleanField(default=True, verbose_name='是否激活')
+    last_login_ip = models.GenericIPAddressField(blank=True, null=True, verbose_name='最后登录IP')
+    created_at = models.DateTimeField(default=timezone.now, verbose_name='创建时间')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')
+    
+    class Meta:
+        verbose_name = '智能家居用户'
+        verbose_name_plural = '智能家居用户'
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f'{self.username} ({self.get_role_display()})'
+    
+    @property
+    def full_name(self):
+        """获取用户全名"""
+        if self.first_name and self.last_name:
+            return f"{self.first_name} {self.last_name}"
+        elif self.nickname:
+            return self.nickname
+        return self.username
+    
+    def has_permission(self, permission):
+        """检查用户是否有特定权限"""
+        if self.role == 'admin':
+            return True
+        return permission in self.permissions
 
 class Device(models.Model):
     DEVICE_TYPES = [
@@ -22,6 +75,7 @@ class Device(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='devices')
     status = models.BooleanField(default=False)
     extra = models.JSONField(default=dict) # 不同的设备有不同的属性，比如空调有温度属性
+    owner = models.ForeignKey(SmartHomeUser, on_delete=models.CASCADE, related_name='devices', null=True, blank=True)
 
     def __str__(self):
         return f'{self.name} ({self.room.name})'
@@ -41,11 +95,3 @@ class SceneDeviceConfig(models.Model):
 
     def __str__(self):
         return f'{self.scene.name} - {self.device.name}'
-
-class SmartHomeUser(AbstractUser):
-    ROLE_CHOICES = [
-        ('admin', 'Admin'),
-        ('member', 'Member'),
-    ]
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
-    permissions = models.JSONField(default=list)
