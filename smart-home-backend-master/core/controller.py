@@ -63,7 +63,8 @@ class DeviceController:
             if command['action'] == 'toggle':
                 device.status = not device.status
             elif command['action'] == 'set':
-                device.extra.update(command.get('params', {}))
+                #根据参数修改设备状态，测试时会request.post(url, json=data, headers=headers),这部分json格式的data在core/models.py的69行extra = models.JSONField(default=dict)规定，下面一句话调用update方法更新对应参数
+                device.extra.update(command.get('params', {})) 
 
             device.save()
             cls.control(device)  # 调用原有控制方法
