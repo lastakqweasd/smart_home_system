@@ -25,8 +25,8 @@
         v-for="room in rooms"
         :key="room.id"
         class="filter-btn"
-        :class="{ active: selectedRoom === room.name }"
-        @click="setSelectedRoom(room.name)"
+        :class="{ active: selectedRoom === room.id }"
+        @click="setSelectedRoom(room.id)"
       >
         {{ room.name }}
       </button>
@@ -67,6 +67,63 @@
             :device="device"
             class="scrollable-item"
           />
+        </div>
+      </div>
+    </div>
+
+    <!-- 房间管理区域 -->
+    <div class="room-management">
+      <button @click="showCreateRoom = true" class="add-room-btn">
+        <i class="fas fa-plus"></i> 添加房间
+      </button>
+      
+      <!-- 房间列表 -->
+      <div class="room-list">
+        <div v-for="room in rooms" :key="room.id" class="room-item">
+          <div class="room-name" v-if="!room.editing" @dblclick="startEditing(room)">
+            {{ room.name }}
+          </div>
+          <input 
+            v-else
+            type="text"
+            v-model="room.editName"
+            @keyup.enter="saveRoomName(room)"
+            @blur="saveRoomName(room)"
+            class="room-name-input"
+          />
+          <div class="room-actions">
+            <button @click="startEditing(room)" class="edit-btn">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button @click="confirmDeleteRoom(room)" class="delete-btn">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 创建房间模态框 -->
+    <div v-if="showCreateRoom" class="modal">
+      <div class="modal-content">
+        <h3>创建新房间</h3>
+        <input type="text" v-model="newRoomName" placeholder="输入房间名称" class="modal-input">
+        <div class="modal-actions">
+          <button @click="createRoom" class="confirm-btn">创建</button>
+          <button @click="showCreateRoom = false" class="cancel-btn">取消</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 删除确认模态框 -->
+    <div v-if="roomToDelete" class="modal">
+      <div class="modal-content">
+        <h3>确认删除房间</h3>
+        <p>确定要删除 "{{ roomToDelete.name }}" 吗？此操作将同时删除该房间中的所有设备。</p>
+        <div class="modal-actions">
+          <button @click="deleteRoom" class="confirm-btn">删除</button>
+          <button @click="roomToDelete = null" class="cancel-btn">取消</button>
         </div>
       </div>
     </div>
@@ -152,7 +209,7 @@
                     <i :class="getDeviceIcon(device.type)"></i>
                   </div>
                   <h3>{{ device.name }}</h3>
-                  <p>{{ device.room }} · {{ device.type }}</p>
+                  <p>{{ device.roomName }} · {{ device.type }}</p>
                 </div>
               </div>
               <div v-if="isDeviceSelected(device.id)" class="device-controls">
@@ -216,6 +273,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -248,11 +306,11 @@ export default {
     // 设备类型定义
     const deviceTypes = ref([
       { value: 'light', label: '智能灯', icon: 'fas fa-lightbulb' },
-      { value: 'ac', label: '空调', icon: 'fas fa-wind' },
+      { value: 'ac', label: '空调', icon: 'fas fa-snowflake' },
       { value: 'outlet', label: '智能插座', icon: 'fas fa-plug' },
-      { value: 'curtain', label: '智能窗帘', icon: 'fas fa-blinds' },
+      { value: 'curtain', label: '智能窗帘', icon: 'fas fa-window-maximize' },
       { value: 'tv', label: '智能电视', icon: 'fas fa-tv' },
-      { value: 'camera', label: '监控摄像头', icon: 'fas fa-video' }
+      { value: 'monitor', label: '监控摄像头', icon: 'fas fa-video' }
     ])
 
     // 选中的设备类型
@@ -269,7 +327,7 @@ export default {
       
       // 按场所过滤
       if (selectedRoom.value !== 'all') {
-        filtered = filtered.filter(device => device.room === selectedRoom.value)
+        filtered = filtered.filter(device => device.roomId === selectedRoom.value)
       }
       
       // 按设备类型过滤
@@ -303,6 +361,71 @@ export default {
       router.push('/login')
     }
 
+  // 房间管理相关状态
+    const showCreateRoom = ref(false)
+    const newRoomName = ref('')
+    const roomToDelete = ref(null)
+    
+    // 创建房间
+    const createRoom = async () => {
+      if (newRoomName.value.trim()) {
+        await store.dispatch('createRoom', { name: newRoomName.value.trim() })
+        newRoomName.value = ''
+        showCreateRoom.value = false
+      }
+    }
+    
+    // 开始编辑房间名称
+    const startEditing = (room) => {
+      // 创建编辑副本
+      const roomCopy = {...room, editing: true, editName: room.name}
+      // 更新房间列表
+      const index = rooms.value.findIndex(r => r.id === room.id)
+      if (index !== -1) {
+        const newRooms = [...rooms.value]
+        newRooms[index] = roomCopy
+        store.commit('SET_ROOMS', newRooms)
+      }
+    }
+    
+    // 保存房间名称
+    const saveRoomName = async (room) => {
+    if (room.editName && room.editName.trim() !== room.name) {
+      // 传递正确的参数格式
+      await store.dispatch('updateRoom', {
+        roomId: room.id,
+        newName: room.editName.trim()
+      });
+    }
+  
+    // 重置编辑状态
+    const newRooms = rooms.value.map(r => {
+      if (r.id === room.id) {
+        return {...r, editing: false};
+      }
+      return r;
+    });
+    store.commit('SET_ROOMS', newRooms);
+  }
+    
+    // 确认删除房间
+    const confirmDeleteRoom = (room) => {
+      roomToDelete.value = room
+    }
+    
+    // 删除房间
+    const deleteRoom = async () => {
+      if (roomToDelete.value) {
+        await store.dispatch('deleteRoom', roomToDelete.value.id)
+        roomToDelete.value = null
+      }
+    }
+
+    const getRoomName = (roomId) => {
+      const room = rooms.value.find(r => r.id === roomId)
+      return room ? room.name : '未知房间'
+    }
+
     const getSceneIcon = (icon) => {
       const iconMap = {
         home: 'fas fa-home',
@@ -319,11 +442,11 @@ export default {
     const getDeviceIcon = (type) => {
       const iconMap = {
         light: 'fas fa-lightbulb',
-        ac: 'fas fa-wind',
+        ac: 'fas fa-snowflake',
         outlet: 'fas fa-plug',
-        curtain: 'fas fa-blinds',
+        curtain: 'fas fa-window-maximize',
         tv: 'fas fa-tv',
-        camera: 'fas fa-video',
+        monitor: 'fas fa-video',
         switch: 'fas fa-toggle-on',
         sensor: 'fas fa-wifi'
       };
@@ -414,6 +537,15 @@ export default {
       deleteScene,
       handleLogout,
       getSceneIcon,
+      getRoomName,
+      showCreateRoom,
+      newRoomName,
+      roomToDelete,
+      createRoom,
+      startEditing,
+      saveRoomName,
+      confirmDeleteRoom,
+      deleteRoom,
       getDeviceIcon,
       showSceneDetail,
       scene_toggleDeviceSelection,
@@ -483,6 +615,101 @@ export default {
       }
     }
   }
+
+  /* 房间管理样式 */
+.room-management {
+  margin-bottom: 25px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.add-room-btn {
+  padding: 8px 15px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  
+  i {
+    margin-right: 5px;
+  }
+  
+  &:hover {
+    background: #3d8b40;
+  }
+}
+
+.room-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.room-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.room-name {
+  min-width: 120px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 5px;
+  
+  &:hover {
+    background: #f0f0f0;
+  }
+}
+
+.room-name-input {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 120px;
+}
+
+.room-actions {
+  margin-left: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 5px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  
+  i {
+    font-size: 14px;
+  }
+}
+
+.edit-btn {
+  background: #ffc107;
+  color: #333;
+  
+  &:hover {
+    background: #e0a800;
+  }
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+  
+  &:hover {
+    background: #c82333;
+  }
+}
 
   .filter-section {
     margin-bottom: 20px;

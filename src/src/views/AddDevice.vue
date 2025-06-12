@@ -103,7 +103,7 @@
                 <option 
                   v-for="room in rooms" 
                   :key="room.id" 
-                  :value="room.name"
+                  :value="room.id"
                 >
                   {{ room.name }}
                 </option>
@@ -149,7 +149,7 @@
             </div>
             <div class="summary-item">
               <span>房间:</span>
-              <strong>{{ selectedRoom }}</strong>
+              <strong>{{ get_roomName }}</strong>
             </div>
           </div>
 
@@ -276,13 +276,22 @@ export default {
       selectedBrand.value = ''
     }
 
+    const get_roomName = computed(() => {
+      if (!selectedRoom.value) return '未选择房间';
+      const room = rooms.value.find(r => r.id === selectedRoom.value);
+      return room ? room.name : '未知房间';
+    });
+
     const submitDevice = () => {
+      const currentRoom = rooms.value.find(room => room.id === selectedRoom.value);
+      const roomName = currentRoom ? currentRoom.name : '未知房间';
       const newDevice = {
         id: Date.now().toString(),
         name: deviceName.value,
         type: selectedType.value,
         brand: selectedBrand.value,
-        room: selectedRoom.value,
+        roomId: selectedRoom.value,
+        roomName: roomName,
         status: false,
         ...(selectedType.value === 'light' && { brightness: 50 }),
         ...(selectedType.value === 'ac' && { temperature: 22 }),
@@ -308,6 +317,7 @@ export default {
       deviceTypes,
       filteredBrands,
       rooms,
+      get_roomName,
       canSubmit,
       canGoNext,
       step,
