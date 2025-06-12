@@ -99,3 +99,4 @@ TypeError: django.db.models.query.QuerySet.create() got multiple values for keyw
 2025-06-08 11:36:11,230 - INFO - 收到TCP请求: {"operation": "create", "id": 18, "name": "\u53f0\u706f", "type": "light", "room": 1, "status": true, "extra": {"brightness": 80, "color": "#FFDD88"}, "brand": null}
 
 2025-06-08 11:36:11,237 - INFO - 已响应TCP请求: {'status': 'success', 'device_id': 25}
+2025-06-12 22:42:00,747 - INFO - TCP服务正在监听：0.0.0.0:9000

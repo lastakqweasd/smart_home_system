@@ -67,6 +67,8 @@ class Device(models.Model):
     status = models.BooleanField(default=False)
     extra = models.JSONField(default=dict) # 不同的设备有不同的属性，比如空调有温度属性
     owner = models.ForeignKey(SmartHomeUser, on_delete=models.CASCADE, related_name='devices', null=True, blank=True)
+    ip_address = models.GenericIPAddressField(blank=True, null=True, verbose_name='设备IP地址')
+    port = models.PositiveIntegerField(blank=True, null=True, verbose_name='设备端口')
 
     def __str__(self):
         return f'{self.name} ({self.room.name})'
