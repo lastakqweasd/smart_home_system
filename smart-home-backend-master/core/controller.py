@@ -2,6 +2,7 @@
 import logging
 import os
 from .models import Device
+from ..client import send_tcp_command  # 路径根据实际情况调整
 
 class DeviceController:
     logger = logging.getLogger("DeviceController")
@@ -37,6 +38,18 @@ class DeviceController:
         DeviceController.logger.info(
             f"控制设备: {device.name} ({device.type}) 状态={'开' if device.status else '关'} 配置={device.extra}"
         )
+        '''
+        # 构造要发送的指令
+        command = {
+            "operation": "control",
+            "id": device.id,
+            "action": "set",
+            "params": device.extra,
+            "status": device.status
+        }
+        # 假设设备都连到本地 TCP 服务器
+        send_tcp_command(host='127.0.0.1', port=9000, command=command)
+        '''
 
         for h in DeviceController.logger.handlers:
             h.flush()
