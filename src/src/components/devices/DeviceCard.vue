@@ -90,7 +90,7 @@
         <div class="device-details">
           <span class="device-room">
             <i class="fas fa-map-marker-alt"></i>
-            {{ device.room }}
+            {{ device.roomName }}
           </span>
           <span class="device-brand" v-if="device.brand">
             <i class="fas fa-tag"></i>
@@ -234,7 +234,7 @@ export default {
         case 'outlet': return 'fas fa-plug';
         case 'curtain': return 'fas fa-window-maximize';
         case 'tv': return 'fas fa-tv';
-        case 'monitor': return 'fas fa-desktop';
+        case 'monitor': return 'fas fa-video';
         default: return 'fas fa-microchip';
       }
     });
@@ -243,7 +243,7 @@ export default {
     const startEdit = () => {
       editForm.name = props.device.name;
       editForm.brand = props.device.brand || '';
-      editForm.room = props.device.room;
+      editForm.room = props.device.roomName;
       isEditing.value = true;
     };
     
