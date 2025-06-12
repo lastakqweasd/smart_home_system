@@ -45,15 +45,6 @@ class SmartHomeUser(AbstractUser):
     def __str__(self):
         return f'{self.username} ({self.get_role_display()})'
     
-    @property
-    def full_name(self):
-        """获取用户全名"""
-        if self.first_name and self.last_name:
-            return f"{self.first_name} {self.last_name}"
-        elif self.nickname:
-            return self.nickname
-        return self.username
-    
     def has_permission(self, permission):
         """检查用户是否有特定权限"""
         if self.role == 'admin':
