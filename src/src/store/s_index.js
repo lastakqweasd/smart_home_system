@@ -76,7 +76,32 @@ export default createStore({
       if (scene) {
         scene.devices = devices;
       }
-    }
+    },
+    ADD_ROOM(state, room) {
+      state.rooms.push(room);
+    },
+    REMOVE_ROOM(state, roomId) {
+      state.rooms = state.rooms.filter(room => room.id !== roomId);
+      state.devices = state.devices.filter(device => device.roomId !== roomId);
+    },
+    //关闭所有设备
+    RESET_DEVICES(state) {
+      state.devices = state.devices.map(device => ({...device, status: false}))
+      state.devices.forEach(device => {
+        api.updateDevice(device.id, { status: false })
+      })
+    },
+    UPDATE_ROOM_NAME(state, { roomId, newName }) {
+      const room = state.rooms.find(r => r.id === roomId);
+      if (room) {
+        room.name = newName;
+        state.devices
+          .filter(device => device.roomId === roomId)
+          .forEach(device => {
+            device.roomName = newName;
+          });
+      }
+    },
   },
   actions: {
     // 删除设备 - 添加用户验证
@@ -170,6 +195,67 @@ export default createStore({
     setSelectedRoom({ commit }, room) {
       commit('SET_SELECTED_ROOM', room)
     },
+
+    async createRoom({ commit }, roomData) {
+      commit('SET_LOADING', true);
+      try {
+        const newRoom = {
+          id: Date.now().toString(),
+          name: roomData.name,
+        };
+        
+        // 调用API创建房间
+        const response = await api.createRoom(newRoom);
+        commit('ADD_ROOM', response.data);
+        return true;
+      } catch (error) {
+        commit('SET_ERROR', '创建房间失败');
+        console.error(error);
+        return false;
+      } finally {
+        commit('SET_LOADING', false);
+      }
+    },
+    async deleteRoom({ commit, state }, roomId) {
+      commit('SET_LOADING', true);
+      try {
+        // 删除该房间的所有设备
+        const roomDevices = state.devices.filter(d => d.roomId === roomId);
+        await Promise.all(roomDevices.map(device => 
+          api.delDevice(device.id)
+        ));
+        
+        // 删除房间本身
+        await api.delRoom(roomId);
+        
+        // 提交 mutation 更新状态
+        commit('REMOVE_ROOM', roomId);
+        return true;
+      } catch (error) {
+        commit('SET_ERROR', '删除房间失败');
+        console.error(error);
+        return false;
+      } finally {
+        commit('SET_LOADING', false);
+      }
+    },
+    async updateRoom({ commit }, payload) {
+    commit('SET_LOADING', true);
+    try {
+      const { roomId, newName } = payload;
+      // 调用 API 更新房间
+      await api.updateRoom(roomId, { name: newName });
+      // 提交 mutation 更新前端状态
+      commit('UPDATE_ROOM_NAME', { roomId, newName });
+      return true;
+    } catch (error) {
+      commit('SET_ERROR', '更新房间名称失败');
+      console.error(error);
+      return false;
+    } finally {
+      commit('SET_LOADING', false);
+    }
+  },
 
     async toggleDevice({ commit }, { id, status }) {
       try {
@@ -369,7 +455,7 @@ export default createStore({
         return state.devices
       }
       return state.devices.filter(
-        (device) => device.room === state.selectedRoom
+        (device) => device.roomId === state.selectedRoom
       )
     },
     getDeviceById: (state) => (id) => {
