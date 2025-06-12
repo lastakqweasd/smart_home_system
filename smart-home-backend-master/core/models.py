@@ -2,14 +2,17 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
 from django.utils import timezone
+import uuid
 
 class Room(models.Model):
+    id = models.CharField(primary_key=True, max_length=64, default=lambda: str(uuid.uuid4()), editable=False)
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
 
 class SmartHomeUser(AbstractUser):
+    id = models.CharField(primary_key=True, max_length=64, default=lambda: str(uuid.uuid4()), editable=False)
     ROLE_CHOICES = [
         ('admin', '管理员'),
         ('member', '普通成员'),
@@ -52,6 +55,7 @@ class SmartHomeUser(AbstractUser):
         return permission in self.permissions
 
 class Device(models.Model):
+    id = models.CharField(primary_key=True, max_length=64, default=lambda: str(uuid.uuid4()), editable=False)
     DEVICE_TYPES = [
         ('light', 'Light'),
         ('ac', 'Air Conditioner'),
@@ -74,6 +78,7 @@ class Device(models.Model):
         return f'{self.name} ({self.room.name})'
 
 class Scene(models.Model):
+    id = models.CharField(primary_key=True, max_length=64, default=lambda: str(uuid.uuid4()), editable=False)
     name = models.CharField(max_length=50)
     description = models.TextField()
 
@@ -81,6 +86,7 @@ class Scene(models.Model):
         return self.name
 
 class SceneDeviceConfig(models.Model):
+    id = models.CharField(primary_key=True, max_length=64, default=lambda: str(uuid.uuid4()), editable=False)
     scene = models.ForeignKey(Scene, on_delete=models.CASCADE, related_name='device_configs')
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     status = models.BooleanField()
