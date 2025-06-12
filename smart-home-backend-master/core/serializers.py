@@ -101,7 +101,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Device
-        fields = ['id', 'name', 'type', 'room', 'status', 'extra', 'brand', 'owner']
+        fields = ['id', 'name', 'type', 'room', 'status', 'extra', 'brand', 'owner', 'ip_address', 'port']
         read_only_fields = ['owner']
 
     def create(self, validated_data):
