@@ -24,6 +24,11 @@ export const api = {
   // 房间相关API
   getRooms: () => axios.get(`${API_URL}/rooms/`),
 
+  // 房间管理 API
+  createRoom: (room) => axios.post(`${API_URL}/rooms`, room),
+  delRoom: (roomId) => axios.delete(`${API_URL}/rooms/${roomId}`),
+  updateRoom: (roomId, data) => axios.patch(`${API_URL}/rooms/${roomId}`, data),
+
   // 场景相关API
   getScenes: () => axios.get(`${API_URL}/scenes/`),
   createScene: (sceneData) => axios.post(API_URL+'/scenes', sceneData),
@@ -40,7 +45,7 @@ export const api = {
       console.log(targetDevice);
       const matchedDevices = allDevices.filter(device => 
         device.type === targetDevice.type && 
-        device.room === targetDevice.room
+        device.roomId === targetDevice.roomId
       );
       
       // 为每个匹配设备创建更新请求
