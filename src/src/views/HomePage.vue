@@ -71,62 +71,13 @@
       </div>
     </div>
 
-    <!-- 房间管理区域 -->
-    <div class="room-management">
-      <button @click="showCreateRoom = true" class="add-room-btn">
-        <i class="fas fa-plus"></i> 添加房间
-      </button>
-      
-      <!-- 房间列表 -->
-      <div class="room-list">
-        <div v-for="room in rooms" :key="room.id" class="room-item">
-          <div class="room-name" v-if="!room.editing" @dblclick="startEditing(room)">
-            {{ room.name }}
-          </div>
-          <input 
-            v-else
-            type="text"
-            v-model="room.editName"
-            @keyup.enter="saveRoomName(room)"
-            @blur="saveRoomName(room)"
-            class="room-name-input"
-          />
-          <div class="room-actions">
-            <button @click="startEditing(room)" class="edit-btn">
-              <i class="fas fa-edit"></i>
-            </button>
-            <button @click="confirmDeleteRoom(room)" class="delete-btn">
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- 创建房间模态框 -->
-    <div v-if="showCreateRoom" class="modal">
-      <div class="modal-content">
-        <h3>创建新房间</h3>
-        <input type="text" v-model="newRoomName" placeholder="输入房间名称" class="modal-input">
-        <div class="modal-actions">
-          <button @click="createRoom" class="confirm-btn">创建</button>
-          <button @click="showCreateRoom = false" class="cancel-btn">取消</button>
-        </div>
-      </div>
-    </div>
-    
-    <!-- 删除确认模态框 -->
-    <div v-if="roomToDelete" class="modal">
-      <div class="modal-content">
-        <h3>确认删除房间</h3>
-        <p>确定要删除 "{{ roomToDelete.name }}" 吗？此操作将同时删除该房间中的所有设备。</p>
-        <div class="modal-actions">
-          <button @click="deleteRoom" class="confirm-btn">删除</button>
-          <button @click="roomToDelete = null" class="cancel-btn">取消</button>
-        </div>
-      </div>
-    </div>
+    <room-management 
+      :rooms="rooms"
+      :devices="devices"
+      @create-room="handleCreateRoom"
+      @update-room="handleUpdateRoom"
+      @delete-room="handleDeleteRoom"
+    />
 
     <div class="scenes-section">
       <div class="scenes-header">
@@ -281,11 +232,13 @@ import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import DeviceCard from '@/components/devices/DeviceCard.vue'
+import RoomManagement from '@/views/RoomManagement.vue'
 
 export default {
   name: 'HomePage',
   components: {
-    DeviceCard
+    DeviceCard,
+    RoomManagement
   },
   setup() {
     const store = useStore()
@@ -362,68 +315,19 @@ export default {
     }
 
   // 房间管理相关状态
-    const showCreateRoom = ref(false)
-    const newRoomName = ref('')
-    const roomToDelete = ref(null)
-    
-    // 创建房间
-    const createRoom = async () => {
-      if (newRoomName.value.trim()) {
-        await store.dispatch('createRoom', { name: newRoomName.value.trim() })
-        newRoomName.value = ''
-        showCreateRoom.value = false
-      }
-    }
-    
-    // 开始编辑房间名称
-    const startEditing = (room) => {
-      // 创建编辑副本
-      const roomCopy = {...room, editing: true, editName: room.name}
-      // 更新房间列表
-      const index = rooms.value.findIndex(r => r.id === room.id)
-      if (index !== -1) {
-        const newRooms = [...rooms.value]
-        newRooms[index] = roomCopy
-        store.commit('SET_ROOMS', newRooms)
-      }
-    }
-    
-    // 保存房间名称
-    const saveRoomName = async (room) => {
-    if (room.editName && room.editName.trim() !== room.name) {
-      // 传递正确的参数格式
-      await store.dispatch('updateRoom', {
-        roomId: room.id,
-        newName: room.editName.trim()
-      });
-    }
-  
-    // 重置编辑状态
-    const newRooms = rooms.value.map(r => {
-      if (r.id === room.id) {
-        return {...r, editing: false};
-      }
-      return r;
-    });
-    store.commit('SET_ROOMS', newRooms);
-  }
-    
-    // 确认删除房间
-    const confirmDeleteRoom = (room) => {
-      roomToDelete.value = room
-    }
-    
-    // 删除房间
-    const deleteRoom = async () => {
-      if (roomToDelete.value) {
-        await store.dispatch('deleteRoom', roomToDelete.value.id)
-        roomToDelete.value = null
-      }
+    const handleCreateRoom = (roomName) => {
+      store.dispatch('createRoom', { name: roomName })
     }
 
-    const getRoomName = (roomId) => {
-      const room = rooms.value.find(r => r.id === roomId)
-      return room ? room.name : '未知房间'
+    const handleUpdateRoom = ({ roomId, newName }) => {
+      store.dispatch('updateRoom', {
+        roomId,
+        newName
+      })
+    }
+
+    const handleDeleteRoom = (roomId) => {
+      store.dispatch('deleteRoom', roomId)
     }
 
     const getSceneIcon = (icon) => {
@@ -537,15 +441,9 @@ export default {
       deleteScene,
       handleLogout,
       getSceneIcon,
-      getRoomName,
-      showCreateRoom,
-      newRoomName,
-      roomToDelete,
-      createRoom,
-      startEditing,
-      saveRoomName,
-      confirmDeleteRoom,
-      deleteRoom,
+      handleCreateRoom,
+      handleUpdateRoom,
+      handleDeleteRoom,
       getDeviceIcon,
       showSceneDetail,
       scene_toggleDeviceSelection,
