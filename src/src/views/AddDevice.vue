@@ -103,7 +103,7 @@
                 <option 
                   v-for="room in rooms" 
                   :key="room.id" 
-                  :value="room.name"
+                  :value="room.id"
                 >
                   {{ room.name }}
                 </option>
@@ -282,7 +282,7 @@ export default {
         name: deviceName.value,
         type: selectedType.value,
         brand: selectedBrand.value,
-        room: selectedRoom.value,
+        room: parseInt(selectedRoom.value, 10),
         status: false,
         ...(selectedType.value === 'light' && { brightness: 50 }),
         ...(selectedType.value === 'ac' && { temperature: 22 }),
