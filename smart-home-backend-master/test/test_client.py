@@ -1,3 +1,8 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
 from core.tcp_client import send_tcp_command
 
 if __name__ == "__main__":
