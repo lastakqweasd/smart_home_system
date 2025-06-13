@@ -52,19 +52,18 @@ class UserLoginSerializer(serializers.Serializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     """用户资料序列化器"""
-    full_name = serializers.ReadOnlyField()
-    
     class Meta:
         model = SmartHomeUser
-        fields = ['id', 'username', 'email', 'phone', 'nickname', 'bio', 'avatar', 
-                 'role', 'full_name', 'date_joined', 'last_login', 'created_at']
+        fields = ['id', 'email', 'phone', 'nickname', 'bio', 'avatar', 
+                 'role', 'first_name', 'last_name', 'date_joined', 'last_login', 'created_at']
         read_only_fields = ['id', 'username', 'role', 'date_joined', 'last_login', 'created_at']
 
 class UserUpdateSerializer(serializers.ModelSerializer):
     """用户信息更新序列化器"""
     class Meta:
         model = SmartHomeUser
-        fields = ['email', 'phone', 'nickname', 'bio', 'avatar', 'first_name', 'last_name']
+        fields = ['id', 'email', 'phone', 'nickname', 'bio', 'avatar', 'first_name', 'last_name']
+        read_only_fields = ['id']
 
 class PasswordChangeSerializer(serializers.Serializer):
     """密码修改序列化器"""
@@ -80,12 +79,11 @@ class PasswordChangeSerializer(serializers.Serializer):
 class SmartHomeUserSerializer(serializers.ModelSerializer):
     """完整的用户序列化器（用于管理员）"""
     password = serializers.CharField(write_only=True)
-    full_name = serializers.ReadOnlyField()
     
     class Meta:
         model = SmartHomeUser
         fields = ['id', 'username', 'email', 'password', 'phone', 'nickname', 'bio', 
-                 'avatar', 'role', 'permissions', 'is_active', 'full_name', 
+                 'avatar', 'role', 'permissions', 'is_active', 'first_name', 'last_name',
                  'date_joined', 'last_login', 'created_at', 'updated_at']
         read_only_fields = ['id', 'date_joined', 'last_login', 'created_at', 'updated_at']
 
@@ -103,7 +101,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Device
-        fields = ['id', 'name', 'type', 'room', 'status', 'extra', 'brand', 'owner']
+        fields = ['id', 'name', 'type', 'room', 'status', 'extra', 'brand', 'owner', 'ip_address', 'port']
         read_only_fields = ['owner']
 
     def create(self, validated_data):

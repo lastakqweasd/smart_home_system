@@ -18,8 +18,8 @@ def test_register():
     
     url = f"{BASE_URL}/auth/register/"
     data = {
-        "username": "testuser",
-        "email": "test@example.com",
+        "username": "testuser999",
+        "email": "test999@example.com",
         "password": "testpass123",
         "password_confirm": "testpass123",
         "phone": "13800138000",
@@ -32,7 +32,7 @@ def test_register():
         print(f"响应: {json.dumps(response.json(), indent=2, ensure_ascii=False)}")
         
         if response.status_code == 201:
-            return response.json().get('tokens', {}).get('access')
+            return response.json().get('tokens', {})
         else:
             print("注册失败")
             return None
@@ -56,13 +56,40 @@ def test_login():
         print(f"响应: {json.dumps(response.json(), indent=2, ensure_ascii=False)}")
         
         if response.status_code == 200:
-            return response.json().get('tokens', {}).get('access')
+            return response.json().get('tokens', {})
         else:
             print("登录失败")
             return None
     except Exception as e:
         print(f"登录请求失败: {e}")
         return None
+
+def test_logout(access_token, refresh_token):
+    """测试用户注销"""
+    print("\n=== 测试用户注销 ===")
+    print(f"Access Token: {access_token}")
+    print(f"Refresh Token: {refresh_token}")
+    
+    url = f"{BASE_URL}/auth/logout/"
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "refresh_token": refresh_token
+    }
+    
+    try:
+        print(f"发送请求到: {url}")
+        print(f"请求头: {headers}")
+        print(f"请求数据: {data}")
+        response = requests.post(url, headers=headers, json=data)
+        print(f"状态码: {response.status_code}")
+        print(f"响应: {json.dumps(response.json(), indent=2, ensure_ascii=False)}")
+        return response.status_code == 200
+    except Exception as e:
+        print(f"注销请求失败: {e}")
+        return False
 
 def test_get_profile(access_token):
     """测试获取用户资料"""
@@ -164,17 +191,32 @@ def main():
     test_unauthorized_access()
     
     # 测试注册
-    access_token = test_register()
+    tokens = test_register()
+    print("\n注册返回的tokens:", json.dumps(tokens, indent=2) if tokens else None)
     
-    if not access_token:
+    if not tokens:
         # 如果注册失败，尝试登录
-        access_token = test_login()
+        tokens = test_login()
+        print("\n登录返回的tokens:", json.dumps(tokens, indent=2) if tokens else None)
     
-    if access_token:
-        # 测试需要认证的API
-        test_get_profile(access_token)
-        test_get_devices(access_token)
-        test_create_device(access_token)
+    if tokens:
+        access_token = tokens.get('access')
+        refresh_token = tokens.get('refresh')
+        print("\n获取到的tokens:")
+        print(f"Access Token: {access_token}")
+        print(f"Refresh Token: {refresh_token}")
+        
+        if access_token:
+            # 测试需要认证的API
+            test_get_profile(access_token)
+            test_get_devices(access_token)
+            test_create_device(access_token)
+            
+            # 最后测试注销
+            if refresh_token:
+                test_logout(access_token, refresh_token)
+            else:
+                print("\n无法测试注销：缺少refresh token")
     else:
         print("无法获取访问令牌，测试终止")
         sys.exit(1)

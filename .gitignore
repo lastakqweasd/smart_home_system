@@ -1,0 +1,9 @@
+# 在父级目录创建 .gitignore
+echo "# 全局忽略规则" > ../.gitignore
+echo "**/__pycache__/" >> ../.gitignore
+echo "**/*.pyc" >> ../.gitignore
+echo "**/db.sqlite3" >> ../.gitignore
+echo "**/logs/" >> ../.gitignore
+echo "**/*.log" >> ../.gitignore
+echo "**/.idea/" >> ../.gitignore
+echo "**/.DS_Store" >> ../.gitignore

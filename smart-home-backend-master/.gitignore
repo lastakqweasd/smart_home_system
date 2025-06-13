@@ -1,3 +1,14 @@
+# 项目特定路径忽略规则
+smart-home-backend-master/__pycache__/
+smart-home-backend-master/*.pyc
+smart-home-backend-master/core/__pycache__/
+smart-home-backend-master/SmartHomeBackend/__pycache__/
+smart-home-backend-master/db.sqlite3
+smart-home-backend-master/logs/
+smart-home-backend-master/*.log
+smart-home-backend-master/.idea/
+smart-home-backend-master/.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

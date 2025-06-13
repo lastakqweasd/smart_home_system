@@ -1,63 +1,13 @@
 {
   "devices": [
     {
-      "id": "1746951021555",
-      "name": "卧室主灯",
-      "type": "light",
-      "brand": "xiaomi",
-      "room": "卧室",
-      "status": false,
-      "brightness": 31
-    },
-    {
-      "id": "1746952514079",
-      "name": "客厅摄像头",
-      "type": "monitor",
-      "brand": "hk",
-      "room": "客厅",
-      "status": false
-    },
-    {
-      "id": "1746952548073",
-      "name": "客厅电视",
-      "type": "tv",
-      "brand": "sony",
-      "room": "客厅",
-      "status": false
-    },
-    {
-      "id": "1746952579919",
-      "name": "卧室空调",
-      "type": "ac",
-      "brand": "gree",
-      "room": "卧室",
-      "status": false,
-      "temperature": 30
-    },
-    {
-      "id": "1746958363266",
-      "name": "客厅插座",
-      "type": "outlet",
-      "brand": "xiaomi",
-      "room": "客厅",
-      "status": false
-    },
-    {
-      "id": "1748880387149",
-      "name": "asd",
+      "id": "1749452273216",
+      "name": "客厅次灯",
       "type": "light",
       "brand": "philips",
-      "room": "厨房",
-      "status": false
-    },
-    {
-      "id": "1749452273216",
-      "name": "regulus",
-      "type": "light",
-      "brand": "xiaomi",
       "room": "客厅",
       "status": true,
-      "brightness": 50,
+      "brightness": "8",
       "userId": "1749451354794"
     },
     {
@@ -65,39 +15,126 @@
       "name": "regulus",
       "type": "light",
       "brand": "xiaomi",
-      "room": "客厅",
-      "status": true,
+      "room": "卧室",
+      "status": false,
       "brightness": 50,
       "userId": "1749451354794"
     },
     {
-      "id": "1749603835086",
-      "name": "222",
-      "type": "ac",
-      "brand": "midea",
-      "room": "卧室",
-      "status": true,
-      "temperature": "19",
-      "userId": "1749451354794"
-    },
-    {
-      "id": "1749603946129",
-      "name": "测试",
+      "id": "1749525072612",
+      "name": "客厅主灯",
       "type": "light",
       "brand": "philips",
-      "room": "厨房",
+      "roomId": "1",
+      "roomName": "客厅",
       "status": false,
       "brightness": 50,
-      "userId": "1749455552448"
+      "userId": "1"
     },
     {
-      "id": "1749628697856",
-      "name": "灯",
+      "id": "1749525086959",
+      "name": "客厅次灯",
       "type": "light",
       "brand": "xiaomi",
-      "room": 2,
+      "roomId": "1",
+      "roomName": "客厅",
       "status": false,
       "brightness": 50,
+      "userId": "1"
+    },
+    {
+      "id": "1749525099177",
+      "name": "客厅摄像头",
+      "type": "monitor",
+      "brand": "xiaomi",
+      "roomId": "1",
+      "roomName": "客厅",
+      "status": false,
+      "userId": "1"
+    },
+    {
+      "id": "1749525119544",
+      "name": "客厅电视",
+      "type": "tv",
+      "brand": "sony",
+      "roomId": "1",
+      "roomName": "客厅",
+      "status": false,
+      "userId": "1"
+    },
+    {
+      "id": "1749525134571",
+      "name": "客厅插座",
+      "type": "outlet",
+      "brand": "xiaomi",
+      "roomId": "1",
+      "roomName": "客厅",
+      "status": false,
+      "userId": "1"
+    },
+    {
+      "id": "1749525156511",
+      "name": "卧室空调",
+      "type": "ac",
+      "brand": "gree",
+      "roomId": "2",
+      "roomName": "卧室",
+      "status": false,
+      "temperature": 22,
+      "userId": "1"
+    },
+    {
+      "id": "1749525176426",
+      "name": "卧室主灯",
+      "type": "light",
+      "brand": "philips",
+      "roomId": "2",
+      "roomName": "卧室",
+      "status": false,
+      "brightness": 50,
+      "userId": "1"
+    },
+    {
+      "id": "1749525193614",
+      "name": "卧室窗帘",
+      "type": "curtain",
+      "brand": "aqara",
+      "roomId": "2",
+      "roomName": "卧室",
+      "status": false,
+      "openPercentage": 50,
+      "userId": "1"
+    },
+    {
+      "id": "1749525211645",
+      "name": "厨房灯",
+      "type": "light",
+      "brand": "philips",
+      "roomId": "3",
+      "roomName": "厨房",
+      "status": false,
+      "brightness": 23,
+      "userId": "1"
+    },
+    {
+      "id": "1749525220242",
+      "name": "浴室灯",
+      "type": "light",
+      "brand": "xiaomi",
+      "roomId": "4",
+      "roomName": "浴室",
+      "status": false,
+      "brightness": 50,
+      "userId": "1"
+    },
+    {
+      "id": "1749647293258",
+      "name": "厨房摄像头",
+      "type": "monitor",
+      "brand": "yingshi",
+      "roomId": "3",
+      "roomName": "厨房",
+      "status": false,
       "userId": "1"
     }
   ],
@@ -121,13 +158,13 @@
   ],
   "scenes": [
     {
-      "id": "1749603891638",
-      "name": "回家模式",
-      "description": "aaaa",
+      "id": "1749453492463",
+      "name": "回家",
+      "description": "",
       "devices": [
         {
-          "id": "1749603825448",
-          "name": "111",
+          "id": "1746952473402",
+          "name": "客厅次灯",
           "type": "light",
           "brand": "philips",
           "room": "客厅",
@@ -147,6 +184,7 @@
           "brightness": 57
         }
       ],
+      "userId": "1",
       "createdAt": "2025-06-03T14:27:57.199Z"
     },
     {
@@ -160,6 +198,7 @@
           "brightness": 70
         }
       ],
+      "userId": "1",
       "createdAt": "2025-06-03T14:29:47.803Z"
     },
     {
@@ -177,42 +216,36 @@
           "temperature": 21
         },
         {
-          "id": "1749603835086",
-          "name": "222",
+          "id": "1749453619411",
+          "name": "asd",
           "type": "ac",
           "brand": "midea",
-          "room": "卧室",
+          "room": "厨房",
           "status": true,
           "temperature": "19"
         }
       ],
+      "userId": "1",
       "createdAt": "2025-06-03T15:18:13.337Z"
     },
     {
-      "id": "1749452670166",
-      "name": "lsb",
-      "description": "",
+      "id": "1749452315606",
+      "name": "测试模式",
+      "description": "就是一个测试",
       "devices": [
         {
           "type": "light",
-          "status": true,
-          "brightness": "2"
-        }
-      ],
-      "createdAt": "2025-06-09T07:04:30.166Z"
-    },
-    {
-      "id": "1749458260872",
-      "name": "dd",
-      "description": "dd",
-      "devices": [
+          "status": false,
+          "brightness": 50
+        },
         {
-          "type": "monitor",
-          "status": false
+          "type": "light",
+          "status": true,
+          "brightness": "11"
         }
       ],
-      "userId": "1749452510143",
-      "createdAt": "2025-06-09T08:37:40.872Z"
+      "userId": "1749451354794",
+      "createdAt": "2025-06-09T06:58:35.606Z"
     }
   ],
   "users": [

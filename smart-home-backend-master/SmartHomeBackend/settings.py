@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "core",
     'rest_framework',  # 如果你用 DRF，没装就先 pip install djangorestframework
     'rest_framework_simplejwt',  # JWT认证
+    'rest_framework_simplejwt.token_blacklist',  # JWT token 黑名单 否则注销报错
 ]
 
 

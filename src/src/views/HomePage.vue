@@ -25,8 +25,8 @@
         v-for="room in rooms"
         :key="room.id"
         class="filter-btn"
-        :class="{ active: selectedRoom === room.name }"
-        @click="setSelectedRoom(room.name)"
+        :class="{ active: selectedRoom === room.id }"
+        @click="setSelectedRoom(room.id)"
       >
         {{ room.name }}
       </button>
@@ -70,6 +70,14 @@
         </div>
       </div>
     </div>
+
+    <room-management 
+      :rooms="rooms"
+      :devices="devices"
+      @create-room="handleCreateRoom"
+      @update-room="handleUpdateRoom"
+      @delete-room="handleDeleteRoom"
+    />
 
     <div class="scenes-section">
       <div class="scenes-header">
@@ -152,7 +160,7 @@
                     <i :class="getDeviceIcon(device.type)"></i>
                   </div>
                   <h3>{{ device.name }}</h3>
-                  <p>{{ device.room }} · {{ device.type }}</p>
+                  <p>{{ device.roomName }} · {{ device.type }}</p>
                 </div>
               </div>
               <div v-if="isDeviceSelected(device.id)" class="device-controls">
@@ -216,6 +224,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
@@ -223,11 +232,13 @@ import { computed, onMounted, ref } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import DeviceCard from '@/components/devices/DeviceCard.vue'
+import RoomManagement from '@/views/RoomManagement.vue'
 
 export default {
   name: 'HomePage',
   components: {
-    DeviceCard
+    DeviceCard,
+    RoomManagement
   },
   setup() {
     const store = useStore()
@@ -248,11 +259,11 @@ export default {
     // 设备类型定义
     const deviceTypes = ref([
       { value: 'light', label: '智能灯', icon: 'fas fa-lightbulb' },
-      { value: 'ac', label: '空调', icon: 'fas fa-wind' },
+      { value: 'ac', label: '空调', icon: 'fas fa-snowflake' },
       { value: 'outlet', label: '智能插座', icon: 'fas fa-plug' },
-      { value: 'curtain', label: '智能窗帘', icon: 'fas fa-blinds' },
+      { value: 'curtain', label: '智能窗帘', icon: 'fas fa-window-maximize' },
       { value: 'tv', label: '智能电视', icon: 'fas fa-tv' },
-      { value: 'camera', label: '监控摄像头', icon: 'fas fa-video' }
+      { value: 'monitor', label: '监控摄像头', icon: 'fas fa-video' }
     ])
 
     // 选中的设备类型
@@ -269,7 +280,7 @@ export default {
       
       // 按场所过滤
       if (selectedRoom.value !== 'all') {
-        filtered = filtered.filter(device => device.room === selectedRoom.value)
+        filtered = filtered.filter(device => device.roomId === selectedRoom.value)
       }
       
       // 按设备类型过滤
@@ -303,6 +314,22 @@ export default {
       router.push('/login')
     }
 
+  // 房间管理相关状态
+    const handleCreateRoom = (roomName) => {
+      store.dispatch('createRoom', { name: roomName })
+    }
+
+    const handleUpdateRoom = ({ roomId, newName }) => {
+      store.dispatch('updateRoom', {
+        roomId,
+        newName
+      })
+    }
+
+    const handleDeleteRoom = (roomId) => {
+      store.dispatch('deleteRoom', roomId)
+    }
+
     const getSceneIcon = (icon) => {
       const iconMap = {
         home: 'fas fa-home',
@@ -319,11 +346,11 @@ export default {
     const getDeviceIcon = (type) => {
       const iconMap = {
         light: 'fas fa-lightbulb',
-        ac: 'fas fa-wind',
+        ac: 'fas fa-snowflake',
         outlet: 'fas fa-plug',
-        curtain: 'fas fa-blinds',
+        curtain: 'fas fa-window-maximize',
         tv: 'fas fa-tv',
-        camera: 'fas fa-video',
+        monitor: 'fas fa-video',
         switch: 'fas fa-toggle-on',
         sensor: 'fas fa-wifi'
       };
@@ -414,6 +441,9 @@ export default {
       deleteScene,
       handleLogout,
       getSceneIcon,
+      handleCreateRoom,
+      handleUpdateRoom,
+      handleDeleteRoom,
       getDeviceIcon,
       showSceneDetail,
       scene_toggleDeviceSelection,
@@ -483,6 +513,101 @@ export default {
       }
     }
   }
+
+  /* 房间管理样式 */
+.room-management {
+  margin-bottom: 25px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.add-room-btn {
+  padding: 8px 15px;
+  background: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 15px;
+  
+  i {
+    margin-right: 5px;
+  }
+  
+  &:hover {
+    background: #3d8b40;
+  }
+}
+
+.room-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.room-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.room-name {
+  min-width: 120px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 5px;
+  
+  &:hover {
+    background: #f0f0f0;
+  }
+}
+
+.room-name-input {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-width: 120px;
+}
+
+.room-actions {
+  margin-left: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 5px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  
+  i {
+    font-size: 14px;
+  }
+}
+
+.edit-btn {
+  background: #ffc107;
+  color: #333;
+  
+  &:hover {
+    background: #e0a800;
+  }
+}
+
+.delete-btn {
+  background: #dc3545;
+  color: white;
+  
+  &:hover {
+    background: #c82333;
+  }
+}
 
   .filter-section {
     margin-bottom: 20px;
