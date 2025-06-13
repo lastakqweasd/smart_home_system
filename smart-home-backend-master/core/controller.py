@@ -2,7 +2,7 @@
 import logging
 import os
 from .models import Device
-from tcp_client import send_tcp_command
+from .tcp_client import send_tcp_command
 
 class DeviceController:
     logger = logging.getLogger("DeviceController")
