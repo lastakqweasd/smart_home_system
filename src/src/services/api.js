@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:3000'
+// const API_URL = 'http://localhost:3000'
+const API_URL = 'http://localhost:8000/api'
 
 export const api = {
   // // 用户相关API
@@ -9,7 +10,60 @@ export const api = {
   //     'Content-Type': 'application/json',
   //     'X-Requested-With': 'XMLHttpRequest'
   //   }}),
-  createUser: (userData) => axios.post(`${API_URL}/users`, userData),  
+  // createUser: (userData) => axios.post(`${API_URL}/users`, userData),  
+  login: async (username, password) => {
+    // 登录
+    console.log(username['username']);
+    console.log(username['password']);
+    // const response = await fetch(`${API_URL}/auth/login/`, {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({
+    //         username: username['name'],
+    //         // username: "admin",
+    //         password: username['password']
+    //         // password: "admin123"
+    //       },
+    //     )
+    // });
+    return await fetch(`${API_URL}/auth/login/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            username: username['name'],
+            // username: "admin",
+            password: username['password']
+            // password: "admin123"
+          },
+        )
+    });
+    console.log("csaad", response)
+    const data = await response.json();
+    console.log("chnegg",data);
+    const accessToken = data.tokens.access;
+    console.log("test",data);
+    // // 使用令牌访问API
+    // return await fetch('/api/devices/', {
+    //     method: 'GET',
+    //     headers: {
+    //         'Authorization': `Bearer ${accessToken}`,
+    //         'Content-Type': 'application/json'
+    //     },
+    // });
+  },
+  createUser: (userData) => axios.post(`${API_URL}/auth/register/`, {
+    username: userData.username,
+    password: userData.password,
+    password_confirm: userData.password_confirm, // 注意字段名转换
+    // 可选字段处理
+    email: userData.email || null,  // 显式设置为null而不是空字符串
+    phone: userData.phone || null,
+    nickname: userData.nickname || userData.username // 默认用用户名作为昵称
+  }, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }),
   postUser: (userData) => axios.post(`${API_URL}/users`, userData),    
   // 设备相关API
   getAllDevices: () => axios.get(`${API_URL}/devices`),

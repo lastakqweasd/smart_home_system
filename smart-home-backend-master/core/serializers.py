@@ -14,6 +14,9 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         model = SmartHomeUser
         fields = ['username', 'email', 'password', 'password_confirm', 'phone', 'nickname', 'role']
         extra_kwargs = {
+            'email': {'required': False, 'allow_null': True},
+            'phone': {'required': False, 'allow_null': True},
+            'nickname': {'required': False},
             'role': {'read_only': True},  # 注册时默认为普通成员
         }
     

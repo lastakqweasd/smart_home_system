@@ -81,31 +81,71 @@
           </div>
         </div>
         
-        <div class="form-group">
-          <div class="input-container">
-            <i class="fas fa-lock input-icon"></i>
-            <input 
-              v-model="registerForm.password" 
-              :type="showPassword ? 'text' : 'password'"
-              required 
-              placeholder="请输入密码"
-              class="form-input"
-            />
-            <button 
-              type="button" 
-              @click="togglePassword" 
-              class="password-toggle"
-            >
-              <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
-            </button>
-          </div>
-          <div class="password-strength">
-            <div class="strength-bar" :class="passwordStrength.class">
-              <div class="strength-fill" :style="{ width: passwordStrength.width }"></div>
-            </div>
-            <span class="strength-text">{{ passwordStrength.text }}</span>
-          </div>
-        </div>
+  <div class="form-group">
+  <div class="input-container">
+    <i class="fas fa-lock input-icon"></i>
+    <input 
+      v-model="registerForm.password" 
+      :type="showPassword ? 'text' : 'password'"
+      required 
+      placeholder="至少8位字符，包含大小写和数字"
+      minlength="8"
+      @input="validatePassword"
+      :class="{
+        'form-input': true,
+        'input-error': passwordError,
+        'input-valid': isPasswordValid
+      }"
+    />
+    <button 
+      type="button" 
+      @click="togglePassword" 
+      class="password-toggle"
+      :title="showPassword ? '隐藏密码' : '显示密码'"
+    >
+      <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+    </button>
+  </div>
+
+  <!-- 密码强度指示器 -->
+  <div class="password-strength" v-if="registerForm.password">
+    <div class="strength-bar">
+      <div 
+        class="strength-fill" 
+        :style="{ width: passwordStrength.width }"
+        :class="passwordStrength.class"
+      ></div>
+    </div>
+    <span class="strength-text">
+      <i :class="passwordStrength.icon"></i>
+      {{ passwordStrength.text }}
+    </span>
+  </div>
+
+  <!-- 实时错误提示 -->
+  <transition name="fade">
+    <div v-if="passwordError" class="password-error">
+      <i class="fas fa-exclamation-circle"></i>
+      {{ passwordError }}
+    </div>
+  </transition>
+
+  <!-- 密码规则提示 -->
+  <ul class="password-rules">
+    <li :class="{ 'rule-valid': hasMinLength }">
+      <i :class="hasMinLength ? 'fas fa-check-circle' : 'far fa-circle'"></i>
+      至少8位字符
+    </li>
+    <li :class="{ 'rule-valid': hasUpperCase }">
+      <i :class="hasUpperCase ? 'fas fa-check-circle' : 'far fa-circle'"></i>
+      包含大写字母
+    </li>
+    <li :class="{ 'rule-valid': hasNumber }">
+      <i :class="hasNumber ? 'fas fa-check-circle' : 'far fa-circle'"></i>
+      包含数字
+    </li>
+  </ul>
+</div>
         
         <div class="form-group">
           <div class="input-container">
@@ -202,6 +242,9 @@ export default {
     // 注册表单
     const registerForm = ref({
       username: '',
+      email: '',
+      phone: '',
+      nickname: '',
       password: '',
       confirmPassword: ''
     })
@@ -209,29 +252,53 @@ export default {
     // 状态管理
     const errorMessage = ref('')
     const successMessage = ref('')
+    const passwordError = ref('')
+    const isPasswordValid = ref(false)
     const loading = computed(() => store.state.loading)
+
+    // 密码规则验证
+    const hasMinLength = computed(() => registerForm.value.password.length >= 8)
+    const hasUpperCase = computed(() => /[A-Z]/.test(registerForm.value.password))
+    const hasNumber = computed(() => /[0-9]/.test(registerForm.value.password))
 
     // 密码强度计算
     const passwordStrength = computed(() => {
-      const password = registerForm.value.password
-      if (!password) return { class: '', width: '0%', text: '' }
-      
+      const pwd = registerForm.value.password
+      if (!pwd) return { width: '0%', text: '', class: '', icon: '' }
+
       let strength = 0
-      if (password.length >= 6) strength += 1
-      if (password.length >= 8) strength += 1
-      if (/[A-Z]/.test(password)) strength += 1
-      if (/[a-z]/.test(password)) strength += 1
-      if (/[0-9]/.test(password)) strength += 1
-      if (/[^A-Za-z0-9]/.test(password)) strength += 1
-      
+      if (pwd.length >= 8) strength += 1
+      if (pwd.length >= 12) strength += 1
+      if (/[A-Z]/.test(pwd)) strength += 1
+      if (/[a-z]/.test(pwd)) strength += 1
+      if (/[0-9]/.test(pwd)) strength += 1
+      if (/[^A-Za-z0-9]/.test(pwd)) strength += 1
+
       if (strength <= 2) {
-        return { class: 'weak', width: '33%', text: '弱' }
+        return { width: '33%', text: '弱', class: 'weak', icon: 'fas fa-exclamation-triangle' }
       } else if (strength <= 4) {
-        return { class: 'medium', width: '66%', text: '中等' }
+        return { width: '66%', text: '中', class: 'medium', icon: 'fas fa-check-circle' }
       } else {
-        return { class: 'strong', width: '100%', text: '强' }
+        return { width: '100%', text: '强', class: 'strong', icon: 'fas fa-shield-alt' }
       }
     })
+
+    // 密码验证逻辑
+    const validatePassword = () => {
+      const pwd = registerForm.value.password
+      passwordError.value = ''
+      isPasswordValid.value = false
+      
+      if (pwd.length > 0 && pwd.length < 8) {
+        passwordError.value = '密码至少需要8位字符'
+      } else if (!/[A-Z]/.test(pwd)) {
+        passwordError.value = '建议包含至少一个大写字母'
+      } else if (!/[0-9]/.test(pwd)) {
+        passwordError.value = '建议包含至少一个数字'
+      } else {
+        isPasswordValid.value = true
+      }
+    }
 
     // 密码匹配检查
     const passwordMismatch = computed(() => {
@@ -253,11 +320,11 @@ export default {
       isLoginMode.value = !isLoginMode.value
       errorMessage.value = ''
       successMessage.value = ''
+      passwordError.value = ''
       showPassword.value = false
       showConfirmPassword.value = false
-      // 清空表单
       loginForm.value = { username: '', password: '' }
-      registerForm.value = { username: '', password: '', confirmPassword: '' }
+      registerForm.value = { username: '', email: '', phone: '', nickname: '', password: '', confirmPassword: '' }
     }
 
     // 登录处理
@@ -267,7 +334,7 @@ export default {
       
       try {
         const success = await store.dispatch('login', loginForm.value)
-        if (success) {
+        if ( success) {
           successMessage.value = '登录成功！正在跳转...'
           setTimeout(() => {
             router.push('/')
@@ -285,22 +352,37 @@ export default {
     const handleRegister = async () => {
       errorMessage.value = ''
       successMessage.value = ''
+      passwordError.value = ''
 
       // 前端验证
-      if (registerForm.value.password !== registerForm.value.confirmPassword) {
-        errorMessage.value = '两次输入的密码不一致'
+      if (!hasMinLength.value) {
+        errorMessage.value = '密码长度至少8位字符'
+        return
+      }
+      
+      if (!hasUpperCase.value) {
+        errorMessage.value = '密码必须包含至少一个大写字母'
+        return
+      }
+      
+      if (!hasNumber.value) {
+        errorMessage.value = '密码必须包含至少一个数字'
         return
       }
 
-      if (registerForm.value.password.length < 6) {
-        errorMessage.value = '密码长度至少为6位'
+      if (passwordMismatch.value) {
+        errorMessage.value = '两次输入的密码不一致'
         return
       }
 
       try {
         const success = await store.dispatch('register', {
           username: registerForm.value.username,
-          password: registerForm.value.password
+          password: registerForm.value.password,
+          password_confirm: registerForm.value.confirmPassword,
+          email: registerForm.value.email || null,
+          phone: registerForm.value.phone || null,
+          nickname: registerForm.value.nickname || registerForm.value.username
         })
 
         if (success) {
@@ -312,7 +394,9 @@ export default {
           errorMessage.value = store.state.error || '注册失败，请重试'
         }
       } catch (error) {
-        errorMessage.value = '注册失败，请检查网络连接'
+        errorMessage.value = error.response?.data?.detail || 
+                           error.response?.data?.message || 
+                           '注册失败，请检查网络连接'
         console.error('注册错误:', error)
       }
     }
@@ -326,13 +410,19 @@ export default {
       switchMode,
       errorMessage,
       successMessage,
+      passwordError,
+      isPasswordValid,
       loading,
       showPassword,
       showConfirmPassword,
       togglePassword,
       toggleConfirmPassword,
       passwordStrength,
-      passwordMismatch
+      passwordMismatch,
+      hasMinLength,
+      hasUpperCase,
+      hasNumber,
+      validatePassword
     }
   }
 }
@@ -510,22 +600,31 @@ export default {
   transition: all 0.3s ease;
   box-sizing: border-box;
   background: #f7fafc;
-  
-  &:focus {
-    outline: none;
-    border-color: #667eea;
-    background: #fff;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-  }
-  
-  &:focus + .input-icon {
-    color: #667eea;
-  }
-  
-  &.error {
-    border-color: #e53e3e;
-    background: #fff5f5;
-  }
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #667eea;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-input:focus + .input-icon {
+  color: #667eea;
+}
+
+.form-input.error {
+  border-color: #e53e3e;
+  background: #fff5f5;
+}
+
+.input-error {
+  border-color: #e53e3e !important;
+  background-color: #fff5f5;
+}
+
+.input-valid {
+  border-color: #38a169 !important;
 }
 
 .password-toggle {
@@ -539,11 +638,11 @@ export default {
   border-radius: 6px;
   transition: all 0.2s ease;
   z-index: 2;
-  
-  &:hover {
-    color: #667eea;
-    background: rgba(102, 126, 234, 0.1);
-  }
+}
+
+.password-toggle:hover {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.1);
 }
 
 /* 密码强度指示器 */
@@ -564,19 +663,19 @@ export default {
 
 .strength-fill {
   height: 100%;
-  transition: all 0.3s ease;
+  transition: width 0.3s ease, background-color 0.3s ease;
   border-radius: 2px;
 }
 
-.strength-bar.weak .strength-fill {
-  background: linear-gradient(90deg, #e53e3e, #fc8181);
+.weak {
+  background: linear-gradient(90deg, #e53e3e, #f56565);
 }
 
-.strength-bar.medium .strength-fill {
-  background: linear-gradient(90deg, #ed8936, #fbb040);
+.medium {
+  background: linear-gradient(90deg, #ed8936, #f6ad55);
 }
 
-.strength-bar.strong .strength-fill {
+.strong {
   background: linear-gradient(90deg, #38a169, #68d391);
 }
 
@@ -584,21 +683,21 @@ export default {
   font-size: 0.75rem;
   font-weight: 600;
   min-width: 30px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.strength-bar.weak + .strength-text {
+/* 错误提示 */
+.password-error {
+  margin-top: 6px;
   color: #e53e3e;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
-.strength-bar.medium + .strength-text {
-  color: #ed8936;
-}
-
-.strength-bar.strong + .strength-text {
-  color: #38a169;
-}
-
-/* 字段错误提示 */
 .field-error {
   margin-top: 6px;
   color: #e53e3e;
@@ -606,6 +705,26 @@ export default {
   display: flex;
   align-items: center;
   gap: 6px;
+}
+
+/* 密码规则提示 */
+.password-rules {
+  margin-top: 8px;
+  padding-left: 20px;
+  font-size: 0.75rem;
+  color: #718096;
+  list-style-type: none;
+}
+
+.password-rules li {
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rule-valid {
+  color: #38a169;
 }
 
 /* 按钮样式 */
@@ -622,32 +741,32 @@ export default {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transition: left 0.5s ease;
-  }
-  
-  &:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-    
-    &::before {
-      left: 100%;
-    }
-  }
-  
-  &:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-    transform: none;
-  }
+}
+
+.primary-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.primary-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+.primary-btn:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.primary-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }
 
 .btn-loading,
@@ -686,15 +805,19 @@ export default {
   border: 1px solid #68d391;
 }
 
+/* 过渡动画 */
 .message-fade-enter-active,
-.message-fade-leave-active {
-  transition: all 0.3s ease;
+.message-fade-leave-active,
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
 }
 
 .message-fade-enter-from,
-.message-fade-leave-to {
+.message-fade-leave-to,
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
-  transform: translateY(-10px);
 }
 
 /* 模式切换 */
@@ -706,24 +829,24 @@ export default {
 .divider {
   position: relative;
   margin: 1.5rem 0;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: #e2e8f0;
-  }
-  
-  span {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 0 15px;
-    color: #a0aec0;
-    font-size: 0.85rem;
-    position: relative;
-  }
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e2e8f0;
+}
+
+.divider span {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0 15px;
+  color: #a0aec0;
+  font-size: 0.85rem;
+  position: relative;
 }
 
 .switch-btn {
@@ -735,16 +858,16 @@ export default {
   color: #4a5568;
   font-size: 0.9rem;
   transition: all 0.3s ease;
-  
-  &:hover {
-    border-color: #667eea;
-    background: rgba(102, 126, 234, 0.05);
-    color: #667eea;
-  }
-  
-  strong {
-    font-weight: 600;
-  }
+}
+
+.switch-btn:hover {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+  color: #667eea;
+}
+
+.switch-btn strong {
+  font-weight: 600;
 }
 
 /* 响应式设计 */

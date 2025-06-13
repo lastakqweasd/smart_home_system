@@ -175,60 +175,6 @@
       "createdAt": "2025-06-09T07:18:12.463Z"
     },
     {
-      "id": "1748960877199",
-      "name": "test",
-      "description": "",
-      "devices": [
-        {
-          "status": true,
-          "brightness": 57
-        }
-      ],
-      "userId": "1",
-      "createdAt": "2025-06-03T14:27:57.199Z"
-    },
-    {
-      "id": "1748960987803",
-      "name": "test",
-      "description": "",
-      "devices": [
-        {
-          "type": "light",
-          "status": true,
-          "brightness": 70
-        }
-      ],
-      "userId": "1",
-      "createdAt": "2025-06-03T14:29:47.803Z"
-    },
-    {
-      "id": "1748963893337",
-      "name": "休息",
-      "description": "",
-      "devices": [
-        {
-          "id": "1746952579919",
-          "name": "卧室空调",
-          "type": "ac",
-          "brand": "gree",
-          "room": "卧室",
-          "status": true,
-          "temperature": 21
-        },
-        {
-          "id": "1749453619411",
-          "name": "asd",
-          "type": "ac",
-          "brand": "midea",
-          "room": "厨房",
-          "status": true,
-          "temperature": "19"
-        }
-      ],
-      "userId": "1",
-      "createdAt": "2025-06-03T15:18:13.337Z"
-    },
-    {
       "id": "1749452315606",
       "name": "测试模式",
       "description": "就是一个测试",
@@ -246,6 +192,24 @@
       ],
       "userId": "1749451354794",
       "createdAt": "2025-06-09T06:58:35.606Z"
+    },
+    {
+      "id": "1749802654651",
+      "name": "1",
+      "description": "",
+      "icon": "bed",
+      "devices": [
+        {
+          "id": "1749525072612",
+          "name": "客厅主灯",
+          "type": "light",
+          "brand": "philips",
+          "status": false,
+          "brightness": 50
+        }
+      ],
+      "userId": "1",
+      "createdAt": "2025-06-13T08:17:34.651Z"
     }
   ],
   "users": [

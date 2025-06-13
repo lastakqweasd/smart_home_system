@@ -1,13 +1,11 @@
+# core/migrations/0002_empty.py
 from django.db import migrations
 
-def create_users(apps, schema_editor):
-    SmartHomeUser = apps.get_model('core', 'SmartHomeUser')
-    SmartHomeUser.objects.create_user(username='member1', password='member123', role='member')
-
 class Migration(migrations.Migration):
+    # 保持原始依赖关系不变
     dependencies = [
-        ('core', '0001_initial'),  # 依赖之前的迁移
+        ('core', '0001_initial'),
     ]
-    operations = [
-        migrations.RunPython(create_users),
-    ]
+    
+    # 空操作列表
+    operations = []
