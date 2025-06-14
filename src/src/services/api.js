@@ -55,7 +55,25 @@ export const api = {
     console.log(id, data);
     return axios.patch(`${API_URL}/devices/${id}`, data)
   },
-  postDevice:(device) => axios.post(`${API_URL}/devices`, device),
+  postDevice:(device, extra, access_token) => axios.post(`${API_URL}/devices/`, 
+    {
+      name: device.name,
+      brand: device.brand,
+      type: device.type,
+      room: device.roomId,
+      status: device.status,
+      extra: extra,
+      owner: device.userId,
+      ip: '192.168.1.1',
+      port: 8080,
+    },
+    {
+      headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  ),
   delDevice:(deviceId) => axios.delete(`${API_URL}/devices/${deviceId}`),
 
   // 房间相关API
@@ -75,6 +93,7 @@ export const api = {
     console.log(room.name);
     console.log(room.id);
     console.log(access_token);
+    console.log(typeof room.id);
     return axios.post(`${API_URL}/rooms/`, 
     {
       id: room.id,

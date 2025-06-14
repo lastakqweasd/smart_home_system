@@ -136,7 +136,28 @@ export default createStore({
         
         // 添加用户ID到设备数据
         const deviceWithUser = { ...device, userId }
-        const response = await api.postDevice(deviceWithUser)
+        const access_token = state.tokens.access
+        //设置extra字段
+        // 设备配置映射表
+        function createExtra(device) {
+          switch(device.type) {
+            case 'light':
+              return { brightness: device.brightness, color: '#FFDD88' };
+            case 'ac':
+              return { temperature:  device.temperature};
+            case 'curtain':
+              return { openPercentage: device.openPercentage};
+            default:
+              return {};
+          }
+        }
+
+        // 使用extra
+        const extra = createExtra(device); // { temperature: 25 }
+        ////////////
+        console.log(extra)
+        console.log('添加用户ID到设备数据：', deviceWithUser);
+        const response = await api.postDevice(deviceWithUser, extra, access_token)
         commit('ADD_DEVICE', response.data);
         return true;
       } catch (error) {
