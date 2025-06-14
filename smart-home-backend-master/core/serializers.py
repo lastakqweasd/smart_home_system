@@ -98,6 +98,7 @@ class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
         fields = ['id', 'name']
+        read_only_fields = ['id']
 
 class DeviceSerializer(serializers.ModelSerializer):
     room = serializers.PrimaryKeyRelatedField(queryset=Room.objects.all())
@@ -106,7 +107,7 @@ class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         fields = ['id', 'name', 'type', 'room', 'status', 'extra', 'brand', 'owner', 'ip_address', 'port']
-        read_only_fields = ['owner']
+        read_only_fields = ['id', 'owner']
 
     def create(self, validated_data):
         # 确保owner字段不会冲突

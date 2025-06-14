@@ -5,7 +5,9 @@ from django.utils import timezone
 import uuid
 
 class Room(models.Model):
-    id = models.CharField(primary_key=True, max_length=64, default= str(uuid.uuid4()), editable=False)
+    #id = models.CharField(primary_key=True, max_length=64, default= str(uuid.uuid4()), editable=False)
+    # 替换继承的id字段你在 Room 的 id 字段上使用了 CharField 并设置 default=lambda: str(uuid.uuid4())，但 lambda 不是可序列化的默认值，可能导致迁移或数据层面异常。
+    id = models.CharField(primary_key=True, max_length=64, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50)
 
     def __str__(self):
