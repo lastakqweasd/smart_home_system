@@ -9,9 +9,12 @@ export default createStore({
     selectedRoom: 'all',
     loading: false,
     error: null,
-    user: null
+    user: null,
   },
   mutations: {
+    SET_SUCCESS(state, message) {
+      state.successMessage = message;
+    },
     SET_DEVICES(state, devices) {
       state.devices = devices
     },
@@ -302,27 +305,57 @@ export default createStore({
     },
 
     // 登录 - 登录成功后自动获取用户数据
+    // async login({ commit, dispatch }, credentials) {
+    //   try {
+    //     const response = await api.getUsers({
+    //       name: credentials.username,
+    //       password: credentials.password
+    //     })
+        
+    //     if (response.data.length > 0) {
+    //       commit('SET_USER', response.data[0]);
+          
+    //       // 登录成功后立即获取该用户的数据
+    //       await Promise.all([
+    //         dispatch('fetchDevices'),
+    //         dispatch('fetchRooms'), 
+    //         dispatch('fetchScenes')
+    //       ]);
+          
+    //       return true
+    //     }
+    //     return false
+    //   } catch (error) {
+    //     console.error('登录失败:', error)
+    //     return false
+    //   }
+    // },
+    // 登录 - 登录成功后自动获取用户数据
     async login({ commit, dispatch }, credentials) {
       try {
-        const response = await api.getUsers({
+        console.log('开始登录...', credentials);
+        const response = await api.login({
           name: credentials.username,
           password: credentials.password
-        })
-        
-        if (response.data.length > 0) {
-          commit('SET_USER', response.data[0]);
-          
+        });
+        const data = await response.json();
+        console.log('登录成功sdda:', data);
+        if (data.success) {
+          console.log("jinxl");
+          commit('SET_USER', data.user);
           // 登录成功后立即获取该用户的数据
           await Promise.all([
             dispatch('fetchDevices'),
             dispatch('fetchRooms'), 
             dispatch('fetchScenes')
           ]);
-          
+          console.log("qwewqe");
+          console.log('登录成功:', response.json())
           return true
         }
         return false
-      } catch (error) {
+      } 
+      catch (error) {
         console.error('登录失败:', error)
         return false
       }
@@ -337,51 +370,105 @@ export default createStore({
       commit('SET_SELECTED_ROOM', 'all')
     },
 
+    // async register({ commit, dispatch }, userData) {
+    //   commit('SET_LOADING', true);
+    //   commit('SET_ERROR', null);
+      
+    //   try {
+    //     console.log('开始注册...', userData);
+        
+    //     const existingUsers = await api.getUsers({ name: userData.username });
+    //     console.log('现有用户查询结果:', existingUsers);
+        
+    //     if (existingUsers.data.length > 0) {
+    //       commit('SET_ERROR', '用户名已存在');
+    //       return false;
+    //     }
+        
+    //     const newUser = {
+    //       id: Date.now().toString(),
+    //       name: userData.username,
+    //       password: userData.password,
+    //       role: 'member',
+    //       permissions: ['read', 'write']
+    //     };
+        
+    //     if (userData.email) {
+    //       newUser.email = userData.email;
+    //     }
+        
+    //     console.log('准备创建用户:', newUser);
+        
+    //     const response = await api.createUser(newUser);
+    //     console.log('创建用户成功:', response.data);
+        
+    //     commit('SET_USER', response.data);
+        
+    //     // 注册成功后获取数据
+    //     await Promise.all([
+    //       dispatch('fetchDevices'),
+    //       dispatch('fetchRooms'), 
+    //       dispatch('fetchScenes')
+    //     ]);
+        
+    //     return true;
+    //   } catch (error) {
+    //     console.error('注册失败详情:', error);
+    //     commit('SET_ERROR', '注册失败，请重试');
+    //     return false;
+    //   } finally {
+    //     commit('SET_LOADING', false);
+    //   }
+    // },
+
     async register({ commit, dispatch }, userData) {
       commit('SET_LOADING', true);
       commit('SET_ERROR', null);
-      
+      commit('SET_SUCCESS', null); // 新增成功状态
+    
+      // 前端验证（根据截图1的需求）
+      if (!/.*\d.*/.test(userData.username)) {
+        commit('SET_ERROR', '用户名必须包含数字');
+        commit('SET_LOADING', false);
+        return false;
+      }
+    
       try {
-        console.log('开始注册...', userData);
-        
-        const existingUsers = await api.getUsers({ name: userData.username });
-        console.log('现有用户查询结果:', existingUsers);
-        
-        if (existingUsers.data.length > 0) {
-          commit('SET_ERROR', '用户名已存在');
+        const response = await api.createUser({
+          username: userData.username,
+          email: userData.email,
+          phone: userData.phone,
+          nickname: userData.nickname,
+          password: userData.password,
+          password_confirm: userData.password_confirm
+        });
+    
+        // 明确处理成功响应（根据您的后端API结构）
+        if (response.data?.success) {
+          commit('SET_USER', response.data.user);
+          commit('SET_SUCCESS', response.data.message || '注册成功');
+          
+          // 初始化数据
+          await Promise.all([
+            dispatch('fetchDevices'),
+            dispatch('fetchRooms'),
+            dispatch('fetchScenes')
+          ]);
+          
+          return true;
+        } else {
+          // 处理API返回的非预期成功状态
+          commit('SET_ERROR', response.data?.errors || '注册失败');
           return false;
         }
-        
-        const newUser = {
-          id: Date.now().toString(),
-          name: userData.username,
-          password: userData.password,
-          role: 'member',
-          permissions: ['read', 'write']
-        };
-        
-        if (userData.email) {
-          newUser.email = userData.email;
-        }
-        
-        console.log('准备创建用户:', newUser);
-        
-        const response = await api.createUser(newUser);
-        console.log('创建用户成功:', response.data);
-        
-        commit('SET_USER', response.data);
-        
-        // 注册成功后获取数据
-        await Promise.all([
-          dispatch('fetchDevices'),
-          dispatch('fetchRooms'), 
-          dispatch('fetchScenes')
-        ]);
-        
-        return true;
       } catch (error) {
-        console.error('注册失败详情:', error);
-        commit('SET_ERROR', '注册失败，请重试');
+        // 增强错误处理
+        const errorData = error.response?.data;
+        const errorMsg = errorData?.detail || 
+                        errorData?.message || 
+                        errorData?.errors?.username?.[0] || 
+                        '注册失败，请重试';
+        commit('SET_ERROR', errorMsg);
         return false;
       } finally {
         commit('SET_LOADING', false);

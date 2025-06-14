@@ -27,6 +27,7 @@ class RegisterView(APIView):
     permission_classes = [AllowAny]
     
     def post(self, request):
+        print(f"收到注册请求数据: {request.data}")
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
@@ -46,7 +47,7 @@ class RegisterView(APIView):
                     'refresh': str(refresh)
                 }
             }, status=status.HTTP_201_CREATED)
-        
+        print(f"验证失败: {serializer.errors}")
         return Response({
             'success': False,
             'errors': serializer.errors
@@ -77,7 +78,7 @@ class LoginView(APIView):
                     'username': user.username,
                     'email': user.email,
                     'role': user.role,
-                    'full_name': user.full_name
+                    # 'full_name': user.full_name
                 },
                 'tokens': {
                     'access': str(refresh.access_token),

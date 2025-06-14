@@ -366,9 +366,6 @@ tail -f logs/device_control.log
 - 用户注册时 `email` 必须唯一，`role` 不传默认为 `member`。
 - 设备的 `owner` 字段可选，通常由后端自动关联当前登录用户。
 
-
-
-
 运行 `python manage.py createsuperuser` 后，Django 会启动一个交互式命令行流程，引导你创建一个超级用户（管理员账户）。具体流程如下：
 
 1. 系统会依次提示你输入用户名、邮箱、密码（并要求确认密码）。

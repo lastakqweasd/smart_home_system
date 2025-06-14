@@ -5,14 +5,21 @@ from django.utils import timezone
 import uuid
 
 class Room(models.Model):
-    id = models.CharField(primary_key=True, max_length=64, default=lambda: str(uuid.uuid4()), editable=False)
+    id = models.CharField(primary_key=True, max_length=64, default= str(uuid.uuid4()), editable=False)
     name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name
 
 class SmartHomeUser(AbstractUser):
-    id = models.CharField(primary_key=True, max_length=64, default=lambda: str(uuid.uuid4()), editable=False)
+    # id = models.CharField(primary_key=True, max_length=64, default= str(uuid.uuid4()), editable=False)
+    # 替换继承的id字段
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,  # 注意：去掉了括号，传递函数而非固定值
+        editable=False,
+        db_index=True
+    )
     ROLE_CHOICES = [
         ('admin', '管理员'),
         ('member', '普通成员'),
@@ -21,7 +28,7 @@ class SmartHomeUser(AbstractUser):
     
     # 基本信息
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='member', verbose_name='用户角色')
-    email = models.EmailField(unique=True, verbose_name='邮箱')
+    email = models.EmailField(unique=False, verbose_name='邮箱')
     phone_regex = RegexValidator(
         regex=r'^1[3-9]\d{9}$',
         message="手机号格式不正确，请输入11位数字"
@@ -55,7 +62,7 @@ class SmartHomeUser(AbstractUser):
         return permission in self.permissions
 
 class Device(models.Model):
-    id = models.CharField(primary_key=True, max_length=64, default=lambda: str(uuid.uuid4()), editable=False)
+    id = models.CharField(primary_key=True, max_length=64, default= str(uuid.uuid4()), editable=False)
     DEVICE_TYPES = [
         ('light', 'Light'),
         ('ac', 'Air Conditioner'),
@@ -78,7 +85,7 @@ class Device(models.Model):
         return f'{self.name} ({self.room.name})'
 
 class Scene(models.Model):
-    id = models.CharField(primary_key=True, max_length=64, default=lambda: str(uuid.uuid4()), editable=False)
+    id = models.CharField(primary_key=True, max_length=64, default=str(uuid.uuid4()), editable=False)
     name = models.CharField(max_length=50)
     description = models.TextField()
 
@@ -86,7 +93,7 @@ class Scene(models.Model):
         return self.name
 
 class SceneDeviceConfig(models.Model):
-    id = models.CharField(primary_key=True, max_length=64, default=lambda: str(uuid.uuid4()), editable=False)
+    id = models.CharField(primary_key=True, max_length=64, default= str(uuid.uuid4()), editable=False)
     scene = models.ForeignKey(Scene, on_delete=models.CASCADE, related_name='device_configs')
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     status = models.BooleanField()
