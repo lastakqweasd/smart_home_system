@@ -64,7 +64,8 @@ class SmartHomeUser(AbstractUser):
         return permission in self.permissions
 
 class Device(models.Model):
-    id = models.CharField(primary_key=True, max_length=64, default= str(uuid.uuid4()), editable=False)
+    id = models.CharField(primary_key=True, max_length=64, default=uuid.uuid4, editable=False)
+    #id = models.CharField(primary_key=True, max_length=64, default= str(uuid.uuid4()), editable=False)
     DEVICE_TYPES = [
         ('light', 'Light'),
         ('ac', 'Air Conditioner'),
