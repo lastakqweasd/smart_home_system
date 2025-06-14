@@ -134,7 +134,7 @@ def test_create_device(access_token):
         "Authorization": f"Bearer {access_token}",
         "Content-Type": "application/json"
     }
-    
+
     # 首先获取房间列表
     rooms_url = f"{BASE_URL}/rooms/"
     rooms_response = requests.get(rooms_url, headers=headers)
@@ -165,6 +165,41 @@ def test_create_device(access_token):
         print(f"响应: {json.dumps(response.json(), indent=2, ensure_ascii=False)}")
     except Exception as e:
         print(f"创建设备请求失败: {e}")
+
+def test_create_room(access_token):
+    """测试创建房间"""
+    print("\n=== 测试创建房间 ===")
+    url = f"{BASE_URL}/rooms/"
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
+    }
+    data = {"name": "测试房间"}
+    try:
+        response = requests.post(url, json=data, headers=headers)
+        print(f"状态码: {response.status_code}")
+        print(f"响应: {json.dumps(response.json(), indent=2, ensure_ascii=False)}")
+        if response.status_code in (200, 201):
+            return response.json().get('id') or response.json().get('pk')
+    except Exception as e:
+        print(f"创建房间请求失败: {e}")
+    return None
+
+def test_delete_room(access_token, room_id):
+    """测试删除房间"""
+    print("\n=== 测试删除房间 ===")
+    url = f"{BASE_URL}/rooms/{room_id}/"
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
+    }
+    try:
+        response = requests.delete(url, headers=headers)
+        print(f"状态码: {response.status_code}")
+        if response.content:
+            print(f"响应: {response.content.decode('utf-8')}")
+    except Exception as e:
+        print(f"删除房间请求失败: {e}")
 
 def test_unauthorized_access():
     """测试未授权访问"""
@@ -205,13 +240,16 @@ def main():
         print("\n获取到的tokens:")
         print(f"Access Token: {access_token}")
         print(f"Refresh Token: {refresh_token}")
-        
         if access_token:
             # 测试需要认证的API
             test_get_profile(access_token)
+            
+            # 新增：测试创建和删除房间
+            room_id = test_create_room(access_token)
             test_get_devices(access_token)
             test_create_device(access_token)
-            
+            if room_id:
+                test_delete_room(access_token, room_id)
             # 最后测试注销
             if refresh_token:
                 test_logout(access_token, refresh_token)
@@ -224,4 +262,4 @@ def main():
     print("\n测试完成！")
 
 if __name__ == "__main__":
-    main() 
+    main()

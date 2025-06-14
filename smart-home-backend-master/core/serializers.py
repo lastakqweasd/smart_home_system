@@ -101,7 +101,8 @@ class RoomSerializer(serializers.ModelSerializer):
 
 class DeviceSerializer(serializers.ModelSerializer):
     room = serializers.PrimaryKeyRelatedField(queryset=Room.objects.all())
-    
+    ip_address = serializers.CharField(required=False, allow_null=True, allow_blank=True)
+    #这是 Django/DRF 版本兼容性问题，显式声明 ip_address 字段并指定 protocol 可解决。
     class Meta:
         model = Device
         fields = ['id', 'name', 'type', 'room', 'status', 'extra', 'brand', 'owner', 'ip_address', 'port']
