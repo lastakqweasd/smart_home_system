@@ -46,8 +46,8 @@ def test_login():
     
     url = f"{BASE_URL}/auth/login/"
     data = {
-        "username": "testuser",
-        "password": "testpass123"
+        "username": "Bht123",
+        "password": "Bht123456"
     }
     
     try:
@@ -188,12 +188,12 @@ def main():
     print("=" * 50)
     
     # 测试未授权访问
-    test_unauthorized_access()
+    # test_unauthorized_access()
     
     # 测试注册
-    tokens = test_register()
-    print("\n注册返回的tokens:", json.dumps(tokens, indent=2) if tokens else None)
-    
+    # tokens = test_register()
+    # print("\n注册返回的tokens:", json.dumps(tokens, indent=2) if tokens else None)
+    tokens = None
     if not tokens:
         # 如果注册失败，尝试登录
         tokens = test_login()

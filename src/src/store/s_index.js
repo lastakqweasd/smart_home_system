@@ -1,5 +1,6 @@
-import { createStore } from 'vuex'
+import { createStore, Store } from 'vuex'
 import { api } from '@/services/api'
+import { userSetter } from 'core-js/stable/symbol';
 
 export default createStore({
   state: {
@@ -10,6 +11,7 @@ export default createStore({
     loading: false,
     error: null,
     user: null,
+    tokens: null,
   },
   mutations: {
     SET_SUCCESS(state, message) {
@@ -48,8 +50,10 @@ export default createStore({
     REMOVE_DEVICE(state, deviceId) {
       state.devices = state.devices.filter(device => device.id !== deviceId);
     },
-    SET_USER(state, user) {
-      state.user = user
+    SET_USER(state, payload) {
+      state.user = payload.user
+      console.log('获取令牌', payload.tokens)
+      state.tokens = payload.tokens
     },
     CLEAR_USER(state) {
       state.user = null
@@ -121,6 +125,7 @@ export default createStore({
 
     // 添加设备 - 关联当前用户
     async addDevice({ commit, state }, device) {
+      console.log('添加设备：', device);
       commit('SET_LOADING', true);
       try {
         const userId = state.user?.id
@@ -147,16 +152,10 @@ export default createStore({
     async fetchDevices({ commit, state }) {
       commit('SET_LOADING', true)
       try {
-        const userId = state.user?.id
-        if (!userId) {
-          commit('SET_DEVICES', []) // 未登录时显示空设备列表
-          return
-        }
-        
-        const response = await api.getAllDevices()
-        // 过滤出当前用户的设备
-        const userDevices = response.data.filter(device => device.userId === userId)
-        commit('SET_DEVICES', userDevices)
+        const access_token = await state.tokens.access
+        const response = await api.getAllDevices(access_token)
+        // 设置当前用户设备
+        commit('SET_DEVICES', response.data)
       } catch (error) {
         commit('SET_ERROR', '获取设备列表失败')
         console.error(error)
@@ -166,9 +165,11 @@ export default createStore({
     },
 
     // 获取房间 - 保持所有用户共享
-    async fetchRooms({ commit }) {
+    async fetchRooms({ commit, state}) {
       try {
-        const response = await api.getRooms()
+        const access_token = state.tokens.access;
+        const response = await api.getRooms(access_token)
+        console.log("获取房间成功：", response.data)
         commit('SET_ROOMS', response.data)
       } catch (error) {
         commit('SET_ERROR', '获取房间列表失败')
@@ -179,16 +180,11 @@ export default createStore({
     // 获取场景 - 只获取当前用户的场景
     async fetchScenes({ commit, state }) {
       try {
-        const userId = state.user?.id
-        if (!userId) {
-          commit('SET_SCENES', []) // 未登录时显示空场景列表
-          return
-        }
-        
-        const response = await api.getScenes()
-        // 过滤出当前用户的场景
-        const userScenes = response.data.filter(scene => scene.userId === userId)
-        commit('SET_SCENES', userScenes)
+        const access_token = state.tokens.access;
+        const response = await api.getScenes(access_token)
+        console.log("获取场景成功：", response.data)
+        // 设置用户当前版本
+        commit('SET_SCENES', response.data)
       } catch (error) {
         commit('SET_ERROR', '获取场景列表失败')
         console.error(error)
@@ -199,16 +195,20 @@ export default createStore({
       commit('SET_SELECTED_ROOM', room)
     },
 
-    async createRoom({ commit }, roomData) {
+    async createRoom({ commit , state}, roomData) {
+      const access_token = state.tokens.access;
       commit('SET_LOADING', true);
       try {
         const newRoom = {
           id: Date.now().toString(),
           name: roomData.name,
         };
-        
+        console.log('新房间为：');
+        console.log(newRoom);
         // 调用API创建房间
-        const response = await api.createRoom(newRoom);
+        console.log('调用API创建房间...');
+        const response = await api.createRoom(newRoom, access_token);
+        console.log('创建房间成功：', response.data);
         commit('ADD_ROOM', response.data);
         return true;
       } catch (error) {
@@ -304,45 +304,22 @@ export default createStore({
       }
     },
 
-    // 登录 - 登录成功后自动获取用户数据
-    // async login({ commit, dispatch }, credentials) {
-    //   try {
-    //     const response = await api.getUsers({
-    //       name: credentials.username,
-    //       password: credentials.password
-    //     })
-        
-    //     if (response.data.length > 0) {
-    //       commit('SET_USER', response.data[0]);
-          
-    //       // 登录成功后立即获取该用户的数据
-    //       await Promise.all([
-    //         dispatch('fetchDevices'),
-    //         dispatch('fetchRooms'), 
-    //         dispatch('fetchScenes')
-    //       ]);
-          
-    //       return true
-    //     }
-    //     return false
-    //   } catch (error) {
-    //     console.error('登录失败:', error)
-    //     return false
-    //   }
-    // },
-    // 登录 - 登录成功后自动获取用户数据
     async login({ commit, dispatch }, credentials) {
       try {
-        console.log('开始登录...', credentials);
+        console.log('s_inde_开始登录...', credentials);
         const response = await api.login({
           name: credentials.username,
           password: credentials.password
         });
         const data = await response.json();
-        console.log('登录成功sdda:', data);
+        console.log('获取data: ', data);
         if (data.success) {
-          console.log("jinxl");
-          commit('SET_USER', data.user);
+          console.log('登录成功!');
+          console.log(data.user);
+          console.log(data.tokens);
+          commit('SET_USER', {user: data.user, tokens: data.tokens});
+          console.log('查看状态：', this.state);
+          console.log('set user ok !');
           // 登录成功后立即获取该用户的数据
           await Promise.all([
             dispatch('fetchDevices'),
@@ -350,7 +327,6 @@ export default createStore({
             dispatch('fetchScenes')
           ]);
           console.log("qwewqe");
-          console.log('登录成功:', response.json())
           return true
         }
         return false
@@ -369,57 +345,6 @@ export default createStore({
       // 房间保留，因为是共享的
       commit('SET_SELECTED_ROOM', 'all')
     },
-
-    // async register({ commit, dispatch }, userData) {
-    //   commit('SET_LOADING', true);
-    //   commit('SET_ERROR', null);
-      
-    //   try {
-    //     console.log('开始注册...', userData);
-        
-    //     const existingUsers = await api.getUsers({ name: userData.username });
-    //     console.log('现有用户查询结果:', existingUsers);
-        
-    //     if (existingUsers.data.length > 0) {
-    //       commit('SET_ERROR', '用户名已存在');
-    //       return false;
-    //     }
-        
-    //     const newUser = {
-    //       id: Date.now().toString(),
-    //       name: userData.username,
-    //       password: userData.password,
-    //       role: 'member',
-    //       permissions: ['read', 'write']
-    //     };
-        
-    //     if (userData.email) {
-    //       newUser.email = userData.email;
-    //     }
-        
-    //     console.log('准备创建用户:', newUser);
-        
-    //     const response = await api.createUser(newUser);
-    //     console.log('创建用户成功:', response.data);
-        
-    //     commit('SET_USER', response.data);
-        
-    //     // 注册成功后获取数据
-    //     await Promise.all([
-    //       dispatch('fetchDevices'),
-    //       dispatch('fetchRooms'), 
-    //       dispatch('fetchScenes')
-    //     ]);
-        
-    //     return true;
-    //   } catch (error) {
-    //     console.error('注册失败详情:', error);
-    //     commit('SET_ERROR', '注册失败，请重试');
-    //     return false;
-    //   } finally {
-    //     commit('SET_LOADING', false);
-    //   }
-    // },
 
     async register({ commit, dispatch }, userData) {
       commit('SET_LOADING', true);

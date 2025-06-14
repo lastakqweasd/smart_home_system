@@ -11,45 +11,19 @@ export const api = {
   //     'X-Requested-With': 'XMLHttpRequest'
   //   }}),
   // createUser: (userData) => axios.post(`${API_URL}/users`, userData),  
-  login: async (username, password) => {
+  login: async (param) => {
     // 登录
-    console.log(username['username']);
-    console.log(username['password']);
-    // const response = await fetch(`${API_URL}/auth/login/`, {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({
-    //         username: username['name'],
-    //         // username: "admin",
-    //         password: username['password']
-    //         // password: "admin123"
-    //       },
-    //     )
-    // });
     return await fetch(`${API_URL}/auth/login/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            username: username['name'],
+            username: param['name'],
             // username: "admin",
-            password: username['password']
+            password: param['password']
             // password: "admin123"
           },
         )
     });
-    console.log("csaad", response)
-    const data = await response.json();
-    console.log("chnegg",data);
-    const accessToken = data.tokens.access;
-    console.log("test",data);
-    // // 使用令牌访问API
-    // return await fetch('/api/devices/', {
-    //     method: 'GET',
-    //     headers: {
-    //         'Authorization': `Bearer ${accessToken}`,
-    //         'Content-Type': 'application/json'
-    //     },
-    // });
   },
   createUser: (userData) => axios.post(`${API_URL}/auth/register/`, {
     username: userData.username,
@@ -66,7 +40,16 @@ export const api = {
   }),
   postUser: (userData) => axios.post(`${API_URL}/users`, userData),    
   // 设备相关API
-  getAllDevices: () => axios.get(`${API_URL}/devices`),
+  getAllDevices: (access_token) => {
+    return axios.get(`${API_URL}/devices`,{
+      headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+    );
+  },
+  ///////////
   getDevice: (id) => axios.get(`${API_URL}/devices/${id}`),
   updateDevice: (id, data) => {
     console.log(id, data);
@@ -76,15 +59,48 @@ export const api = {
   delDevice:(deviceId) => axios.delete(`${API_URL}/devices/${deviceId}`),
 
   // 房间相关API
-  getRooms: () => axios.get(`${API_URL}/rooms/`),
+  getRooms: (access_token) => axios.get(`${API_URL}/rooms/`, 
+    {
+      headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Content-Type': 'application/json'
+      }  
+    }
+  ),
 
   // 房间管理 API
-  createRoom: (room) => axios.post(`${API_URL}/rooms`, room),
+  createRoom: (room,access_token) => {
+    console.log('createRoom')
+    console.log(room);
+    console.log(room.name);
+    console.log(room.id);
+    console.log(access_token);
+    return axios.post(`${API_URL}/rooms/`, 
+    {
+      id: room.id,
+      // id:1231232,
+      name: room.name,
+    },
+    {
+      headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  )
+  },
   delRoom: (roomId) => axios.delete(`${API_URL}/rooms/${roomId}`),
   updateRoom: (roomId, data) => axios.patch(`${API_URL}/rooms/${roomId}`, data),
 
   // 场景相关API
-  getScenes: () => axios.get(`${API_URL}/scenes/`),
+  getScenes: (access_token) => axios.get(`${API_URL}/scenes/`,
+    {
+      headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  ),
   createScene: (sceneData) => axios.post(API_URL+'/scenes', sceneData),
   activateScene: async (sceneId) => {
     const res = await axios.get(`${API_URL}/scenes/${sceneId}`);

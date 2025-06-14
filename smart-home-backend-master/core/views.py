@@ -220,7 +220,9 @@ class DeviceViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        print("asdqdqwdqw")
         user = self.request.user
+        print(user)
         if user.role == 'admin':
             return Device.objects.all()
         return Device.objects.filter(owner=user)

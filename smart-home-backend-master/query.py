@@ -16,13 +16,13 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'SmartHomeBackend.settings')
 django.setup()
 
-from core.models import SmartHomeUser
+# from core.models import SmartHomeUser
 
-# 查询并打印所有用户
-users = SmartHomeUser.objects.all()
-print("===== 用户列表 =====")
-for user in users:
-    print(f"用户名: {user.id}, 角色: {user.role}, 活跃: {user.is_active}")
+# # 查询并打印所有用户
+# users = SmartHomeUser.objects.all()
+# print("===== 用户列表 =====")
+# for user in users:
+#     print(f"用户名: {user.id}, 角色: {user.role}, 活跃: {user.is_active}")
 
 # import sqlite3
 
