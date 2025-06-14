@@ -291,8 +291,6 @@ tail -f logs/device_control.log
 | nickname | string | 否   | 昵称                                              |
 | bio      | string | 否   | 个人简介                                          |
 
-示例：
-
 ## 2. 房间管理
 
 ### 创建房间（POST /api/rooms/）
@@ -301,24 +299,28 @@ tail -f logs/device_control.log
 | ------ | ------ | ---- | -------- |
 | name   | string | 是   | 房间名称 |
 
-示例：
+
+### 删除房间（DELETE /api/rooms/{id}/）
+- 直接通过房间uuid删除，若房间下有设备会一并删除。
+
 
 ## 3. 设备管理
 
 ### 创建设备（POST /api/devices/）
 
-| 字段名 | 类型   | 必须 | 说明                       |
-| ------ | ------ | ---- | -------------------------- |
-| name   | string | 是   | 设备名称                   |
-| brand  | string | 否   | 品牌                       |
-| type   | string | 是   | 设备类型（见下方说明）     |
-| room   | int    | 是   | 房间ID（外键）             |
-| status | bool   | 否   | 开关状态，默认 false       |
-| extra  | dict   | 否   | 设备扩展属性（见下方说明） |
-| owner  | int    | 否   | 用户ID（如需指定归属用户） |
+| 字段名     | 类型   | 必须 | 说明                                 |
+| ---------- | ------ | ---- | ------------------------------------ |
+| name       | string | 是   | 设备名称                             |
+| brand      | string | 否   | 品牌                                 |
+| type       | string | 是   | 设备类型（见下方说明）               |
+| room       | string | 是   | 房间ID（外键，uuid字符串）           |
+| status     | bool   | 否   | 开关状态，默认 false                 |
+| extra      | dict   | 否   | 设备扩展属性（见下方说明）           |
+| owner      | string | 否   | 用户ID（如需指定归属用户，uuid）     |
+| ip_address | string | 否   | 设备IP地址（可选，字符串）           |
+| port       | int    | 否   | 设备端口（可选）                     |
 
 **type 可选值**
-
 - light
 - ac
 - outlet
@@ -326,13 +328,26 @@ tail -f logs/device_control.log
 - tv
 
 **extra 字段说明**
-
-- light: `{"brightness": 80, "color": "#FFDD88"}`
-- ac: `{"temperature": 25}`
-- curtain: `{"openPercentage": 50}`
+- light: `{ "brightness": 80, "color": "#FFDD88" }`
+- ac: `{ "temperature": 25 }`
+- curtain: `{ "openPercentage": 50 }`
 - 其他类型可为空 `{}`
 
-示例：
+**示例：**
+```json
+{
+  "name": "卧室主灯",
+  "brand": "飞利浦",
+  "type": "light",
+  "room": "c12ff5d6-0cb9-4883-81e0-275696f205ea",
+  "status": true,
+  "extra": { "brightness": 80, "color": "#FFDD88" },
+  "ip_address": "192.168.1.100",
+  "port": 9001
+}
+```
+
+---
 
 ## 4. 场景管理
 
@@ -346,25 +361,56 @@ tail -f logs/device_control.log
 
 **device_configs 每项说明**
 
-| 字段名 | 类型 | 必须 | 说明                     |
-| ------ | ---- | ---- | ------------------------ |
-| device | int  | 是   | 设备ID                   |
-| status | bool | 是   | 目标开关状态             |
-| config | dict | 否   | 目标扩展属性（如亮度等） |
+| 字段名 | 类型   | 必须 | 说明                     |
+| ------ | ------ | ---- | ------------------------ |
+| device | string | 是   | 设备ID（uuid）           |
+| status | bool   | 是   | 目标开关状态             |
+| config | dict   | 否   | 目标扩展属性（如亮度等） |
 
-示例：
+**示例：**
+```json
+{
+  "name": "回家模式",
+  "description": "一键打开客厅灯和空调",
+  "device_configs": [
+    {
+      "device": "6e1c2b2e-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "status": true,
+      "config": { "brightness": 100 }
+    },
+    {
+      "device": "2a1c2b2e-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+      "status": true,
+      "config": { "temperature": 25 }
+    }
+  ]
+}
+```
 
-## 5. 设备/场景状态变更
-
-- 修改设备状态：`PATCH /api/devices/{id}/`，如 `{"status": false}`
-- 修改场景描述：`PATCH /api/scenes/{id}/`，如 `{"description": "新的描述"}`
+---
 
 ## 6. 其它说明
 
-- 所有ID字段均为后端返回的主键ID。
+- 所有ID字段均为后端返回的主键ID（uuid字符串）。
 - 设备的 `extra` 字段和场景的 `config` 字段均为可选，按实际设备类型传递。
 - 用户注册时 `email` 必须唯一，`role` 不传默认为 `member`。
 - 设备的 `owner` 字段可选，通常由后端自动关联当前登录用户。
+- 设备的 `ip_address` 和 `port` 字段为可选，便于远程控制。
+
+---
+
+## 7. 错误码与返回格式
+
+- 所有接口返回均为 JSON 格式，包含 `code`、`msg`、`data` 字段。
+- 常见错误码：
+  - 200：成功
+  - 400：请求参数错误
+  - 401：未认证/令牌无效
+  - 403：无权限
+  - 404：资源不存在
+  - 500：服务器内部错误
+
+---
 
 运行 `python manage.py createsuperuser` 后，Django 会启动一个交互式命令行流程，引导你创建一个超级用户（管理员账户）。具体流程如下：
 
