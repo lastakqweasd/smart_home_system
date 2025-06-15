@@ -220,7 +220,14 @@ class DeviceViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        print("asdqdqwdqw")
+        print("打印接收到的数据")
+        try:
+            print("尝试打印:")
+            print(self.request.data)
+            print("打印成功")
+        except Exception as e:
+            print(e)
+            print("打印失as败")
         user = self.request.user
         print(self.request)
         print(user)

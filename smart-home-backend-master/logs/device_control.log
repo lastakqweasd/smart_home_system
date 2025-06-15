@@ -1016,3 +1016,208 @@
 2025-06-15 20:53:03,784 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 94}
 2025-06-15 20:53:03,802 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 71}
 2025-06-15 20:53:03,816 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:00:04,446 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 94}
+2025-06-15 21:00:06,689 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:00:06,705 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 94}
+2025-06-15 21:00:06,737 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 71}
+2025-06-15 21:00:06,799 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 94}
+2025-06-15 21:00:06,819 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:00:06,834 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 71}
+2025-06-15 21:00:10,291 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 36}
+2025-06-15 21:00:11,349 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:00:12,767 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 36}
+2025-06-15 21:00:12,797 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:00:12,816 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:00:12,843 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 36}
+2025-06-15 21:00:12,864 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:00:12,877 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:00:29,720 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:00:29,776 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 36}
+2025-06-15 21:00:29,795 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:00:29,886 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 36}
+2025-06-15 21:00:43,677 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 36}
+2025-06-15 21:00:43,704 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:00:43,712 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:00:43,749 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 36}
+2025-06-15 21:00:47,110 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 15}
+2025-06-15 21:00:48,440 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:00:48,450 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:00:48,472 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:00:48,505 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 15}
+2025-06-15 21:00:51,998 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:00:53,516 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:00:53,547 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:00:53,565 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:00:53,575 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 15}
+2025-06-15 21:01:02,629 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:01:02,654 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:01:02,672 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:01:02,688 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:01:05,277 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:01:05,314 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:01:05,341 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:01:05,367 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:01:05,407 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:01:05,423 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 15}
+2025-06-15 21:01:23,825 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:01:23,851 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:01:23,876 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:01:23,914 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:01:23,946 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 15}
+2025-06-15 21:01:23,974 - INFO - 控制设备: tetsttst (outlet) 状态=开 配置={}
+2025-06-15 21:01:42,955 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:01:43,015 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:01:43,052 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:01:43,093 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:01:43,110 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:01:43,125 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:02:33,247 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:02:33,285 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:02:33,302 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:02:33,352 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:02:33,370 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:02:33,383 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:03:04,700 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:03:04,722 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:03:04,760 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:03:04,787 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:03:04,804 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:03:04,804 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:03:08,454 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:03:08,480 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:03:08,502 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:03:08,530 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:03:08,541 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:03:08,576 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:03:51,296 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:03:51,305 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:03:51,326 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:03:51,359 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:03:51,375 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:03:51,398 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:14:24,832 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:14:24,851 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:14:24,868 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:14:24,910 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:14:24,926 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:14:24,942 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:17:50,581 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:17:50,593 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:17:50,628 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:17:50,644 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:17:50,657 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:17:50,668 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:19:50,659 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:19:50,676 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:19:50,686 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:19:50,701 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:20:05,594 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:20:05,607 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:20:05,628 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:20:05,653 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:21:35,467 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:21:35,484 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:21:35,500 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:21:35,512 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:22:00,823 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:22:00,835 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:22:00,850 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:22:00,873 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:22:03,248 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:22:03,249 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:22:03,263 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:22:03,279 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:22:48,332 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:22:48,350 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:22:48,361 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:22:48,378 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:23:38,404 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:23:38,419 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:23:38,435 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:23:38,464 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:23:43,302 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:23:43,315 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:23:43,352 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:23:43,388 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:24:55,761 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:24:55,773 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:24:55,783 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:24:55,797 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:24:55,820 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:24:55,835 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:24:55,872 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:24:55,889 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:24:55,903 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:24:55,917 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:24:55,936 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:24:55,950 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 14}
+2025-06-15 21:24:55,962 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:24:55,978 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:26:40,522 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:26:40,536 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:26:40,549 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:26:40,576 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:27:03,482 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:27:03,499 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:27:03,512 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:27:03,527 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:27:30,219 - INFO - 控制设备: tetsttst (outlet) 状态=开 配置={}
+2025-06-15 21:27:57,049 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:28:54,855 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:28:54,926 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:28:55,136 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:28:55,180 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:30:24,176 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:30:24,192 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:30:24,202 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:30:24,228 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 15}
+2025-06-15 21:33:20,705 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:33:20,716 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:33:20,730 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 15}
+2025-06-15 21:33:20,759 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': '23'}
+2025-06-15 21:34:19,078 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:34:19,090 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': '23'}
+2025-06-15 21:34:19,111 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:34:19,141 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': '23'}
+2025-06-15 21:35:16,044 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': '23'}
+2025-06-15 21:35:17,613 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:35:17,628 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': '23'}
+2025-06-15 21:35:17,650 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:35:17,674 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': '23'}
+2025-06-15 21:35:19,596 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 69}
+2025-06-15 21:35:21,094 - INFO - 控制设备: tetsttst (outlet) 状态=开 配置={}
+2025-06-15 21:35:22,687 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:35:22,699 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 69}
+2025-06-15 21:35:22,718 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:35:22,748 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': '23'}
+2025-06-15 21:36:19,303 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-15 21:36:25,604 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': '23'}
+2025-06-15 21:36:25,621 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-15 21:36:25,634 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 21:36:25,648 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-15 21:36:25,674 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 14}
+2025-06-15 21:36:25,694 - INFO - 控制设备: tetsttst (outlet) 状态=开 配置={}
+2025-06-15 21:36:25,707 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': '8'}
+2025-06-15 21:36:25,729 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': '87'}
+2025-06-15 21:37:14,155 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': '87'}
+2025-06-15 21:37:14,176 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': '8'}
+2025-06-15 21:37:14,189 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-15 21:37:14,234 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': '87'}
+2025-06-15 21:37:14,250 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': '8'}
+2025-06-15 21:37:30,857 - INFO - 控制设备: 修改灯名 (light) 状态=开 配置={'brightness': '87'}
+2025-06-15 21:37:42,425 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': '8'}
+2025-06-15 21:37:42,444 - INFO - 控制设备: 修改灯名 (light) 状态=关 配置={'brightness': '87'}
+2025-06-15 21:37:42,480 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-15 21:37:42,527 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': '8'}
+2025-06-15 21:37:42,542 - INFO - 控制设备: 修改灯名 (light) 状态=开 配置={'brightness': '11'}
+2025-06-15 21:38:04,727 - INFO - 控制设备: 修改灯名 (light) 状态=关 配置={'brightness': '11'}
+2025-06-15 21:38:04,738 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-15 21:38:04,758 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': '8'}
+2025-06-15 21:38:04,770 - INFO - 控制设备: 修改灯名 (light) 状态=开 配置={'brightness': '11'}
+2025-06-15 21:38:04,783 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': '63'}
+2025-06-15 21:38:08,634 - INFO - 控制设备: asd (outlet) 状态=开 配置={}
+2025-06-15 21:38:10,150 - INFO - 控制设备: 修改灯名 (light) 状态=关 配置={'brightness': '11'}
+2025-06-15 21:38:10,154 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-15 21:38:10,164 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': '63'}
+2025-06-15 21:38:10,187 - INFO - 控制设备: 修改灯名 (light) 状态=开 配置={'brightness': '11'}
+2025-06-15 21:38:10,197 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': '63'}

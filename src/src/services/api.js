@@ -173,11 +173,22 @@ export const api = {
         const matchedDevices = allDevices.filter(device => 
           device.id === targetDevice.device
         );
-        
+        console.log("发送的请求：");
+        console.log(targetDevice);
         // 为每个匹配设备创建更新请求
         console.log(matchedDevices);
+        const test = {
+              extra: targetDevice.config,
+              status: targetDevice.status
+            }
+        console.log("发送的请求：test");
+        console.log(test);
         return matchedDevices.map(device => 
-          axios.patch(`${API_URL}/devices/${device.id}/`, targetDevice,
+          axios.patch(`${API_URL}/devices/${device.id}/`, 
+            {
+              extra: targetDevice.config,
+              status: targetDevice.status
+            },
             {
               headers: {
                 'Authorization': `Bearer ${access_token}`,
