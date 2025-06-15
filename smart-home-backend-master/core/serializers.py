@@ -142,7 +142,8 @@ class SceneSerializer(serializers.ModelSerializer):
     class Meta:
         model = Scene
         fields = ['id', 'name', 'description', 'device_configs']
-    
+
+
     def create(self, validated_data):
         print("creating scene")
         print(validated_data)

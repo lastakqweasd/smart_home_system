@@ -246,6 +246,15 @@ class SceneViewSet(viewsets.ModelViewSet):
     serializer_class = SceneSerializer
     permission_classes = [IsAuthenticated]
 
+    def create(self, request, *args, **kwargs):
+        print("收到前端创建场景请求，原始数据：", request.data)
+        print("当前用户：", request.user)
+        serializer = self.get_serializer(data=request.data)
+        if not serializer.is_valid():
+            print("序列化器校验失败：", serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return super().create(request, *args, **kwargs)
+    
     #你添加了一个自定义接口 /api/scenes/{id}/activate/，前端可以通过 POST 请求激活某个场景
     #@action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
     @action(detail=True, methods=['post'], permission_classes=[])

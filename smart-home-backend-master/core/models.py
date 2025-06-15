@@ -88,7 +88,8 @@ class Device(models.Model):
         return f'{self.name} ({self.room.name})'
 
 class Scene(models.Model):
-    id = models.CharField(primary_key=True, max_length=64, default=uuid.uuid4(), editable=False)
+    #这里的 default=uuid.uuid4() 实际上会在服务启动时就生成一个固定的 uuid 字符串，所有新建对象都会用同一个 id，导致主键冲突。
+    id = models.CharField(primary_key=True, max_length=64, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=50)
     description = models.TextField()
 
@@ -96,7 +97,7 @@ class Scene(models.Model):
         return self.name
 
 class SceneDeviceConfig(models.Model):
-    id = models.CharField(primary_key=True, max_length=64, default= uuid.uuid4(), editable=False)
+    id = models.CharField(primary_key=True, max_length=64, default= uuid.uuid4, editable=False)
     scene = models.ForeignKey(Scene, on_delete=models.CASCADE, related_name='device_configs')
     device = models.ForeignKey(Device, on_delete=models.CASCADE)
     status = models.BooleanField()
