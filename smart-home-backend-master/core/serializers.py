@@ -68,6 +68,13 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         fields = ['id', 'email', 'phone', 'nickname', 'bio', 'avatar', 'first_name', 'last_name']
         read_only_fields = ['id']
 
+    def validate(self, attrs):
+        forbidden_fields = ['role', 'is_active', 'permissions']
+        for field in forbidden_fields:
+            if field in self.initial_data:
+                raise serializers.ValidationError(f"禁止修改字段: {field}")
+        return attrs
+
 class PasswordChangeSerializer(serializers.Serializer):
     """密码修改序列化器"""
     old_password = serializers.CharField(write_only=True)
@@ -94,6 +101,7 @@ class SmartHomeUserSerializer(serializers.ModelSerializer):
         user = SmartHomeUser.objects.create_user(**validated_data)
         return user
 
+
 class RoomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Room
@@ -115,6 +123,11 @@ class DeviceSerializer(serializers.ModelSerializer):
         validated_data.pop('owner', None)  # 移除可能存在的owner字段
         user = self.context['request'].user
         return Device.objects.create(owner=user, **validated_data)
+
+    def validate_name(self, value):
+        if "<script" in value.lower():
+            raise serializers.ValidationError("设备名称包含非法脚本")
+        return value
 
 class SceneDeviceConfigSerializer(serializers.ModelSerializer):
     device = serializers.PrimaryKeyRelatedField(queryset=Device.objects.all())
