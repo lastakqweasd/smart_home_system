@@ -465,10 +465,10 @@ export default createStore({
     },
 
     //删除场景
-    async deleteScene({ commit }, sceneId) {
+    async deleteScene({ commit , state}, sceneId) {
       try {
         // 如果使用 json-server
-        await api.delScene(sceneId)
+        await api.delScene(sceneId, state.tokens.access)
         // 更新前端状态
         console.log(sceneId)
         commit('REMOVE_SCENE', sceneId);

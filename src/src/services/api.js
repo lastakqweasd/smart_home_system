@@ -172,7 +172,14 @@ export const api = {
   },
 
   //删除场景
-  delScene: (sceneId) => axios.delete(`${API_URL}/scenes/${sceneId}`),
+  delScene: (sceneId, access_token) => axios.delete(`${API_URL}/scenes/${sceneId}/`,
+    {
+      headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  ),
 
   // 更新场景中的设备状态（部分更新）
   updateSceneDevices: (sceneId, deviceUpdates) => {

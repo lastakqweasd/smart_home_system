@@ -135,7 +135,7 @@
         <p>确定要删除场景 <strong>"{{ sceneToDelete.name }}"</strong> 吗？此操作无法撤销。</p>
         <div class="modal-actions">
           <button class="cancel-btn" @click.stop="sceneToDelete = null">取消</button>
-          <button class="confirm-delete-btn" @click.stop="deleteScene(sceneToDelete.id)">删除</button>
+          <button class="cancel-btn" @click.stop="deleteScene(sceneToDelete.id)">删除</button>
         </div>
       </div>
     </div>
@@ -1153,4 +1153,36 @@ export default {
     }
   }
 }
+
+//取消
+.cancel-btn {
+  /* 基础样式 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25;
+  cursor: pointer;
+  transition: all 0.15s ease-out;
+  user-select: none;
+  
+  /* 取消按钮特有样式 */
+  background-color: transparent;
+  color: #6b7280; /* 中性灰色 */
+  border: 1px solid #e5e7eb; /* 浅灰色边框 */
+  
+  /* 间距优化 */
+  gap: 0.375rem;
+  
+  /* 响应式调整 */
+  @media (min-width: 640px) {
+    padding: 0.625rem 1.5rem;
+  }
+}
+
+
 </style>
