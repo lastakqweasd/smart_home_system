@@ -8,7 +8,7 @@ smart-home-backend-master/logs/
 smart-home-backend-master/*.log
 smart-home-backend-master/.idea/
 smart-home-backend-master/.DS_Store
-
+smart-home-backend-master/core/migrations/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
