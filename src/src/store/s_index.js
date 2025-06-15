@@ -69,12 +69,17 @@ export default createStore({
     },
 
     //关闭所有设备
-    RESET_DEVICES(state) {
-      state.devices = state.devices.map(device => ({...device, status: false}))
-      state.devices.forEach(device => {
-        api.updateDevice(device.id, { status: false })
-      })
-    },
+    // RESET_DEVICES(state) {
+    //   console.log('state 是：')
+    //   console.log(state.devices)
+    //   const access_token = state.tokens.access
+    //   console.log('access_token 是：')
+    //   console.log(access_token)
+    //   state.devices = state.devices.map(device => ({...device, status: false}))
+    //   state.devices.forEach(device => {
+    //     api.updateDevice(device.id, { status: false }, access_token)
+    //   })
+    // },
 
     //更新设备
     UPDATE_SCENE_DEVICES(state, { sceneId, devices }) {
@@ -92,9 +97,10 @@ export default createStore({
     },
     //关闭所有设备
     RESET_DEVICES(state) {
+      const access_token = state.tokens.access
       state.devices = state.devices.map(device => ({...device, status: false}))
       state.devices.forEach(device => {
-        api.updateDevice(device.id, { status: false })
+        api.updateDevice(device.id, { status: false }, access_token)
       })
     },
     UPDATE_ROOM_NAME(state, { roomId, newName }) {
@@ -316,9 +322,12 @@ export default createStore({
     async activateScene({ commit, dispatch, state }, sceneId) {
       commit('SET_LOADING', true)
       try {
-        commit('RESET_DEVICES')
-        console.log(this.state.devices)
-        await api.activateScene(sceneId)
+        await commit('RESET_DEVICES')
+        console.log('重置设备状态')
+        console.log(state.devices)
+        const access_token = state.tokens.access
+        await api.activateScene(sceneId, access_token)
+        console.log('场景激活成功啊啊啊啊啊啊啊')
         // 重新获取设备状态
         dispatch('fetchDevices')
       } catch (error) {

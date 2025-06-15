@@ -119,7 +119,6 @@ class DeviceSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         # 确保owner字段不会冲突
-        print("creating")
         validated_data.pop('owner', None)  # 移除可能存在的owner字段
         user = self.context['request'].user
         return Device.objects.create(owner=user, **validated_data)

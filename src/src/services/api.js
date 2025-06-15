@@ -143,28 +143,52 @@ export const api = {
       }
     },
   ),
-  activateScene: async (sceneId) => {
-    const res = await axios.get(`${API_URL}/scenes/${sceneId}`);
-    console.log(res);
-    console.log(res.data);
-    const scene = res.data;
-    const allDevices = (await axios.get(`${API_URL}/devices`)).data;
-    
+  activateScene: async (sceneId, access_token) => {
+    const response = await axios.get(`${API_URL}/scenes/${sceneId}/`,
+      {
+        headers: {
+          'Authorization': `Bearer ${access_token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+    console.log("获取激活场景的信息：");
+    console.log(response);
+    console.log(response.data);
+    const scene = response.data;
+    const allDevices = (await axios.get(`${API_URL}/devices/`, 
+      {
+        headers: {
+          'Authorization': `Bearer ${access_token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    )).data;
+    console.log("获取所有设备信息：");
     console.log(allDevices);
-    const updatePromises = scene.devices.flatMap(targetDevice => {
-      // 查找匹配的设备
-      console.log(targetDevice);
-      const matchedDevices = allDevices.filter(device => 
-        device.type === targetDevice.type && 
-        device.roomId === targetDevice.roomId
-      );
-      
-      // 为每个匹配设备创建更新请求
-      console.log(matchedDevices);
-      return matchedDevices.map(device => 
-        axios.patch(`${API_URL}/devices/${device.id}/`, targetDevice)
-      );
-    });
+    const updatePromises = scene.device_configs.flatMap(targetDevice => {
+        // 查找匹配的设备
+        console.log("查找匹配的设备");
+        console.log(targetDevice);
+        const matchedDevices = allDevices.filter(device => 
+          device.id === targetDevice.device
+        );
+        
+        // 为每个匹配设备创建更新请求
+        console.log(matchedDevices);
+        return matchedDevices.map(device => 
+          axios.patch(`${API_URL}/devices/${device.id}/`, targetDevice,
+            {
+              headers: {
+                'Authorization': `Bearer ${access_token}`,
+                'Content-Type': 'application/json'
+              }
+            }
+          )
+        );
+      }
+    );
+    console.log("创建更新请求：");
     console.log(updatePromises);
     await Promise.all(updatePromises);
     console.log(updatePromises);
