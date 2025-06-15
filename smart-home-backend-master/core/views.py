@@ -257,6 +257,7 @@ class SceneViewSet(viewsets.ModelViewSet):
     
     #你添加了一个自定义接口 /api/scenes/{id}/activate/，前端可以通过 POST 请求激活某个场景
     #@action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    #activate 方法直接通过 scene.device_configs.all() 获取设备，然后直接修改 device 对象并保存，并没有经过 DeviceViewSet 的任何过滤或权限校验逻辑。
     @action(detail=True, methods=['post'], permission_classes=[])
     def activate(self, request, pk=None):
         try:
@@ -265,9 +266,48 @@ class SceneViewSet(viewsets.ModelViewSet):
                 device = config.device
                 device.status = config.status
                 device.extra.update(config.config)
-                device.save()
-
                 DeviceController.control(device)
             return Response({'message': f'场景【{scene.name}】已激活'})
         except Scene.DoesNotExist:
             return Response({'error': '场景不存在'}, status=status.HTTP_404_NOT_FOUND)
+
+    def update(self, request, *args, **kwargs):
+        """支持前端 devices 字段的场景配置增删改"""
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        data = request.data.copy()
+        devices_data = data.pop('devices', None)
+
+        serializer = self.get_serializer(instance, data=data, partial=partial)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        self.perform_update(serializer)
+
+        if devices_data is not None:
+            # 现有配置
+            old_configs = {str(cfg.device_id): cfg for cfg in instance.device_configs.all()}
+            new_configs = {str(dev['id']): dev for dev in devices_data}
+
+            # 删除未在新列表中的配置
+            for device_id in set(old_configs) - set(new_configs):
+                old_configs[device_id].delete()
+
+            # 新增或更新
+            for device_id, dev in new_configs.items():
+                # status 字段单独提取，其余放 config
+                status_val = dev.get('status', False)
+                config_dict = {k: v for k, v in dev.items() if k not in ['id', 'status']}
+                if device_id in old_configs:
+                    config_obj = old_configs[device_id]
+                    config_obj.status = status_val
+                    config_obj.config = config_dict
+                    config_obj.save()
+                else:
+                    SceneDeviceConfig.objects.create(
+                        scene=instance,
+                        device_id=device_id,
+                        status=status_val,
+                        config=config_dict
+                    )
+
+        return Response(self.get_serializer(instance).data)
