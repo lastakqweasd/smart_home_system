@@ -1,14 +1,19 @@
 import unittest
 import requests
 import json
+import random
 from bs4 import BeautifulSoup
 
 BASE_URL = "http://localhost:8000/api"
 TEST_USER = {
-    "username": "security_tester",
-    "password": "Test@1234",
-    "email": "security_test@example.com"
+    "username": f"testuser_{random.randint(1, 100000)}",
+    "email": f"test_{random.randint(1, 100000)}@example.com",
+    "password": "testpass123",
+    "password_confirm": "testpass123",
+    "phone": "138" + str(random.randint(10000000, 99999999)),
+    "nickname": f"测试用户_{random.randint(1, 100000)}"
 }
+
 
 class TestSecurity(unittest.TestCase):
     @classmethod
@@ -18,14 +23,13 @@ class TestSecurity(unittest.TestCase):
         response = requests.post(register_url, json=TEST_USER)
         if response.status_code != 201:
             print("测试用户可能已存在，尝试继续测试")
-        
         # 登录获取令牌
         login_url = f"{BASE_URL}/auth/login/"
         cls.login_response = requests.post(login_url, json={
             "username": TEST_USER["username"],
             "password": TEST_USER["password"]
         })
-        cls.access_token = cls.login_response.json().get("access")
+        cls.access_token = cls.login_response.json().get('tokens', {}).get('access')
         cls.headers = {
             "Authorization": f"Bearer {cls.access_token}",
             "Content-Type": "application/json"
@@ -53,9 +57,7 @@ class TestSecurity(unittest.TestCase):
         """测试设备名称中的XSS漏洞"""
         xss_payload = "<script>alert('XSS')</script>"
         device_url = f"{BASE_URL}/devices/"
-        
         # 尝试创建包含XSS的设备
-        print("打印请求头信息：", self.headers)
         response = requests.post(device_url, headers=self.headers, json={
             "name": xss_payload,
             "type": "sensor",
@@ -78,7 +80,6 @@ class TestSecurity(unittest.TestCase):
         """测试用户资料更新中的XSS漏洞"""
         xss_payload = {"bio": "<img src=x onerror=alert('XSS')>"}
         profile_url = f"{BASE_URL}/auth/profile/"
-        
         # 尝试更新包含XSS的资料
         response = requests.put(profile_url, headers=self.headers, json=xss_payload)
         

@@ -1,0 +1,2 @@
+Method,Name,Error,Occurrences
+POST,/api/auth/register/,"CatchResponseError('×¢²áÊ§°Ü - ×´Ì¬Âë: 400, ÏìÓ¦: {""success"":false,""errors"":{""username"":[""A user with that username already exists.""]}}')",138
