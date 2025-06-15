@@ -68,6 +68,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    "DEFAULT_THROTTLE_RATES": {
+        "user": "1000/day",
+        "anon": "5/minute",  # 未登录用户每分钟最多5次
+    }
 }
 
 # JWT设置
