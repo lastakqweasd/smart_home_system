@@ -386,7 +386,7 @@ export default createStore({
       commit('SET_SELECTED_ROOM', 'all')
     },
 
-    async register({ commit, dispatch }, userData) {
+    async register({ commit, dispatch, state }, userData) {
       commit('SET_LOADING', true);
       commit('SET_ERROR', null);
       commit('SET_SUCCESS', null); // 新增成功状态
@@ -399,18 +399,24 @@ export default createStore({
       }
     
       try {
+        console.log("注册信息")
+        console.log(userData)
+        console.log(userData.password_confirm)
         const response = await api.createUser({
           username: userData.username,
-          email: userData.email,
-          phone: userData.phone,
+          email: userData.email || null,
+          phone: userData.phone || null,
           nickname: userData.nickname,
           password: userData.password,
           password_confirm: userData.password_confirm
         });
-    
+        console.log("注册成功")
         // 明确处理成功响应（根据您的后端API结构）
         if (response.data?.success) {
-          commit('SET_USER', response.data.user);
+          console.log("成功");
+          const data = response.data;
+          commit('SET_USER', {user: data.user, tokens: data.tokens});
+          console.log("set user ok !");
           commit('SET_SUCCESS', response.data.message || '注册成功');
           
           // 初始化数据

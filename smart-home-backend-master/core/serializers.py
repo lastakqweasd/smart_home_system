@@ -21,6 +21,14 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         }
     
     def validate(self, attrs):
+        print("validating user registration")
+        try:
+            print("e 打印")
+            print(self.context['request'].user)
+            print("e 打印成功")
+        except Exception as e:
+            print(e)
+            print("e 失败")
         """验证密码确认"""
         if attrs['password'] != attrs['password_confirm']:
             raise serializers.ValidationError("两次输入的密码不一致")

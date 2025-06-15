@@ -95,10 +95,10 @@
       <div class="device-info">
         <h3 class="device-name">{{ device.name }}</h3>
         <div class="device-details">
-          <span class="device-room">
+          <!-- <span class="device-room">
             <i class="fas fa-map-marker-alt"></i>
             roomid: {{ device.room }}
-          </span>
+          </span> -->
           <span class="device-room">
             <i class="fas fa-map-marker-alt"></i>
             {{ cur_room_name }}
@@ -240,15 +240,11 @@ export default {
       room: ''
     });
     const cur_room_name = computed(() => {
-      props.rooms.forEach(room => {
-        console.log("当前遍历")
-        console.log(room.id)
-        console.log(props.device.room)
-        if(room.id === props.device.room){
-          console.log("找到了")
-          return room.name
-        }
-      })
+      // 使用 find 方法直接查找匹配的房间
+      const matchedRoom = props.rooms.find(room => room.id === props.device.room);
+      
+      // 返回房间名称（如果找到），否则返回空字符串或默认值
+      return matchedRoom ? matchedRoom.name : "未知房间";
     });
     //房间列表
     const the_rooms = computed(() => {
