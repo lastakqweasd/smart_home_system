@@ -14,3 +14,823 @@
 2025-06-12 11:36:02,389 - INFO - 控制设备: 测试设备 (light) 状态=开 配置={'brightness': 80}
 2025-06-12 11:39:33,415 - INFO - 控制设备: 测试设备 (light) 状态=开 配置={'brightness': 80}
 2025-06-12 11:40:54,092 - INFO - 控制设备: 测试设备 (light) 状态=开 配置={'brightness': 80}
+2025-06-14 22:29:02,408 - INFO - 控制设备: asdassad (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-14 22:56:34,514 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-14 22:57:39,013 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-14 23:00:34,841 - INFO - 控制设备: my_monitor (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-14 23:04:40,671 - INFO - 控制设备: 客厅空调 (ac) 状态=关 配置={'temperature': 22}
+2025-06-14 23:09:28,026 - INFO - 控制设备: my_monitor (outlet) 状态=关 配置={}
+2025-06-14 23:15:11,785 - INFO - 控制设备: test (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-14 23:22:38,886 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-14 23:22:50,617 - INFO - 控制设备: 客厅空调 (ac) 状态=关 配置={'temperature': 22}
+2025-06-14 23:23:01,242 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-14 23:23:20,176 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-14 23:24:52,191 - INFO - 控制设备: my_monitor (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-14 23:26:39,018 - INFO - 控制设备: asdassad (tv) 状态=关 配置={}
+2025-06-14 23:26:54,428 - INFO - 控制设备: my_monitor (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-14 23:57:14,778 - INFO - 控制设备: mytv (tv) 状态=关 配置={}
+2025-06-15 00:25:43,705 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:25:44,932 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:25:46,034 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:25:47,511 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 00:25:48,547 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 00:25:48,806 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-15 00:25:49,977 - INFO - 控制设备: my_monitor (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:25:51,470 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 00:25:52,743 - INFO - 控制设备: asdassad (tv) 状态=开 配置={}
+2025-06-15 00:25:54,589 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:26:35,335 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:26:37,272 - INFO - 控制设备: 客厅空调 (ac) 状态=关 配置={'temperature': 22}
+2025-06-15 00:26:38,804 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 00:26:40,407 - INFO - 控制设备: my_monitor (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:26:41,647 - INFO - 控制设备: asdassad (tv) 状态=关 配置={}
+2025-06-15 00:26:42,964 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-15 00:26:44,407 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:29:41,778 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:29:43,341 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:29:44,452 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:07,094 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:08,127 - INFO - 控制设备: 客厅空调 (ac) 状态=关 配置={'temperature': 22}
+2025-06-15 00:30:08,972 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:11,051 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:11,822 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:12,393 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,442 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,462 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,478 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,507 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,526 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,544 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,565 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,602 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,626 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,650 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,662 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,683 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:13,711 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:14,081 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:14,450 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:14,670 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:14,811 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:14,954 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:15,106 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:15,246 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:15,371 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:15,503 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:15,655 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:30:17,239 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:30:18,101 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:30:19,815 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 00:30:21,149 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 00:30:22,123 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 00:30:23,261 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 00:30:23,764 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 00:30:28,483 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-15 00:30:30,499 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 00:30:31,241 - INFO - 控制设备: my_monitor (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-15 00:30:32,518 - INFO - 控制设备: 客厅空调 (ac) 状态=关 配置={'temperature': 22}
+2025-06-15 00:31:25,282 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:34:34,869 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:36:09,488 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:37:01,892 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 00:38:19,575 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:38:21,947 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:38:23,932 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:39:16,049 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:39:57,685 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:40:22,362 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:40:24,245 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:40:25,202 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:40:25,907 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:40:27,377 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:40:35,146 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:40:56,157 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 12}
+2025-06-15 00:40:57,905 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:41:25,687 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 12}
+2025-06-15 00:41:26,644 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:41:27,513 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:41:28,918 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:41:58,530 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:42:37,850 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 12}
+2025-06-15 00:42:38,463 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:42:39,520 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 12}
+2025-06-15 00:42:40,305 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:44:17,230 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 12}
+2025-06-15 00:44:18,141 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:44:20,869 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:44:25,487 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:45:19,771 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:45:50,420 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:47:26,389 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:47:54,814 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:47:57,682 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:49:06,925 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 12}
+2025-06-15 00:49:09,442 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:49:37,690 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:49:44,283 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:49:45,154 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:49:45,815 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:49:46,012 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:49:46,160 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:49:46,347 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 00:49:48,578 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:49:52,228 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:51:41,570 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:52:37,048 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:52:40,009 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:53:58,970 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 12}
+2025-06-15 00:55:09,624 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 68}
+2025-06-15 00:55:13,218 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 77}
+2025-06-15 00:55:24,407 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 4}
+2025-06-15 00:57:21,242 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 75}
+2025-06-15 00:58:08,702 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 00:58:11,731 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 87}
+2025-06-15 00:58:30,935 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 100}
+2025-06-15 00:59:21,277 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 89}
+2025-06-15 01:00:33,148 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 88}
+2025-06-15 01:00:35,596 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 79}
+2025-06-15 01:01:04,697 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 81}
+2025-06-15 01:01:42,777 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 86}
+2025-06-15 01:01:46,237 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 0}
+2025-06-15 01:01:46,965 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 0}
+2025-06-15 01:01:51,284 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 29}
+2025-06-15 01:02:37,566 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 01:03:03,417 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 14}
+2025-06-15 01:03:41,795 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 92}
+2025-06-15 01:03:59,145 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 23}
+2025-06-15 01:04:33,416 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 01:07:50,257 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 69}
+2025-06-15 01:10:36,780 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 78}
+2025-06-15 01:10:39,718 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 81}
+2025-06-15 01:12:19,854 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 94}
+2025-06-15 01:12:20,217 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 94}
+2025-06-15 01:12:20,460 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 94}
+2025-06-15 01:12:20,582 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 94}
+2025-06-15 01:12:20,728 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 94}
+2025-06-15 01:12:20,857 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 94}
+2025-06-15 01:12:21,738 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 28}
+2025-06-15 01:12:22,208 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 28}
+2025-06-15 01:12:24,026 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 01:12:24,846 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 01:12:25,797 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 01:12:27,496 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 01:12:28,697 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 01:12:31,451 - INFO - 控制设备: 客厅空调 (ac) 状态=关 配置={'temperature': 22}
+2025-06-15 08:53:49,151 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 79}
+2025-06-15 08:56:15,584 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 88}
+2025-06-15 08:56:34,892 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 14}
+2025-06-15 08:57:02,167 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 99}
+2025-06-15 08:57:10,350 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 7}
+2025-06-15 08:57:43,410 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 0}
+2025-06-15 08:58:10,681 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 99}
+2025-06-15 08:58:13,585 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 63}
+2025-06-15 09:01:55,196 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 63}
+2025-06-15 09:03:29,032 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 94}
+2025-06-15 09:08:22,898 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 26}
+2025-06-15 09:08:23,344 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 26}
+2025-06-15 09:08:23,712 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 26}
+2025-06-15 09:08:23,930 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 26}
+2025-06-15 09:08:24,093 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 26}
+2025-06-15 09:08:24,210 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 26}
+2025-06-15 09:08:24,357 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 26}
+2025-06-15 09:08:24,516 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 26}
+2025-06-15 09:08:25,556 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 09:08:25,799 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 09:08:25,951 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 09:08:38,694 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 78}
+2025-06-15 09:08:39,636 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 17}
+2025-06-15 09:08:40,209 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 17}
+2025-06-15 09:08:40,465 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 17}
+2025-06-15 09:08:40,639 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 17}
+2025-06-15 09:08:40,811 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 17}
+2025-06-15 09:08:42,094 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 17}
+2025-06-15 09:08:42,485 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 17}
+2025-06-15 09:08:57,432 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 09:08:58,666 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 5}
+2025-06-15 09:08:59,628 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 74}
+2025-06-15 09:09:00,877 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 97}
+2025-06-15 09:09:02,051 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 100}
+2025-06-15 09:09:03,264 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 35}
+2025-06-15 09:09:26,793 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 91}
+2025-06-15 09:09:28,272 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 13}
+2025-06-15 09:09:29,765 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 1}
+2025-06-15 09:09:30,490 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 39}
+2025-06-15 09:09:30,907 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 41}
+2025-06-15 09:09:30,928 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 45}
+2025-06-15 09:09:31,018 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 51}
+2025-06-15 09:09:31,032 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 56}
+2025-06-15 09:09:31,059 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 61}
+2025-06-15 09:09:31,087 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 66}
+2025-06-15 09:09:31,104 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 70}
+2025-06-15 09:09:31,141 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 74}
+2025-06-15 09:09:31,172 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 77}
+2025-06-15 09:09:31,205 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 80}
+2025-06-15 09:09:31,240 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 83}
+2025-06-15 09:09:31,264 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 84}
+2025-06-15 09:09:31,288 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 85}
+2025-06-15 09:09:31,309 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 86}
+2025-06-15 09:09:31,345 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 87}
+2025-06-15 09:09:31,372 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 89}
+2025-06-15 09:09:31,406 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 90}
+2025-06-15 09:09:31,421 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 89}
+2025-06-15 09:09:31,446 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 88}
+2025-06-15 09:09:31,482 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 89}
+2025-06-15 09:09:31,512 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 88}
+2025-06-15 09:09:31,556 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 87}
+2025-06-15 09:09:31,570 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 86}
+2025-06-15 09:09:31,595 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 84}
+2025-06-15 09:09:31,632 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 09:09:31,665 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 83}
+2025-06-15 09:09:31,702 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 80}
+2025-06-15 09:09:31,721 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 80}
+2025-06-15 09:09:31,744 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 79}
+2025-06-15 09:09:31,795 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 81}
+2025-06-15 09:09:31,817 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 78}
+2025-06-15 09:09:31,826 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 77}
+2025-06-15 09:09:31,857 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 75}
+2025-06-15 09:09:31,883 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 74}
+2025-06-15 09:09:31,921 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 77}
+2025-06-15 09:09:31,942 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 73}
+2025-06-15 09:09:31,969 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 70}
+2025-06-15 09:09:31,991 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 72}
+2025-06-15 09:09:32,005 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 71}
+2025-06-15 09:09:32,039 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 69}
+2025-06-15 09:09:32,067 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 65}
+2025-06-15 09:09:32,108 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 68}
+2025-06-15 09:09:32,150 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 64}
+2025-06-15 09:09:32,186 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 66}
+2025-06-15 09:09:32,202 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 67}
+2025-06-15 09:09:32,233 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 65}
+2025-06-15 09:09:32,270 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 63}
+2025-06-15 09:09:32,321 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 60}
+2025-06-15 09:09:32,366 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 62}
+2025-06-15 09:09:32,388 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 60}
+2025-06-15 09:09:32,406 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 59}
+2025-06-15 09:09:32,455 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 61}
+2025-06-15 09:09:32,471 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 58}
+2025-06-15 09:09:32,490 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 59}
+2025-06-15 09:09:32,532 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 81}
+2025-06-15 09:09:32,622 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 85}
+2025-06-15 09:09:33,711 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 62}
+2025-06-15 09:09:34,429 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 63}
+2025-06-15 09:09:34,456 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 65}
+2025-06-15 09:09:34,490 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 67}
+2025-06-15 09:09:34,529 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 69}
+2025-06-15 09:09:34,553 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 69}
+2025-06-15 09:09:34,582 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 68}
+2025-06-15 09:09:34,605 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 70}
+2025-06-15 09:09:34,620 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 70}
+2025-06-15 09:09:35,592 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 84}
+2025-06-15 09:09:36,512 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 86}
+2025-06-15 09:09:36,555 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 87}
+2025-06-15 09:09:36,572 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 89}
+2025-06-15 09:09:36,611 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 94}
+2025-06-15 09:09:36,645 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 92}
+2025-06-15 09:09:36,680 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 94}
+2025-06-15 09:09:36,703 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 96}
+2025-06-15 09:09:36,748 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 97}
+2025-06-15 09:09:36,762 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 91}
+2025-06-15 09:09:36,787 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 95}
+2025-06-15 09:09:36,826 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 97}
+2025-06-15 09:09:36,835 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 98}
+2025-06-15 09:09:36,882 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 90}
+2025-06-15 09:09:36,939 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 93}
+2025-06-15 09:09:36,951 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 98}
+2025-06-15 09:09:36,995 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 97}
+2025-06-15 09:09:37,012 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 96}
+2025-06-15 09:09:37,035 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 95}
+2025-06-15 09:09:37,067 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 94}
+2025-06-15 09:09:37,112 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 93}
+2025-06-15 09:09:37,126 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 94}
+2025-06-15 09:09:37,142 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 91}
+2025-06-15 09:09:37,167 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 92}
+2025-06-15 09:09:37,200 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 92}
+2025-06-15 09:09:37,234 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 93}
+2025-06-15 09:09:37,269 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 91}
+2025-06-15 09:09:37,306 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 88}
+2025-06-15 09:09:37,331 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 90}
+2025-06-15 09:09:37,364 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 89}
+2025-06-15 09:09:37,391 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 87}
+2025-06-15 09:09:37,415 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 85}
+2025-06-15 09:09:37,445 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 86}
+2025-06-15 09:09:37,467 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 86}
+2025-06-15 09:09:37,512 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 87}
+2025-06-15 09:09:37,543 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 84}
+2025-06-15 09:09:37,567 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 09:09:37,596 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 80}
+2025-06-15 09:09:37,664 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 83}
+2025-06-15 09:09:37,664 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 80}
+2025-06-15 09:09:37,686 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 79}
+2025-06-15 09:09:37,706 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 81}
+2025-06-15 09:09:37,726 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 78}
+2025-06-15 09:09:37,957 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 77}
+2025-06-15 09:09:37,980 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 77}
+2025-06-15 09:09:37,988 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 77}
+2025-06-15 09:09:38,014 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 65}
+2025-06-15 09:09:38,754 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 52}
+2025-06-15 09:09:39,783 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 44}
+2025-06-15 09:09:40,394 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 43}
+2025-06-15 09:09:40,819 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 42}
+2025-06-15 09:09:40,998 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 41}
+2025-06-15 09:09:41,157 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 40}
+2025-06-15 09:09:41,304 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 39}
+2025-06-15 09:09:41,454 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 38}
+2025-06-15 09:09:41,588 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 37}
+2025-06-15 09:09:41,824 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 38}
+2025-06-15 09:09:41,944 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 39}
+2025-06-15 09:09:42,043 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 40}
+2025-06-15 09:09:42,292 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 41}
+2025-06-15 09:09:42,778 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 42}
+2025-06-15 09:09:42,827 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 43}
+2025-06-15 09:09:42,860 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 44}
+2025-06-15 09:09:42,881 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 44}
+2025-06-15 09:09:42,923 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 45}
+2025-06-15 09:09:42,964 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 45}
+2025-06-15 09:09:42,997 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 46}
+2025-06-15 09:09:43,028 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 46}
+2025-06-15 09:09:43,056 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 47}
+2025-06-15 09:09:43,101 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 47}
+2025-06-15 09:09:43,125 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 48}
+2025-06-15 09:09:43,146 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 48}
+2025-06-15 09:09:43,179 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 49}
+2025-06-15 09:09:43,212 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 49}
+2025-06-15 09:09:43,237 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50}
+2025-06-15 09:09:43,275 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50}
+2025-06-15 09:09:43,312 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 51}
+2025-06-15 09:09:43,339 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 52}
+2025-06-15 09:09:43,390 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 53}
+2025-06-15 09:09:43,417 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 54}
+2025-06-15 09:09:43,450 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 54}
+2025-06-15 09:09:43,477 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 55}
+2025-06-15 09:09:43,511 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 55}
+2025-06-15 09:09:43,544 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 56}
+2025-06-15 09:09:43,580 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 56}
+2025-06-15 09:09:43,611 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 57}
+2025-06-15 09:09:43,644 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 57}
+2025-06-15 09:09:43,677 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 58}
+2025-06-15 09:09:43,718 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 59}
+2025-06-15 09:09:43,757 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 60}
+2025-06-15 09:09:43,784 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 60}
+2025-06-15 09:09:43,817 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 61}
+2025-06-15 09:09:43,850 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 61}
+2025-06-15 09:09:43,881 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 62}
+2025-06-15 09:09:43,908 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 62}
+2025-06-15 09:09:43,956 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 63}
+2025-06-15 09:09:43,980 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 64}
+2025-06-15 09:09:44,013 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 64}
+2025-06-15 09:09:44,047 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 65}
+2025-06-15 09:09:44,116 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 65}
+2025-06-15 09:09:44,130 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 66}
+2025-06-15 09:09:44,177 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 67}
+2025-06-15 09:09:44,210 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 66}
+2025-06-15 09:09:44,234 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 67}
+2025-06-15 09:09:44,251 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 68}
+2025-06-15 09:09:44,325 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 67}
+2025-06-15 09:09:44,374 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 69}
+2025-06-15 09:09:44,390 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 70}
+2025-06-15 09:09:44,429 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 68}
+2025-06-15 09:09:44,476 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 70}
+2025-06-15 09:09:44,503 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 69}
+2025-06-15 09:09:44,528 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 69}
+2025-06-15 09:09:44,554 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 71}
+2025-06-15 09:09:44,577 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 70}
+2025-06-15 09:09:44,604 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 70}
+2025-06-15 09:09:44,635 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 71}
+2025-06-15 09:09:44,652 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 72}
+2025-06-15 09:09:45,127 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 73}
+2025-06-15 09:09:45,265 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 74}
+2025-06-15 09:09:45,487 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 75}
+2025-06-15 09:09:45,608 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 76}
+2025-06-15 09:09:45,715 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 77}
+2025-06-15 09:09:45,833 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 78}
+2025-06-15 09:09:45,964 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 79}
+2025-06-15 09:09:46,081 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 80}
+2025-06-15 09:09:46,239 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 81}
+2025-06-15 09:09:46,368 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 09:09:46,562 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 83}
+2025-06-15 09:09:46,755 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 84}
+2025-06-15 09:09:47,330 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 85}
+2025-06-15 09:09:47,730 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 84}
+2025-06-15 09:09:47,923 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 83}
+2025-06-15 09:09:48,041 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 09:09:48,186 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 81}
+2025-06-15 09:09:48,651 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 80}
+2025-06-15 09:09:49,008 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 79}
+2025-06-15 09:09:49,304 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 78}
+2025-06-15 09:09:49,480 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 77}
+2025-06-15 09:09:49,619 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 76}
+2025-06-15 09:09:49,789 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 75}
+2025-06-15 09:09:49,934 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 74}
+2025-06-15 09:09:50,082 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 73}
+2025-06-15 09:09:50,258 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 72}
+2025-06-15 09:09:50,409 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 71}
+2025-06-15 09:09:50,554 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 70}
+2025-06-15 09:09:50,708 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 69}
+2025-06-15 09:09:50,874 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 68}
+2025-06-15 09:09:51,048 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 67}
+2025-06-15 09:09:51,173 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 66}
+2025-06-15 09:09:51,339 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 65}
+2025-06-15 09:10:59,729 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 78}
+2025-06-15 09:11:00,632 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 96}
+2025-06-15 09:11:01,971 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 83}
+2025-06-15 09:11:03,082 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 82}
+2025-06-15 09:11:03,624 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 81}
+2025-06-15 09:11:04,314 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 80}
+2025-06-15 09:11:04,625 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 79}
+2025-06-15 09:11:04,819 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 78}
+2025-06-15 09:11:05,576 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 77}
+2025-06-15 09:11:05,861 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 76}
+2025-06-15 09:11:06,041 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 75}
+2025-06-15 09:11:06,208 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 74}
+2025-06-15 09:11:06,459 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 73}
+2025-06-15 09:11:06,596 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 72}
+2025-06-15 09:11:06,750 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 71}
+2025-06-15 09:11:06,909 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 70}
+2025-06-15 09:11:07,041 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 69}
+2025-06-15 09:11:07,196 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 68}
+2025-06-15 09:11:07,347 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 67}
+2025-06-15 09:11:07,499 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 66}
+2025-06-15 09:11:07,639 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 65}
+2025-06-15 09:11:07,798 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 64}
+2025-06-15 09:11:07,951 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 63}
+2025-06-15 09:11:08,110 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 62}
+2025-06-15 09:11:08,284 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 61}
+2025-06-15 09:11:08,458 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 60}
+2025-06-15 09:11:08,614 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 59}
+2025-06-15 09:11:08,770 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 58}
+2025-06-15 09:11:08,944 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 57}
+2025-06-15 09:11:09,495 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 56}
+2025-06-15 09:11:09,688 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 55}
+2025-06-15 09:11:09,840 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 54}
+2025-06-15 09:11:10,163 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 53}
+2025-06-15 09:11:10,305 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 52}
+2025-06-15 09:11:10,472 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 51}
+2025-06-15 09:11:10,625 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50}
+2025-06-15 09:11:10,772 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 49}
+2025-06-15 09:11:46,045 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 23}
+2025-06-15 09:11:55,165 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 54}
+2025-06-15 09:11:55,741 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 53}
+2025-06-15 09:11:55,948 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 52}
+2025-06-15 09:11:56,101 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 51}
+2025-06-15 09:11:56,257 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 50}
+2025-06-15 09:11:56,400 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 49}
+2025-06-15 09:11:56,567 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 48}
+2025-06-15 09:11:56,698 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 47}
+2025-06-15 09:11:56,845 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 46}
+2025-06-15 09:11:57,012 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 45}
+2025-06-15 09:11:57,157 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 44}
+2025-06-15 09:11:57,310 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 43}
+2025-06-15 09:11:57,478 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 42}
+2025-06-15 09:11:57,644 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 41}
+2025-06-15 09:11:57,789 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 40}
+2025-06-15 09:11:57,991 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 39}
+2025-06-15 09:11:58,432 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 38}
+2025-06-15 09:11:58,595 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 37}
+2025-06-15 09:11:58,761 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 36}
+2025-06-15 09:11:58,949 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 35}
+2025-06-15 09:11:59,560 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 34}
+2025-06-15 09:11:59,713 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 33}
+2025-06-15 09:11:59,886 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 32}
+2025-06-15 09:12:00,121 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 31}
+2025-06-15 09:12:00,446 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 30}
+2025-06-15 09:12:00,630 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 29}
+2025-06-15 09:12:00,789 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 28}
+2025-06-15 09:12:00,943 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 27}
+2025-06-15 09:12:01,741 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 26}
+2025-06-15 09:12:01,901 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 25}
+2025-06-15 09:12:02,054 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 24}
+2025-06-15 09:12:03,429 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:12:08,797 - INFO - 控制设备: qwe (light) 状态=关 配置={'brightness': 24}
+2025-06-15 09:12:09,784 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 24}
+2025-06-15 09:12:12,819 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:12:48,829 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:12:49,600 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:12:50,148 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:13:10,693 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:13:11,488 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:13:12,020 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:13:12,408 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:13:12,736 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:14:01,989 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:14:05,864 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:14:33,283 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:14:39,340 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:14:44,545 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:14:47,660 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:14:49,619 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:14:51,591 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:15:37,977 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:15:48,349 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:15:55,188 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:16:07,487 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:16:47,305 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:16:52,638 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:16:56,279 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:17:33,051 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:18:35,649 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:18:36,394 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:18:45,088 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:18:56,595 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 22}
+2025-06-15 09:19:28,768 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 19}
+2025-06-15 09:19:29,674 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 28}
+2025-06-15 09:19:32,604 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 18}
+2025-06-15 09:19:50,849 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 09:19:52,572 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 09:20:27,620 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 09:20:53,747 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 79}
+2025-06-15 09:20:54,620 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 92}
+2025-06-15 09:20:55,703 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 6}
+2025-06-15 09:20:56,385 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 24}
+2025-06-15 09:20:56,658 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 28}
+2025-06-15 09:20:56,690 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 33}
+2025-06-15 09:20:56,706 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 48}
+2025-06-15 09:20:56,726 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 39}
+2025-06-15 09:20:56,748 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 44}
+2025-06-15 09:20:56,771 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 55}
+2025-06-15 09:20:56,787 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 59}
+2025-06-15 09:20:56,814 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 58}
+2025-06-15 09:20:56,830 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 60}
+2025-06-15 09:20:56,844 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 52}
+2025-06-15 09:20:56,861 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 61}
+2025-06-15 09:20:58,328 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 62}
+2025-06-15 09:20:58,612 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 63}
+2025-06-15 09:21:03,898 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 72}
+2025-06-15 09:21:04,391 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 73}
+2025-06-15 09:21:04,731 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 74}
+2025-06-15 09:21:04,933 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 75}
+2025-06-15 09:21:05,052 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 76}
+2025-06-15 09:21:05,203 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 77}
+2025-06-15 09:21:05,321 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 78}
+2025-06-15 09:21:05,453 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 79}
+2025-06-15 09:21:05,592 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 80}
+2025-06-15 09:21:05,704 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 81}
+2025-06-15 09:21:05,840 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 82}
+2025-06-15 09:21:05,941 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 83}
+2025-06-15 09:21:06,095 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 09:21:06,173 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 85}
+2025-06-15 09:21:06,281 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 86}
+2025-06-15 09:21:06,426 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 87}
+2025-06-15 09:21:06,627 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 86}
+2025-06-15 09:21:06,781 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 85}
+2025-06-15 09:21:06,948 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 09:21:07,078 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 83}
+2025-06-15 09:21:07,294 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 09:21:07,799 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 85}
+2025-06-15 09:21:07,828 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 86}
+2025-06-15 09:21:07,850 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 86}
+2025-06-15 09:21:07,880 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 87}
+2025-06-15 09:21:07,921 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 88}
+2025-06-15 09:21:07,946 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 89}
+2025-06-15 09:21:07,985 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 90}
+2025-06-15 09:21:08,016 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 91}
+2025-06-15 09:21:08,059 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 92}
+2025-06-15 09:21:08,083 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 93}
+2025-06-15 09:21:08,114 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 93}
+2025-06-15 09:21:08,211 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 94}
+2025-06-15 09:21:08,440 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 95}
+2025-06-15 09:21:08,539 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 96}
+2025-06-15 09:21:08,908 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 97}
+2025-06-15 09:21:09,009 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 98}
+2025-06-15 09:21:09,149 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 99}
+2025-06-15 09:21:09,287 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 100}
+2025-06-15 09:21:09,960 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 99}
+2025-06-15 09:21:10,468 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 98}
+2025-06-15 09:21:10,497 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 97}
+2025-06-15 09:21:10,530 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 97}
+2025-06-15 09:21:10,558 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 96}
+2025-06-15 09:21:10,589 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 96}
+2025-06-15 09:21:10,636 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 95}
+2025-06-15 09:21:10,660 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 94}
+2025-06-15 09:21:10,699 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 93}
+2025-06-15 09:21:10,734 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 92}
+2025-06-15 09:21:10,774 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 92}
+2025-06-15 09:21:10,806 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 91}
+2025-06-15 09:21:10,843 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 91}
+2025-06-15 09:21:10,906 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 90}
+2025-06-15 09:21:10,948 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 90}
+2025-06-15 09:21:10,984 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 89}
+2025-06-15 09:21:11,045 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 89}
+2025-06-15 09:21:11,066 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 89}
+2025-06-15 09:21:11,099 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 87}
+2025-06-15 09:21:11,121 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 88}
+2025-06-15 09:21:11,143 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 88}
+2025-06-15 09:21:11,176 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 88}
+2025-06-15 09:21:11,217 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 87}
+2025-06-15 09:21:11,253 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 86}
+2025-06-15 09:21:11,287 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 87}
+2025-06-15 09:21:11,336 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 86}
+2025-06-15 09:21:11,357 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 85}
+2025-06-15 09:21:11,394 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 85}
+2025-06-15 09:21:11,412 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 86}
+2025-06-15 09:21:11,454 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 09:21:11,477 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 09:21:11,499 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 85}
+2025-06-15 09:21:11,530 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 85}
+2025-06-15 09:21:11,962 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 09:21:12,114 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 83}
+2025-06-15 09:21:12,268 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 82}
+2025-06-15 09:21:12,435 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 81}
+2025-06-15 09:21:12,595 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 80}
+2025-06-15 09:21:12,750 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 79}
+2025-06-15 09:21:12,913 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 78}
+2025-06-15 09:21:13,446 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 77}
+2025-06-15 09:21:13,655 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 76}
+2025-06-15 09:21:13,823 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 75}
+2025-06-15 09:21:14,031 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 74}
+2025-06-15 09:21:14,278 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 73}
+2025-06-15 09:21:14,463 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 72}
+2025-06-15 09:21:14,615 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 71}
+2025-06-15 09:21:14,775 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 70}
+2025-06-15 09:21:15,145 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 69}
+2025-06-15 09:21:15,289 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 68}
+2025-06-15 09:21:15,398 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 67}
+2025-06-15 09:21:15,575 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 66}
+2025-06-15 09:21:15,705 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 65}
+2025-06-15 09:21:15,880 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 64}
+2025-06-15 09:21:16,018 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 63}
+2025-06-15 09:21:16,191 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 62}
+2025-06-15 09:21:16,386 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 61}
+2025-06-15 09:21:16,538 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 60}
+2025-06-15 09:21:16,679 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 59}
+2025-06-15 09:21:16,827 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 58}
+2025-06-15 09:21:16,983 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 57}
+2025-06-15 09:21:17,163 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 56}
+2025-06-15 09:21:17,338 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 55}
+2025-06-15 09:21:17,470 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 54}
+2025-06-15 09:21:17,623 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 53}
+2025-06-15 09:21:17,762 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 52}
+2025-06-15 09:21:17,921 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 51}
+2025-06-15 09:21:18,070 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 09:21:18,233 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 49}
+2025-06-15 09:21:18,386 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 48}
+2025-06-15 09:21:18,668 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 47}
+2025-06-15 09:21:18,712 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 46}
+2025-06-15 09:21:18,829 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 45}
+2025-06-15 09:21:19,011 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 44}
+2025-06-15 09:21:19,329 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 43}
+2025-06-15 09:21:19,581 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 42}
+2025-06-15 09:21:19,900 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 41}
+2025-06-15 09:21:20,135 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 40}
+2025-06-15 09:21:20,400 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 39}
+2025-06-15 09:21:20,636 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 38}
+2025-06-15 09:21:20,852 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 37}
+2025-06-15 09:21:21,074 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 36}
+2025-06-15 09:21:21,238 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 35}
+2025-06-15 09:21:21,423 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 34}
+2025-06-15 09:21:21,642 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 33}
+2025-06-15 09:21:21,817 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 32}
+2025-06-15 09:21:22,032 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 31}
+2025-06-15 09:21:22,192 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 30}
+2025-06-15 09:21:22,536 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 29}
+2025-06-15 09:21:22,860 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 28}
+2025-06-15 09:21:23,109 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 27}
+2025-06-15 09:21:23,407 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 26}
+2025-06-15 09:21:23,657 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 25}
+2025-06-15 09:21:23,805 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 24}
+2025-06-15 09:21:24,037 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 23}
+2025-06-15 09:21:24,199 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 22}
+2025-06-15 09:21:24,400 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 21}
+2025-06-15 09:21:24,574 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 20}
+2025-06-15 09:21:24,759 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 19}
+2025-06-15 09:21:24,911 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 18}
+2025-06-15 09:21:25,074 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 17}
+2025-06-15 09:21:25,234 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 16}
+2025-06-15 09:21:25,386 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 15}
+2025-06-15 09:21:25,563 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 14}
+2025-06-15 09:21:25,727 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 13}
+2025-06-15 09:21:25,893 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 12}
+2025-06-15 09:21:26,074 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 11}
+2025-06-15 09:21:26,242 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 10}
+2025-06-15 09:21:26,591 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 9}
+2025-06-15 09:21:26,762 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 8}
+2025-06-15 09:21:26,949 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 7}
+2025-06-15 09:21:27,095 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 6}
+2025-06-15 09:21:27,255 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 5}
+2025-06-15 09:21:27,588 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 4}
+2025-06-15 09:21:27,740 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 3}
+2025-06-15 09:21:27,905 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 2}
+2025-06-15 09:21:28,081 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 1}
+2025-06-15 09:21:28,395 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 0}
+2025-06-15 09:21:34,895 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 09:21:36,541 - INFO - 控制设备: mytv (tv) 状态=开 配置={}
+2025-06-15 09:21:38,442 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 09:21:40,249 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 30}
+2025-06-15 09:21:40,957 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 29}
+2025-06-15 09:21:41,005 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 28}
+2025-06-15 09:21:41,158 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 27}
+2025-06-15 09:21:41,311 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 26}
+2025-06-15 09:21:41,464 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 25}
+2025-06-15 09:21:41,617 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 24}
+2025-06-15 09:21:41,777 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 23}
+2025-06-15 09:21:41,895 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 22}
+2025-06-15 09:21:42,040 - INFO - 控制设备: my_monitor (curtain) 状态=开 配置={'openPercentage': 21}
+2025-06-15 09:22:09,380 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 46}
+2025-06-15 09:22:10,154 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 80}
+2025-06-15 09:22:32,425 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 26}
+2025-06-15 09:22:33,498 - INFO - 控制设备: 客厅空调 (ac) 状态=开 配置={'temperature': 17}
+2025-06-15 09:22:34,470 - INFO - 控制设备: qwe (light) 状态=开 配置={'brightness': 20}
+2025-06-15 09:25:58,828 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 54}
+2025-06-15 09:25:59,755 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 33}
+2025-06-15 09:26:01,190 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 33}
+2025-06-15 09:32:18,540 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 09:33:26,871 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 09:33:38,867 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 33}
+2025-06-15 09:33:39,971 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 33}
+2025-06-15 09:33:40,827 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 33}
+2025-06-15 09:33:42,154 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 75}
+2025-06-15 09:33:43,434 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 7}
+2025-06-15 09:33:45,910 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 09:33:46,952 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 09:33:47,890 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 09:37:59,517 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 7}
+2025-06-15 09:38:00,487 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 7}
+2025-06-15 09:39:35,872 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 09:39:37,476 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 7}
+2025-06-15 09:39:39,375 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 7}
+2025-06-15 09:39:40,174 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 65}
+2025-06-15 09:39:40,994 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 64}
+2025-06-15 09:39:41,069 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 63}
+2025-06-15 09:39:41,111 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 61}
+2025-06-15 09:39:41,152 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 60}
+2025-06-15 09:39:41,189 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 57}
+2025-06-15 09:39:41,222 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 56}
+2025-06-15 09:39:41,264 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 53}
+2025-06-15 09:39:41,350 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 52}
+2025-06-15 09:39:41,369 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 09:39:41,395 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 47}
+2025-06-15 09:39:41,426 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 46}
+2025-06-15 09:39:41,478 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 45}
+2025-06-15 09:39:41,510 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 44}
+2025-06-15 09:39:41,538 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 48}
+2025-06-15 09:39:41,566 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 42}
+2025-06-15 09:39:41,603 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 42}
+2025-06-15 09:39:41,645 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 43}
+2025-06-15 09:39:41,668 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 38}
+2025-06-15 09:39:41,738 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 40}
+2025-06-15 09:39:41,740 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 41}
+2025-06-15 09:39:41,748 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 37}
+2025-06-15 09:39:41,773 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 35}
+2025-06-15 09:39:41,807 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 36}
+2025-06-15 09:39:41,840 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 39}
+2025-06-15 09:41:36,786 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 39}
+2025-06-15 09:41:39,317 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 39}
+2025-06-15 09:41:40,407 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 61}
+2025-06-15 09:41:41,436 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 1}
+2025-06-15 09:48:35,518 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 1}
+2025-06-15 09:48:38,134 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 1}
+2025-06-15 09:48:38,982 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 1}
+2025-06-15 09:48:39,744 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 1}
+2025-06-15 09:48:41,273 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 09:48:42,038 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 09:48:43,010 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 48}
+2025-06-15 09:48:43,955 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 09:49:30,417 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 84}
+2025-06-15 09:49:31,382 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 09:49:32,286 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 29}
+2025-06-15 09:49:33,516 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 92}
+2025-06-15 09:49:48,148 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 92}
+2025-06-15 09:49:48,912 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 92}
+2025-06-15 09:49:52,433 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 09:49:52,908 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 09:49:53,058 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 09:49:53,205 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 09:49:53,336 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 09:49:53,468 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 09:49:53,593 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 09:49:53,753 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 09:49:53,892 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 09:49:54,017 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 09:49:54,225 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 09:49:55,053 - INFO - 控制设备: qwe (outlet) 状态=开 配置={}
+2025-06-15 09:49:55,921 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 19}
+2025-06-15 09:49:56,490 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 20}
+2025-06-15 09:49:56,602 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 21}
+2025-06-15 09:49:56,719 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 22}
+2025-06-15 09:49:56,816 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 23}
+2025-06-15 09:49:56,939 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 24}
+2025-06-15 09:49:57,090 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 25}
+2025-06-15 09:49:57,164 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 26}
+2025-06-15 09:52:56,286 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 26}
+2025-06-15 09:52:57,241 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 26}
+2025-06-15 09:55:03,478 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 26}
+2025-06-15 09:55:37,870 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 26}
+2025-06-15 09:57:21,949 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 26}
+2025-06-15 09:57:25,776 - INFO - 控制设备: qwe (outlet) 状态=关 配置={}
+2025-06-15 09:57:33,534 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 09:57:36,819 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 10:59:25,472 - INFO - 控制设备: asd (curtain) 状态=关 配置={'openPercentage': 84}
+2025-06-15 10:59:26,719 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 10:59:27,494 - INFO - 控制设备: asd (curtain) 状态=开 配置={'openPercentage': 29}
+2025-06-15 10:59:35,993 - INFO - 控制设备: 测试 (curtain) 状态=开 配置={'openPercentage': 29}
+2025-06-15 11:00:04,153 - INFO - 控制设备: 客厅空调 (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-15 11:00:06,098 - INFO - 控制设备: 客厅空调 (curtain) 状态=开 配置={'openPercentage': 50}
+2025-06-15 11:00:07,048 - INFO - 控制设备: 客厅空调 (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 11:08:56,071 - INFO - 控制设备: 客厅空调 (curtain) 状态=关 配置={'openPercentage': 84}
+2025-06-15 11:08:56,765 - INFO - 控制设备: 客厅空调 (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 11:14:17,110 - INFO - 控制设备: 客厅空调 (curtain) 状态=关 配置={'openPercentage': 84}
+2025-06-15 11:14:17,834 - INFO - 控制设备: 客厅空调 (curtain) 状态=开 配置={'openPercentage': 84}
+2025-06-15 11:14:18,576 - INFO - 控制设备: 客厅空调 (curtain) 状态=开 配置={'openPercentage': 47}
+2025-06-15 12:07:50,790 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 12:07:53,282 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-15 12:07:54,512 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 89}
+2025-06-15 12:07:55,574 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 89}

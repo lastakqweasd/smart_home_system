@@ -51,9 +51,16 @@ export const api = {
   },
   ///////////
   getDevice: (id) => axios.get(`${API_URL}/devices/${id}`),
-  updateDevice: (id, data) => {
-    console.log(id, data);
-    return axios.patch(`${API_URL}/devices/${id}`, data)
+  updateDevice: (id, data, access_token) => {
+    return axios.patch(`${API_URL}/devices/${id}/`, 
+        data,
+      {
+        headers: {
+          'Authorization': `Bearer ${access_token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    )
   },
   postDevice:(device, extra, access_token) => axios.post(`${API_URL}/devices/`, 
     {
@@ -74,7 +81,14 @@ export const api = {
       }
     }
   ),
-  delDevice:(deviceId) => axios.delete(`${API_URL}/devices/${deviceId}`),
+  delDevice:(deviceId, access_token) => axios.delete(`${API_URL}/devices/${deviceId}/`,
+    {
+      headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  ),
 
   // 房间相关API
   getRooms: (access_token) => axios.get(`${API_URL}/rooms/`, 
@@ -120,7 +134,15 @@ export const api = {
       }
     }
   ),
-  createScene: (sceneData) => axios.post(API_URL+'/scenes', sceneData),
+  createScene: (sceneData, access_token) => axios.post(`${API_URL}/scenes/`, 
+    sceneData,
+    {
+      headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Content-Type': 'application/json'
+      }
+    },
+  ),
   activateScene: async (sceneId) => {
     const res = await axios.get(`${API_URL}/scenes/${sceneId}`);
     console.log(res);

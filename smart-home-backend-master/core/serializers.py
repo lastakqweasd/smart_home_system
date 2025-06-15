@@ -131,6 +131,8 @@ class SceneSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'description', 'device_configs']
     
     def create(self, validated_data):
+        print("creating scene")
+        print(validated_data)
         device_configs_data = validated_data.pop('device_configs')
         scene = Scene.objects.create(**validated_data)
         for config_data in device_configs_data:

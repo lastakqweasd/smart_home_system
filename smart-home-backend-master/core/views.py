@@ -222,6 +222,7 @@ class DeviceViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         print("asdqdqwdqw")
         user = self.request.user
+        print(self.request)
         print(user)
         if user.role == 'admin':
             return Device.objects.all()

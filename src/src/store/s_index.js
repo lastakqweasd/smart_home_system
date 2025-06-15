@@ -30,7 +30,6 @@ export default createStore({
       state.selectedRoom = room
     },
     UPDATE_DEVICE(state, updatedDevice) {
-      console.log(updatedDevice)
       const index = state.devices.findIndex(
         (device) => device.id === updatedDevice.id
       )
@@ -114,7 +113,7 @@ export default createStore({
     // 删除设备 - 添加用户验证
     async deleteDevice({ commit, state }, deviceId) {
       try {
-        await api.delDevice(deviceId)
+        await api.delDevice(deviceId, state.tokens.access)
         commit('REMOVE_DEVICE', deviceId);
         return true;
       } catch (error) {
@@ -203,9 +202,12 @@ export default createStore({
       try {
         const access_token = state.tokens.access;
         const response = await api.getScenes(access_token)
-        console.log("获取场景成功：", response.data)
+        const data = await response.data;
+        console.log("获取场景成功：", data)
         // 设置用户当前版本
-        commit('SET_SCENES', response.data)
+        commit('SET_SCENES', data)
+        console.log(state.devices)
+        console.log(state.devices.length)
       } catch (error) {
         commit('SET_ERROR', '获取场景列表失败')
         console.error(error)
@@ -281,7 +283,7 @@ export default createStore({
     }
   },
 
-    async toggleDevice({ commit }, { id, status }) {
+    async toggleDevice({ commit, state }, { id, status }) {
       try {
         console.log(id)
         console.log({status})
@@ -289,8 +291,7 @@ export default createStore({
           console.error(`toggleDevice: Invalid status for device ${id}`);
           return;
         }
-        const response = await api.updateDevice(id, { status })
-        console.log(response)
+        const response = await api.updateDevice(id, { status }, state.tokens.access)
         const updatedDevice = response.data
         commit('UPDATE_DEVICE', updatedDevice)
       } catch (error) {
@@ -299,9 +300,12 @@ export default createStore({
       }
     },
 
-    async updateDevice({ commit }, { id, data }) {
+    async updateDevice({ commit, state }, { id, data }) {
       try {
-        const response = await api.updateDevice(id, data)
+        console.log('updateDevice')
+        console.log(id)
+        console.log(data)
+        const response = await api.updateDevice(id, data, state.tokens.access)
         commit('UPDATE_DEVICE', response.data)
       } catch (error) {
         commit('SET_ERROR', '设备更新失败')
@@ -424,21 +428,31 @@ export default createStore({
     // 创建场景 - 关联当前用户
     async createScene({ commit, state }, scene) {
       commit('SET_LOADING', true);
+      console.log("assdq")
       try {
+        console.log('创建场景：', scene);
         const userId = state.user?.id
         if (!userId) {
           commit('SET_ERROR', '请先登录')
           return false
         }
         
-        const sceneWithUser = {
-          ...scene,
-          userId, // 添加用户ID
-          id: Date.now().toString(),
-          createdAt: new Date().toISOString()
-        };
-        
-        const response = await api.createScene(sceneWithUser);
+        // const sceneWithUser = {
+        //   ...scene,
+        //   userId, // 添加用户ID
+        //   id: Date.now().toString(),
+        //   createdAt: new Date().toISOString()
+        // };
+        const test = {
+          "name": "回家模式",
+          "description": "一键打开客厅灯和空调",
+          "device_configs": [
+          ]
+        }
+        console.log(test)
+        const scenedata = scene
+        console.log(scenedata)
+        const response = await api.createScene(scenedata, state.tokens.access);
         commit('ADD_SCENE', response.data);
         return true;
       } catch (error) {

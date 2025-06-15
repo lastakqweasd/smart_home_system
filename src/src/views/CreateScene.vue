@@ -177,6 +177,19 @@
                   >
                   <span>{{ deviceStates[device.id].temperature }}°C</span>
                 </div>
+
+                <div v-if="device.type === 'curtain'" class="control-group">
+                  <label>开合度</label>
+                  <input 
+                    type="range" 
+                    min="0" 
+                    max="100" 
+                    v-model="deviceStates[device.id].openPercentage"
+                    :disabled="!deviceStates[device.id].status"
+                  >
+                  <span>{{ deviceStates[device.id].openPercentage }}%</span>
+                </div>
+
               </div>
             </div>
           </div>
@@ -282,6 +295,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { config } from '@fortawesome/fontawesome-svg-core'
 
 export default {
   setup() {
@@ -353,6 +367,10 @@ export default {
     
     // 选中的设备
     const selectedDevices = computed(() => {
+      console.log("查看设备")
+      console.log(devices)
+      console.log("查看设备状态")
+      console.log(deviceStates)
       return devices.value.filter(device => 
         deviceStates.value[device.id]?.selected
       )
@@ -413,29 +431,28 @@ export default {
     // 创建场景
     const createScene = () => {
       // 获取选中的设备及其状态
-      const selectedDevicesWithState = selectedDevices.value.map(device => {
+      const device_configs = selectedDevices.value.map(device => {
         const state = deviceStates.value[device.id]
         return {
-          id: device.id,
-          name: device.name,
-          type: device.type,
-          brand: device.brand,
-          room: device.room,
+          device: device.id,
           status: state.status,
+          config:{
           ...(device.type === 'light' && { brightness: state.brightness }),
           ...(device.type === 'ac' && { temperature: state.temperature }),
           ...(device.type === 'curtain' && { openPercentage: state.openPercentage })
+          }
         }
       })
-      
+      console.log("查看场景设备")
+      console.log(device_configs)
       // 创建场景对象
       const newScene = {
-        id: Date.now().toString(),
         name: scene.value.name,
         description: scene.value.description,
-        icon: scene.value.icon,
-        devices: selectedDevicesWithState
+        device_configs: device_configs
       }
+      console.log("查看场景对象")
+      console.log(newScene)
       
       // 保存到Vuex
       store.dispatch('createScene', newScene)

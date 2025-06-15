@@ -40,12 +40,19 @@
         
         <div class="form-group">
           <label>房间</label>
-          <select v-model="editForm.room" class="edit-select">
+          <!-- <select v-model="editForm.room" class="edit-select">
             <option value="客厅">客厅</option>
             <option value="卧室">卧室</option>
             <option value="厨房">厨房</option>
             <option value="书房">书房</option>
             <option value="浴室">浴室</option>
+          </select> -->
+          <select v-model="editForm.room" class="edit-select">
+            <option v-for="room in the_rooms" 
+            :value="room.id"
+            :key="room.id">
+            {{ room.name }}
+          </option>
           </select>
         </div>
         
@@ -120,14 +127,14 @@
           <div class="control-label">
             <i class="fas fa-sun"></i>
             <span>亮度</span>
-            <span class="control-value">{{ device.brightness }}%</span>
+            <span class="control-value">{{ device.extra.brightness }}%</span>
           </div>
           <div class="slider-container">
             <input 
               type="range" 
               min="0" 
               max="100" 
-              :value="device.brightness" 
+              :value="device.extra.brightness" 
               @input="updateBrightness"
               class="control-slider brightness-slider"
             />
@@ -139,14 +146,14 @@
           <div class="control-label">
             <i class="fas fa-thermometer-half"></i>
             <span>温度</span>
-            <span class="control-value">{{ device.temperature }}°C</span>
+            <span class="control-value">{{ device.extra.temperature }}°C</span>
           </div>
           <div class="slider-container">
             <input 
               type="range" 
               min="16" 
               max="30" 
-              :value="device.temperature" 
+              :value="device.extra.temperature" 
               @input="updateTemperature"
               class="control-slider temperature-slider"
             />
@@ -158,14 +165,14 @@
           <div class="control-label">
             <i class="fas fa-arrows-alt-h"></i>
             <span>开合度</span>
-            <span class="control-value">{{ device.openPercentage }}%</span>
+            <span class="control-value">{{ device.extra.openPercentage }}%</span>
           </div>
           <div class="slider-container">
             <input 
               type="range" 
               min="0" 
               max="100" 
-              :value="device.openPercentage" 
+              :value="device.extra.openPercentage" 
               @input="updateOpenPercentage"
               class="control-slider curtain-slider"
             />
@@ -211,6 +218,10 @@ export default {
     device: {
       type: Object,
       required: true
+    },
+    rooms: {
+      type: Array,
+      required: true  // 如果必须传入则设为required
     }
   },
 
@@ -218,14 +229,16 @@ export default {
     const store = useStore();
     const showDeleteDialog = ref(false);
     const isEditing = ref(false);
-    
     // 编辑表单数据
     const editForm = reactive({
       name: '',
       brand: '',
       room: ''
     });
-    
+    //房间列表
+    const the_rooms = computed(() => {
+      return props.rooms
+    });
     // 设备图标
     const deviceIcon = computed(() => {
       switch (props.device.type) {
@@ -249,6 +262,7 @@ export default {
     
     // 保存编辑
     const saveEdit = async () => {
+      console.log('save edit', the_rooms);
       if (!editForm.name.trim()) {
         alert('设备名称不能为空');
         return;
@@ -299,6 +313,8 @@ export default {
     
     // 开关设备
     const toggleDevice = () => {
+      console.log('toggle device', props);
+      console.log('device ', props.device);
       store.dispatch('toggleDevice', { 
         id: props.device.id, 
         status: !props.device.status 
@@ -309,7 +325,7 @@ export default {
     const updateBrightness = (event) => {
       store.dispatch('updateDevice', {
         id: props.device.id,
-        data: { brightness: parseInt(event.target.value) }
+        data: { extra: {brightness: parseInt(event.target.value)} }
       });
     };
     
@@ -317,7 +333,7 @@ export default {
     const updateTemperature = (event) => {
       store.dispatch('updateDevice', {
         id: props.device.id,
-        data: { temperature: parseInt(event.target.value) }
+        data: { extra: {temperature: parseInt(event.target.value)} }
       });
     };
     
@@ -325,11 +341,12 @@ export default {
     const updateOpenPercentage = (event) => {
       store.dispatch('updateDevice', {
         id: props.device.id,
-        data: { openPercentage: parseInt(event.target.value) }
+        data: {extra: {openPercentage: parseInt(event.target.value)} }
       });
     };
     
     return {
+      the_rooms,
       deviceIcon,
       toggleDevice,
       updateBrightness,

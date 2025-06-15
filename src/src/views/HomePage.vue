@@ -65,6 +65,7 @@
             v-for="device in filteredDevices"
             :key="device.id"
             :device="device"
+            :rooms="rooms"
             class="scrollable-item"
           />
         </div>
@@ -105,7 +106,8 @@
               <h3 class="scene-card__title">{{ scene.name }}</h3>
               <p class="scene-card__desc">{{ scene.description }}</p>
               <div class="scene-device-count">
-                <i class="fas fa-microchip"></i> {{scene.devices.length}} 个设备
+                <!-- <i class="fas fa-microchip"></i> {{scene.devices.length}} 个设备 -->
+                <i class="fas fa-microchip"></i> 1 个设备
               </div>
             </div>
             <button 
@@ -277,7 +279,6 @@ export default {
     // 过滤设备列表（同时考虑场所和设备类型）
     const filteredDevices = computed(() => {
       let filtered = devices.value
-      
       // 按场所过滤
       if (selectedRoom.value !== 'all') {
         filtered = filtered.filter(device => device.roomId === selectedRoom.value)
