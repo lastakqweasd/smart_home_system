@@ -143,9 +143,9 @@
     <div v-if="sceneToShowDetail" class="scene-detail-modal">
       <div class="modal-content">
         <div class="scene-header">
-          <div class="scene-icon" :class="sceneToShowDetail.icon">
+          <!-- <div class="scene-icon" :class="sceneToShowDetail.icon">
             <i :class="getSceneIcon(sceneToShowDetail.icon)"></i>
-          </div>
+          </div> -->
           <div class="scene-title-info">
             <h3>{{ sceneToShowDetail.name }}</h3>
             <p>{{ sceneToShowDetail.description }}</p>
@@ -153,16 +153,17 @@
         </div>
         
         <div class="device-list-section">
-          <h4>设备设置 <span class="device-count">({{ sceneToShowDetail.devices.length }}个设备)</span></h4>
+          <h4>设备设置 <span class="device-count">({{ sceneToShowDetail.device_configs.length }}个设备)</span></h4>
           <div class="device-list">
-            <div v-for="device in sceneToShowDetail.devices" :key="device.id" class="device-item">
+            <div v-for="device in scene_device_info" :key="device.id" class="device-item">
               <div class="device-info" @click="scene_toggleDeviceSelection(device.id)">
                 <div class="device-details">
                   <div class="device-icon">
                     <i :class="getDeviceIcon(device.type)"></i>
                   </div>
                   <h3>{{ device.name }}</h3>
-                  <p>{{ device.roomName }} · {{ device.type }}</p>
+                  <!-- <p>{{ device.roomName }} · {{ device.type }}</p> -->
+                  <p>房间:{{device.roomName}}   类型:{{ device.type }}</p>
                 </div>
               </div>
               <div v-if="isDeviceSelected(device.id)" class="device-controls">
@@ -214,8 +215,10 @@
                   <span>{{ deviceStates[device.id].openPercentage }}%</span>
                 </div>
               </div>
+            
             </div>
           </div>
+
         </div>
         
         <div class="modal-actions">
@@ -223,6 +226,7 @@
           <button class="save-changes-btn" @click.stop="saveSceneChanges(); sceneToShowDetail = null">保存修改</button>
           <button class="close-modal-btn" @click.stop="sceneToShowDetail = null">关闭</button>
         </div>
+      
       </div>
     </div>
   </div>
@@ -256,7 +260,35 @@ export default {
 
     const sceneToDelete = ref(null)
     const sceneToShowDetail = ref(null)
+    //保存在这里更改的设备信息
     const deviceStates = ref({})
+    //由于场景中只有设备id，没有设备名称，
+    // 因此配套一个scene_device_info来记录对应场景的设备信息
+    const scene_device_info = computed(() => {
+      if (!sceneToShowDetail.value?.device_configs || !devices.value) {
+        return []; // 返回空数组避免 undefined 问题
+      }
+
+      return sceneToShowDetail.value.device_configs
+        .map((deviceConfig) => {
+          // 在 devices 中查找匹配的设备
+          const matchedDevice = devices.value.find(
+            (d) => d.id === deviceConfig.device
+          );
+          if (!matchedDevice) {
+            console.warn(`Device not found: ${deviceConfig.device}`);
+            return null; // 过滤掉未匹配的设备
+          }
+          const room = rooms.value.find(r => r.id === matchedDevice.room);
+          // 合并设备基础信息和场景配置
+          return {
+            ...matchedDevice, // 设备原始信息（id, name, type等）
+            ...deviceConfig, // 场景中的配置（status, config等）
+            roomName: room?.name || '未知房间'
+          };
+        })
+        .filter(Boolean); // 移除 null 项（未匹配的设备）
+    });
 
     // 设备类型定义
     const deviceTypes = ref([
@@ -361,15 +393,25 @@ export default {
     const showSceneDetail = (scene) => {
       sceneToShowDetail.value = scene
       // 初始化设备状态
-      scene.devices.forEach(device => {
-        deviceStates.value[device.id] = {
+      scene.device_configs.forEach(device => {
+        //根据设备id找到对应设备信息
+        const detail_device = devices.value.find(d => d.id === device.device)
+        deviceStates.value[device.device] = {
           selected: false,
           status: device.status || false,
-          ...(device.type === 'light' && { brightness: device.brightness || 50 }),
-          ...(device.type === 'ac' && { temperature: device.temperature || 22 }),
-          ...(device.type === 'curtain' && { openPercentage: device.openPercentage || 0 })
+          ...(detail_device.type === 'light' && { brightness: device.config.brightness || 50 }),
+          ...(detail_device.type === 'ac' && { temperature: device.config.temperature || 22 }),
+          ...(detail_device.type === 'curtain' && { openPercentage: device.config.openPercentage || 0 })
         }
       })
+      console.log("查看要显示的场景")
+      console.log(sceneToShowDetail)
+      console.log("查看设备")
+      console.log(scene_device_info.value)
+      console.log("查看场景设备状态")
+      console.log(deviceStates.value)
+      console.log("查看全部场景状态")
+      console.log(scenes.value)
     }
 
     const scene_toggleDeviceSelection = (deviceId) => {
@@ -394,10 +436,6 @@ export default {
           if (cur_device) {
             devicesToUpdate.push({
               id: deviceId,
-              name: cur_device.name,
-              type: cur_device.type,
-              room: cur_device.room,
-              brand: cur_device.brand,
               status: deviceState.status,
               ...(deviceState.brightness !== undefined && { brightness: deviceState.brightness }),
               ...(deviceState.temperature !== undefined && { temperature: deviceState.temperature }),
@@ -452,7 +490,8 @@ export default {
       saveSceneChanges,
       deviceTypes,
       selectedDeviceType,
-      setSelectedDeviceType
+      setSelectedDeviceType,
+      scene_device_info
     }
   }
 }

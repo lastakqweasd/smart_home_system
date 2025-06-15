@@ -837,3 +837,12 @@
 2025-06-15 15:00:17,998 - INFO - 控制设备: 客厅空调 (curtain) 状态=关 配置={'openPercentage': 47}
 2025-06-15 15:00:19,041 - INFO - 控制设备: tetsttst (outlet) 状态=开 配置={}
 2025-06-15 15:00:20,301 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 15:45:31,825 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 47}
+2025-06-15 15:45:40,890 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 47}
+2025-06-15 15:45:47,150 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 89}
+2025-06-15 15:45:48,305 - INFO - 控制设备: 客厅空调 (light) 状态=开 配置={'brightness': 24}
+2025-06-15 16:01:55,200 - INFO - 控制设备: tetsttst (outlet) 状态=开 配置={}
+2025-06-15 16:01:55,991 - INFO - 控制设备: tetsttst (outlet) 状态=关 配置={}
+2025-06-15 16:01:56,873 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 47}
+2025-06-15 16:01:57,738 - INFO - 控制设备: 不知道 (curtain) 状态=开 配置={'openPercentage': 19}
+2025-06-15 16:01:58,821 - INFO - 控制设备: 不知道 (curtain) 状态=关 配置={'openPercentage': 19}

@@ -480,12 +480,14 @@ export default createStore({
     },
 
     // 更新场景设备列表
-    async updateSceneDevices({ commit }, { sceneId, devices }) {
+    async updateSceneDevices({ commit, state }, { sceneId, devices }) {
       try {
         console.log('更新场景设备列表...');
         console.log(sceneId);
         console.log(devices);
-        await api.updateSceneDevices(sceneId, devices);
+        const response = await api.updateSceneDevices(sceneId, devices, state.tokens.access);
+        console.log('更新成功:')
+        console.log(response.data);
         commit('UPDATE_SCENE_DEVICES', { sceneId, devices });
       } catch (error) {
         commit('SET_ERROR', error.message);

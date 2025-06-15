@@ -182,8 +182,16 @@ export const api = {
   ),
 
   // 更新场景中的设备状态（部分更新）
-  updateSceneDevices: (sceneId, deviceUpdates) => {
+  updateSceneDevices: (sceneId, deviceUpdates, access_token) => {
     // deviceUpdates 应该是一个对象数组，每个对象包含设备ID和要更新的字段
-    return axios.patch(`${API_URL}/scenes/${sceneId}/`, {devices:deviceUpdates});
+    return axios.patch(`${API_URL}/scenes/${sceneId}/`, 
+      {devices:deviceUpdates}, 
+      {
+        headers: {
+          'Authorization': `Bearer ${access_token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
   },
 }
