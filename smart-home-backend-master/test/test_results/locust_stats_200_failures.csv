@@ -1,0 +1,4 @@
+Method,Name,Error,Occurrences
+POST,/api/auth/login/,"CatchResponseError('µÇÂ¼Ê§°Ü - ×´Ì¬Âë: 401, ÏìÓ¦: {""success"":false,""errors"":{""non_field_errors"":[""ÓÃ»§Ãû»òÃÜÂë´íÎó""]}}')",6
+POST,/api/auth/register/,"CatchResponseError('×¢²áÊ§°Ü - ×´Ì¬Âë: 0, ÏìÓ¦: ')",11
+POST,/api/auth/register/,"CatchResponseError('×¢²áÊ§°Ü - ×´Ì¬Âë: 400, ÏìÓ¦: {""success"":false,""errors"":{""username"":[""A user with that username already exists.""]}}')",109

@@ -257,6 +257,7 @@ class SceneViewSet(viewsets.ModelViewSet):
     
     #你添加了一个自定义接口 /api/scenes/{id}/activate/，前端可以通过 POST 请求激活某个场景
     #@action(detail=True, methods=['post'], permission_classes=[IsAuthenticated])
+    #activate 方法直接通过 scene.device_configs.all() 获取设备，然后直接修改 device 对象并保存，并没有经过 DeviceViewSet 的任何过滤或权限校验逻辑。
     @action(detail=True, methods=['post'], permission_classes=[])
     def activate(self, request, pk=None):
         try:
@@ -265,9 +266,41 @@ class SceneViewSet(viewsets.ModelViewSet):
                 device = config.device
                 device.status = config.status
                 device.extra.update(config.config)
-                device.save()
-
                 DeviceController.control(device)
             return Response({'message': f'场景【{scene.name}】已激活'})
         except Scene.DoesNotExist:
             return Response({'error': '场景不存在'}, status=status.HTTP_404_NOT_FOUND)
+
+    def update(self, request, *args, **kwargs):
+        """支持前端 devices 字段的场景配置增删改"""
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object() #场景实例
+        
+        data = request.data.copy()
+        devices_data = data.pop('devices', None)
+
+        # data包括id/status/config等字段(id表示场景id)
+        # config是一个列表，包含device（id）、status、config等字段
+        serializer = self.get_serializer(instance, data=data, partial=partial)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        self.perform_update(serializer)
+
+        if devices_data is not None:
+            for dev in devices_data:
+                device_id = str(dev.get('id'))
+                status_val = dev.get('status', False)
+                config_dict = {k: v for k, v in dev.items() if k not in ['id', 'status']}
+                
+                # 获取或创建 SceneDeviceConfig 对象
+                try:
+                    config_obj = SceneDeviceConfig.objects.get(scene=instance, device_id=device_id)
+                except SceneDeviceConfig.DoesNotExist:
+                    config_obj = SceneDeviceConfig(scene=instance, device_id=device_id)
+                config_obj.status = status_val
+                config_obj.config = config_dict
+                config_obj.save()
+                
+                
+
+        return Response(self.get_serializer(instance).data)
