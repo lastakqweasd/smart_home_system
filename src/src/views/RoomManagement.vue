@@ -125,7 +125,11 @@ export default {
     const newRoomInput = ref(null)
     
     const getRoomDeviceCount = (roomId) => {
-      return props.devices.filter(device => device.roomId === roomId).length
+      console.log("房间id为：")
+      console.log(roomId)
+      console.log(props.devices)
+      const num = props.devices.filter(device => device.room === roomId).length
+      return num
     }
     
     const createRoom = async () => {
@@ -139,7 +143,8 @@ export default {
     const startEditing = (room) => {
       room.editing = true
       room.editName = room.name
-      
+      console.log("开始编辑房间：")
+      console.log(room)
       nextTick(() => {
         if (roomNameInput.value && roomNameInput.value.length) {
           const input = roomNameInput.value.find(i => i.dataset.id === room.id)
@@ -156,6 +161,8 @@ export default {
     }
 
     const saveRoomName = (room) => {
+      console.log("保存房间名称：")
+      console.log(room)
       if (room.editName && room.editName.trim() !== room.name) {
         emit('update-room', {
           roomId: room.id,

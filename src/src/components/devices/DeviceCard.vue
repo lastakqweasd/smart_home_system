@@ -97,7 +97,11 @@
         <div class="device-details">
           <span class="device-room">
             <i class="fas fa-map-marker-alt"></i>
-            {{ device.roomName }}
+            roomid: {{ device.room }}
+          </span>
+          <span class="device-room">
+            <i class="fas fa-map-marker-alt"></i>
+            {{ cur_room_name }}
           </span>
           <span class="device-brand" v-if="device.brand">
             <i class="fas fa-tag"></i>
@@ -235,6 +239,17 @@ export default {
       brand: '',
       room: ''
     });
+    const cur_room_name = computed(() => {
+      props.rooms.forEach(room => {
+        console.log("当前遍历")
+        console.log(room.id)
+        console.log(props.device.room)
+        if(room.id === props.device.room){
+          console.log("找到了")
+          return room.name
+        }
+      })
+    });
     //房间列表
     const the_rooms = computed(() => {
       return props.rooms
@@ -360,7 +375,8 @@ export default {
       editForm,
       startEdit,
       saveEdit,
-      cancelEdit
+      cancelEdit,
+      cur_room_name
     };
   }
 }

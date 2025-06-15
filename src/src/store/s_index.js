@@ -248,20 +248,26 @@ export default createStore({
         commit('SET_LOADING', false);
       }
     },
-    async deleteRoom({ commit, state }, roomId) {
+    async deleteRoom({ commit, dispatch, state }, roomId) {
       commit('SET_LOADING', true);
+      const access_token = state.tokens.access;
       try {
         // 删除该房间的所有设备
         const roomDevices = state.devices.filter(d => d.roomId === roomId);
         await Promise.all(roomDevices.map(device => 
-          api.delDevice(device.id)
+          api.delDevice(device.id, access_token)
         ));
         
         // 删除房间本身
-        await api.delRoom(roomId);
+        await api.delRoom(roomId, access_token);
         
         // 提交 mutation 更新状态
         commit('REMOVE_ROOM', roomId);
+        await Promise.all([
+          dispatch('fetchDevices'),
+          dispatch('fetchRooms'), 
+          // dispatch('fetchScenes')
+        ]);
         return true;
       } catch (error) {
         commit('SET_ERROR', '删除房间失败');
@@ -271,12 +277,12 @@ export default createStore({
         commit('SET_LOADING', false);
       }
     },
-    async updateRoom({ commit }, payload) {
+    async updateRoom({ commit, state }, payload) {
     commit('SET_LOADING', true);
     try {
       const { roomId, newName } = payload;
       // 调用 API 更新房间
-      await api.updateRoom(roomId, { name: newName });
+      await api.updateRoom(roomId, { name: newName }, state.tokens.access);
       // 提交 mutation 更新前端状态
       commit('UPDATE_ROOM_NAME', { roomId, newName });
       return true;

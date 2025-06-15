@@ -122,8 +122,23 @@ export const api = {
     }
   )
   },
-  delRoom: (roomId) => axios.delete(`${API_URL}/rooms/${roomId}`),
-  updateRoom: (roomId, data) => axios.patch(`${API_URL}/rooms/${roomId}`, data),
+  delRoom: (roomId, access_token) => axios.delete(`${API_URL}/rooms/${roomId}/`,
+    {
+      headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  ),
+  updateRoom: (roomId, data, access_token) => axios.patch(`${API_URL}/rooms/${roomId}/`, 
+    data,
+    {
+      headers: {
+        'Authorization': `Bearer ${access_token}`,
+        'Content-Type': 'application/json'
+      }
+    }
+  ),
 
   // 场景相关API
   getScenes: (access_token) => axios.get(`${API_URL}/scenes/`,

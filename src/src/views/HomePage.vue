@@ -107,7 +107,7 @@
               <p class="scene-card__desc">{{ scene.description }}</p>
               <div class="scene-device-count">
                 <!-- <i class="fas fa-microchip"></i> {{scene.devices.length}} 个设备 -->
-                <i class="fas fa-microchip"></i> 1 个设备
+                <i class="fas fa-microchip"></i> {{scene.device_configs.length }} 个设备
               </div>
             </div>
             <button 
@@ -320,7 +320,8 @@ export default {
       if (selectedDeviceType.value !== 'all') {
         filtered = filtered.filter(device => device.type === selectedDeviceType.value)
       }
-      
+      console.log("房间")
+      console.log(rooms)
       return filtered
     })
 
