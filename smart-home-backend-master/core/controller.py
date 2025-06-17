@@ -42,13 +42,14 @@ class DeviceController:
         # 构造要发送的指令
         command = {
             "operation": "control",
-            "id": device.id,
+            "id": str(device.id),
             "action": "set",
             "params": device.extra,
             "status": device.status
         }
-        if device.ip_address is not None and device.port is not None:
-            send_tcp_command(host=device.ip_address, port=device.port, command=command)
+
+        # if device.ip_address is not None and device.port is not None:
+        send_tcp_command(host='127.0.0.1', port=9001, command=command)
 
         for h in DeviceController.logger.handlers:
             h.flush()
