@@ -6,7 +6,7 @@
       <div class="auth-info">
         用户
         <template v-if="$store.getters.isAuthenticated">
-          <span class="user-name">欢迎，{{ $store.getters.currentUser.name }}</span>
+          <span class="user-name">欢迎，{{ $store.state.user.username}}</span>
           <button @click="handleLogout" class="logout-btn">注销</button>
         </template>
         <router-link v-else to="/login" class="login-link">登录</router-link>

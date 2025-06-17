@@ -1279,3 +1279,140 @@
 2025-06-15 23:50:14,688 - INFO - 控制设备: asd (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
 2025-06-16 00:15:57,159 - INFO - 控制设备: asd (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
 2025-06-16 00:15:57,857 - INFO - 控制设备: asd (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 00:50:28,161 - INFO - 控制设备: asdassad (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 00:50:53,969 - INFO - 控制设备: Bht123456 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 00:51:28,565 - INFO - 控制设备: qwe (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-16 00:51:43,638 - INFO - 控制设备: 客厅空调 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 01:06:35,316 - INFO - 控制设备: testd1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 01:06:52,892 - INFO - 控制设备: testd2 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 01:07:41,693 - INFO - 控制设备: testd1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 01:07:41,711 - INFO - 控制设备: testd2 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 01:07:41,729 - INFO - 控制设备: testd1 (light) 状态=开 配置={'brightness': '74'}
+2025-06-16 01:07:41,760 - INFO - 控制设备: testd2 (ac) 状态=开 配置={'temperature': '17'}
+2025-06-16 01:08:16,329 - INFO - 控制设备: testd2 (ac) 状态=关 配置={'temperature': '17'}
+2025-06-16 01:08:16,354 - INFO - 控制设备: testd1 (light) 状态=关 配置={'brightness': '74'}
+2025-06-16 01:08:16,388 - INFO - 控制设备: testd1 (light) 状态=开 配置={'brightness': '4'}
+2025-06-16 01:08:16,409 - INFO - 控制设备: testd2 (ac) 状态=关 配置={'temperature': '30'}
+2025-06-16 01:08:28,495 - INFO - 控制设备: testd2 (ac) 状态=关 配置={'temperature': '30'}
+2025-06-16 01:26:40,953 - INFO - 控制设备: testD1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 01:26:54,486 - INFO - 控制设备: TestD2 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 01:27:22,431 - INFO - 控制设备: testD3 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 01:27:59,134 - INFO - 控制设备: testD3 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 01:27:59,159 - INFO - 控制设备: TestD2 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 01:27:59,241 - INFO - 控制设备: testD3 (light) 状态=开 配置={'brightness': '77'}
+2025-06-16 01:27:59,260 - INFO - 控制设备: TestD2 (ac) 状态=开 配置={'temperature': 22}
+2025-06-16 01:28:01,068 - INFO - 控制设备: testD3 (light) 状态=开 配置={'brightness': 36}
+2025-06-16 01:28:02,900 - INFO - 控制设备: TestD2 (ac) 状态=开 配置={'temperature': 18}
+2025-06-16 01:28:05,244 - INFO - 控制设备: testD3 (light) 状态=关 配置={'brightness': 36}
+2025-06-16 01:28:05,261 - INFO - 控制设备: TestD2 (ac) 状态=关 配置={'temperature': 18}
+2025-06-16 01:28:05,290 - INFO - 控制设备: testD3 (light) 状态=开 配置={'brightness': '77'}
+2025-06-16 01:28:05,305 - INFO - 控制设备: TestD2 (ac) 状态=开 配置={'temperature': 22}
+2025-06-16 01:28:19,945 - INFO - 控制设备: T12 (outlet) 状态=关 配置={}
+2025-06-16 01:28:23,196 - INFO - 控制设备: T12 (outlet) 状态=开 配置={}
+2025-06-16 01:28:24,734 - INFO - 控制设备: TestD2 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 01:28:24,764 - INFO - 控制设备: testD3 (light) 状态=关 配置={'brightness': '77'}
+2025-06-16 01:28:24,791 - INFO - 控制设备: T12 (outlet) 状态=关 配置={}
+2025-06-16 01:28:24,866 - INFO - 控制设备: testD3 (light) 状态=开 配置={'brightness': '77'}
+2025-06-16 01:28:24,897 - INFO - 控制设备: TestD2 (ac) 状态=开 配置={'temperature': 22}
+2025-06-16 01:33:38,770 - INFO - 控制设备: TestD1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 01:33:53,198 - INFO - 控制设备: TestD2 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 01:34:09,166 - INFO - 控制设备: TestD3 (outlet) 状态=关 配置={}
+2025-06-16 01:34:16,141 - INFO - 控制设备: TestD1 (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 01:34:16,845 - INFO - 控制设备: TestD2 (ac) 状态=开 配置={'temperature': 22}
+2025-06-16 01:34:17,625 - INFO - 控制设备: TestD3 (outlet) 状态=开 配置={}
+2025-06-16 01:34:18,629 - INFO - 控制设备: TestD2 (ac) 状态=开 配置={'temperature': 18}
+2025-06-16 01:34:30,063 - INFO - 控制设备: TestD1changename (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 01:35:16,712 - INFO - 控制设备: TestD3 (outlet) 状态=关 配置={}
+2025-06-16 01:35:19,439 - INFO - 控制设备: TestD2 (ac) 状态=关 配置={'temperature': 18}
+2025-06-16 01:35:19,460 - INFO - 控制设备: TestD3 (outlet) 状态=关 配置={}
+2025-06-16 01:35:19,529 - INFO - 控制设备: TestD1changename (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 01:35:19,592 - INFO - 控制设备: TestD1changename (light) 状态=开 配置={'brightness': '75'}
+2025-06-16 01:35:19,607 - INFO - 控制设备: TestD3 (outlet) 状态=开 配置={}
+2025-06-16 01:35:19,626 - INFO - 控制设备: TestD2 (ac) 状态=开 配置={'temperature': '26'}
+2025-06-16 01:35:35,922 - INFO - 控制设备: TestD1changename (light) 状态=关 配置={'brightness': '75'}
+2025-06-16 01:35:35,953 - INFO - 控制设备: TestD3 (outlet) 状态=关 配置={}
+2025-06-16 01:35:36,004 - INFO - 控制设备: TestD2 (ac) 状态=关 配置={'temperature': '26'}
+2025-06-16 01:35:36,024 - INFO - 控制设备: TestD1changename (light) 状态=开 配置={'brightness': '20'}
+2025-06-16 01:35:36,053 - INFO - 控制设备: TestD3 (outlet) 状态=关 配置={}
+2025-06-16 01:35:36,076 - INFO - 控制设备: TestD2 (ac) 状态=开 配置={'temperature': '30'}
+2025-06-16 01:39:00,698 - INFO - 控制设备: asdassad (outlet) 状态=关 配置={}
+2025-06-16 01:39:12,372 - INFO - 控制设备: qwe (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-16 01:39:23,033 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-16 01:39:45,645 - INFO - 控制设备: qwe (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-16 01:39:45,673 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-16 01:39:45,691 - INFO - 控制设备: asdassad (outlet) 状态=关 配置={}
+2025-06-16 01:39:45,710 - INFO - 控制设备: qwe (curtain) 状态=开 配置={'openPercentage': '59'}
+2025-06-16 01:39:45,728 - INFO - 控制设备: asdassad (outlet) 状态=开 配置={}
+2025-06-16 01:39:45,747 - INFO - 控制设备: asd (outlet) 状态=开 配置={}
+2025-06-16 01:39:47,191 - INFO - 控制设备: qwe (curtain) 状态=开 配置={'openPercentage': 28}
+2025-06-16 01:39:48,796 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-16 01:39:48,808 - INFO - 控制设备: qwe (curtain) 状态=关 配置={'openPercentage': 28}
+2025-06-16 01:39:48,827 - INFO - 控制设备: asdassad (outlet) 状态=关 配置={}
+2025-06-16 01:39:48,850 - INFO - 控制设备: asdassad (outlet) 状态=开 配置={}
+2025-06-16 01:39:48,866 - INFO - 控制设备: asd (outlet) 状态=开 配置={}
+2025-06-16 01:39:48,879 - INFO - 控制设备: qwe (curtain) 状态=开 配置={'openPercentage': '59'}
+2025-06-16 01:39:52,078 - INFO - 控制设备: qwe (curtain) 状态=开 配置={'openPercentage': 97}
+2025-06-16 01:39:53,685 - INFO - 控制设备: asdassad (outlet) 状态=关 配置={}
+2025-06-16 01:39:53,715 - INFO - 控制设备: asd (outlet) 状态=关 配置={}
+2025-06-16 01:39:53,753 - INFO - 控制设备: qwe (curtain) 状态=关 配置={'openPercentage': 97}
+2025-06-16 01:39:53,777 - INFO - 控制设备: qwe (curtain) 状态=开 配置={'openPercentage': '59'}
+2025-06-16 01:39:53,790 - INFO - 控制设备: asd (outlet) 状态=开 配置={}
+2025-06-16 01:39:53,815 - INFO - 控制设备: asdassad (outlet) 状态=开 配置={}
+2025-06-16 11:10:48,327 - INFO - 控制设备: test1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 11:25:16,870 - INFO - 控制设备: Test1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 11:25:29,195 - INFO - 控制设备: Test1 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 11:25:41,291 - INFO - 控制设备: Test3 (outlet) 状态=关 配置={}
+2025-06-16 11:25:45,668 - INFO - 控制设备: Test3 (outlet) 状态=开 配置={}
+2025-06-16 13:04:05,144 - INFO - 控制设备: Test1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 13:04:17,231 - INFO - 控制设备: Test2 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 13:06:56,547 - INFO - 控制设备: T1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 13:07:09,563 - INFO - 控制设备: T2 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 13:08:41,698 - INFO - 控制设备: T1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 13:08:52,250 - INFO - 控制设备: T2 (outlet) 状态=关 配置={}
+2025-06-16 13:09:14,702 - INFO - 控制设备: T1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 13:09:14,717 - INFO - 控制设备: T2 (outlet) 状态=关 配置={}
+2025-06-16 13:09:14,743 - INFO - 控制设备: T1 (light) 状态=开 配置={'brightness': '9'}
+2025-06-16 13:09:14,758 - INFO - 控制设备: T2 (outlet) 状态=开 配置={}
+2025-06-16 13:09:17,074 - INFO - 控制设备: T1 (light) 状态=开 配置={'brightness': 86}
+2025-06-16 13:09:18,398 - INFO - 控制设备: T2 (outlet) 状态=关 配置={}
+2025-06-16 13:09:18,412 - INFO - 控制设备: T1 (light) 状态=关 配置={'brightness': 86}
+2025-06-16 13:09:18,435 - INFO - 控制设备: T2 (outlet) 状态=开 配置={}
+2025-06-16 13:09:18,449 - INFO - 控制设备: T1 (light) 状态=开 配置={'brightness': '9'}
+2025-06-16 13:22:31,034 - INFO - 控制设备: TD1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 13:22:43,047 - INFO - 控制设备: TD2 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 13:22:54,564 - INFO - 控制设备: TD3 (outlet) 状态=关 配置={}
+2025-06-16 13:23:06,644 - INFO - 控制设备: TD4 (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-16 13:23:56,234 - INFO - 控制设备: TD1 (light) 状态=开 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 13:23:56,796 - INFO - 控制设备: TD1 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 13:24:03,166 - INFO - 控制设备: TD11 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 13:24:16,337 - INFO - 控制设备: TD11 (light) 状态=关 配置={'brightness': 50, 'color': '#FFDD88'}
+2025-06-16 13:24:16,348 - INFO - 控制设备: TD4 (curtain) 状态=关 配置={'openPercentage': 50}
+2025-06-16 13:24:16,363 - INFO - 控制设备: TD3 (outlet) 状态=关 配置={}
+2025-06-16 13:24:16,378 - INFO - 控制设备: TD2 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 13:24:16,422 - INFO - 控制设备: TD4 (curtain) 状态=开 配置={'openPercentage': '23'}
+2025-06-16 13:24:16,440 - INFO - 控制设备: TD3 (outlet) 状态=开 配置={}
+2025-06-16 13:24:16,453 - INFO - 控制设备: TD2 (ac) 状态=开 配置={'temperature': 22}
+2025-06-16 13:24:16,475 - INFO - 控制设备: TD11 (light) 状态=开 配置={'brightness': 50}
+2025-06-16 13:24:19,648 - INFO - 控制设备: TD2 (ac) 状态=开 配置={'temperature': 27}
+2025-06-16 13:24:21,020 - INFO - 控制设备: TD11 (light) 状态=开 配置={'brightness': 0}
+2025-06-16 13:24:22,536 - INFO - 控制设备: TD4 (curtain) 状态=关 配置={'openPercentage': '23'}
+2025-06-16 13:24:22,551 - INFO - 控制设备: TD11 (light) 状态=关 配置={'brightness': 0}
+2025-06-16 13:24:22,564 - INFO - 控制设备: TD2 (ac) 状态=关 配置={'temperature': 27}
+2025-06-16 13:24:22,585 - INFO - 控制设备: TD3 (outlet) 状态=关 配置={}
+2025-06-16 13:24:22,607 - INFO - 控制设备: TD2 (ac) 状态=开 配置={'temperature': 22}
+2025-06-16 13:24:22,620 - INFO - 控制设备: TD11 (light) 状态=开 配置={'brightness': 50}
+2025-06-16 13:24:22,635 - INFO - 控制设备: TD4 (curtain) 状态=开 配置={'openPercentage': '23'}
+2025-06-16 13:24:22,653 - INFO - 控制设备: TD3 (outlet) 状态=开 配置={}
+2025-06-16 13:24:32,549 - INFO - 控制设备: TD11 (light) 状态=关 配置={'brightness': 50}
+2025-06-16 13:24:32,565 - INFO - 控制设备: TD4 (curtain) 状态=关 配置={'openPercentage': '23'}
+2025-06-16 13:24:32,586 - INFO - 控制设备: TD3 (outlet) 状态=关 配置={}
+2025-06-16 13:24:32,597 - INFO - 控制设备: TD2 (ac) 状态=开 配置={'temperature': 22}
+2025-06-16 13:24:32,612 - INFO - 控制设备: TD3 (outlet) 状态=开 配置={}
+2025-06-16 13:24:32,626 - INFO - 控制设备: TD4 (curtain) 状态=开 配置={'openPercentage': '23'}
+2025-06-16 13:24:32,640 - INFO - 控制设备: TD11 (light) 状态=开 配置={'brightness': '91'}
+2025-06-16 13:24:32,655 - INFO - 控制设备: TD2 (ac) 状态=关 配置={'temperature': 22}
+2025-06-16 16:18:08,423 - INFO - 控制设备: TD3 (outlet) 状态=关 配置={}
+2025-06-16 16:18:09,526 - INFO - 控制设备: TD4 (curtain) 状态=关 配置={'openPercentage': '23'}
+2025-06-16 16:18:11,453 - INFO - 控制设备: TD11 (light) 状态=关 配置={'brightness': '91'}
+2025-06-16 16:18:15,132 - INFO - 控制设备: TD2 (ac) 状态=开 配置={'temperature': 22}
+2025-06-16 16:18:32,469 - INFO - 控制设备: 客厅空调 (ac) 状态=关 配置={'temperature': 22}
